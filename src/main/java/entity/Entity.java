@@ -4,22 +4,22 @@ import java.awt.image.BufferedImage;
 
 public class Entity {
 
-    public int x;
-    public int y;
-    public int speed;
+    protected int x;
+    protected int y;
+    protected int speed;
 
-    public BufferedImage up1;
-    public BufferedImage up2;
-    public BufferedImage down1;
-    public BufferedImage down2;
-    public BufferedImage left1;
-    public BufferedImage left2;
-    public BufferedImage right1;
-    public BufferedImage right2;
+    protected BufferedImage up1;
+    protected BufferedImage up2;
+    protected BufferedImage down1;
+    protected BufferedImage down2;
+    protected BufferedImage left1;
+    protected BufferedImage left2;
+    protected BufferedImage right1;
+    protected BufferedImage right2;
 
-    public String direction;
+    protected String direction;
 
-    public int spriteCounter = 0;
-    public int spriteNum = 1;
+    protected int spriteCounter = 0;
+    protected int spriteNum = 1;
 
 }

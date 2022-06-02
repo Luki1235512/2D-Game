@@ -12,15 +12,15 @@ import java.util.Objects;
 
 public class TileManager {
 
-    GamePanel gamePanel;
-    Tile[] tile;
-    int[][] mapTileNum;
+    private final GamePanel gamePanel;
+    private final Tile[] tile;
+    private final int[][] mapTileNum;
 
     public TileManager(GamePanel gamePanel) {
 
         this.gamePanel = gamePanel;
         tile = new Tile[10];
-        mapTileNum = new int[gamePanel.maxScreenCol][gamePanel.maxScreenRow];
+        mapTileNum = new int[gamePanel.getMaxScreenCol()][gamePanel.getMaxScreenRow()];
         getTileImage();
         loadMap("/maps/map01.txt");
     }
@@ -53,11 +53,11 @@ public class TileManager {
             int col = 0;
             int row = 0;
 
-            while (col < gamePanel.maxScreenCol && row < gamePanel.maxScreenRow) {
+            while (col < gamePanel.getMaxScreenCol() && row < gamePanel.getMaxScreenRow()) {
 
                 String line = br.readLine();
 
-                while (col < gamePanel.maxScreenCol) {
+                while (col < gamePanel.getMaxScreenCol()) {
 
                     String[] numbers = line.split(" ");
 
@@ -67,7 +67,7 @@ public class TileManager {
                     col++;
                 }
 
-                if (col == gamePanel.maxScreenCol) {
+                if (col == gamePanel.getMaxScreenCol()) {
                     col = 0;
                     row++;
                 }
@@ -84,19 +84,19 @@ public class TileManager {
         int x = 0;
         int y = 0;
 
-        while(col < gamePanel.maxScreenCol && row < gamePanel.maxScreenRow) {
+        while(col < gamePanel.getMaxScreenCol() && row < gamePanel.getMaxScreenRow()) {
 
             int tileNum = mapTileNum[col][row];
 
-            g2.drawImage(tile[tileNum].image, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+            g2.drawImage(tile[tileNum].image, x, y, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
             col++;
-            x += gamePanel.tileSize;
+            x += gamePanel.getTileSize();
 
-            if (col == gamePanel.maxScreenCol) {
+            if (col == gamePanel.getMaxScreenCol()) {
                 col = 0;
                 x = 0;
                 row++;
-                y += gamePanel.tileSize;
+                y += gamePanel.getTileSize();
             }
         }
 

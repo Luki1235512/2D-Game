@@ -11,8 +11,8 @@ import java.util.Objects;
 
 public class Player extends Entity{
 
-    GamePanel gamePanel;
-    KeyHandler keyHandler;
+    private final GamePanel gamePanel;
+    private final KeyHandler keyHandler;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
@@ -47,16 +47,16 @@ public class Player extends Entity{
 
     public void update() {
 
-        if (keyHandler.upPressed || keyHandler.downPressed ||
-                keyHandler.leftPressed || keyHandler.rightPressed) {
+        if (keyHandler.isUpPressed() || keyHandler.isDownPressed() ||
+                keyHandler.isLeftPressed() || keyHandler.isRightPressed()) {
 
-            if (keyHandler.upPressed) {
+            if (keyHandler.isUpPressed()) {
                 direction = "up";
                 y -= speed;
-            } else if (keyHandler.downPressed) {
+            } else if (keyHandler.isDownPressed()) {
                 direction = "down";
                 y += speed;
-            } else if (keyHandler.leftPressed) {
+            } else if (keyHandler.isLeftPressed()) {
                 direction = "left";
                 x -= speed;
             } else {
@@ -116,7 +116,7 @@ public class Player extends Entity{
                 }
                 break;
         }
-        g2.drawImage(image, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        g2.drawImage(image, x, y, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
     }
 
 }

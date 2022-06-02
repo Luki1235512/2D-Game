@@ -9,24 +9,22 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
+    private final int originalTileSize = 16;
+    private final int scale = 3;
 
-    final int originalTileSize = 16;
-    final int scale = 3;
+    private final int tileSize = originalTileSize * scale;
+    private final int maxScreenCol = 16;
+    private final int maxScreenRow = 12;
 
-    public final int tileSize = originalTileSize * scale;
-    public final int maxScreenCol = 16;
-    public final int maxScreenRow = 12;
-    public final int screenWidth = tileSize * maxScreenCol;
-    public final int screenHeight = tileSize * maxScreenRow;
-
-    double FPS = 60;
-
-    TileManager tileManager = new TileManager(this);
-    KeyHandler keyHandler = new KeyHandler();
-    Thread gameThread;
-    Player player = new Player(this, keyHandler);
+    private final TileManager tileManager = new TileManager(this);
+    private final KeyHandler keyHandler = new KeyHandler();
+    private Thread gameThread;
+    private final Player player = new Player(this, keyHandler);
 
     public GamePanel() {
+
+        int screenWidth = tileSize * maxScreenCol;
+        int screenHeight = tileSize * maxScreenRow;
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -39,9 +37,40 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread.start();
     }
 
+
+    public void update() {
+
+        player.update();
+    }
+
+    public void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+
+        Graphics2D g2 = (Graphics2D) g;
+
+        tileManager.draw(g2);
+        player.draw(g2);
+
+        g2.dispose();
+    }
+
+    public int getTileSize() {
+        return tileSize;
+    }
+
+    public int getMaxScreenCol() {
+        return maxScreenCol;
+    }
+
+    public int getMaxScreenRow() {
+        return maxScreenRow;
+    }
+
     @Override
     public void run() {
 
+        double FPS = 60;
         double drawInterval = 1000000000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
@@ -76,21 +105,6 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public void update() {
 
-        player.update();
-    }
-
-    public void paintComponent(Graphics g) {
-
-        super.paintComponent(g);
-
-        Graphics2D g2 = (Graphics2D) g;
-
-        tileManager.draw(g2);
-        player.draw(g2);
-
-        g2.dispose();
-    }
 
 }
