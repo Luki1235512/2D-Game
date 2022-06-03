@@ -4,8 +4,8 @@ import java.awt.image.BufferedImage;
 
 public class Entity {
 
-    protected int x;
-    protected int y;
+    public int worldX;
+    public int worldY;
     protected int speed;
 
     protected BufferedImage up1;
@@ -21,5 +21,4 @@ public class Entity {
 
     protected int spriteCounter = 0;
     protected int spriteNum = 1;
-
 }
