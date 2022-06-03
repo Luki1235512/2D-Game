@@ -1,12 +1,13 @@
 package entity;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Entity {
 
     public int worldX;
     public int worldY;
-    protected int speed;
+    public int speed;
 
     protected BufferedImage up1;
     protected BufferedImage up2;
@@ -17,8 +18,11 @@ public class Entity {
     protected BufferedImage right1;
     protected BufferedImage right2;
 
-    protected String direction;
+    public String direction;
 
     protected int spriteCounter = 0;
     protected int spriteNum = 1;
+
+    public Rectangle solidArea;
+    public boolean collisionOn = false;
 }

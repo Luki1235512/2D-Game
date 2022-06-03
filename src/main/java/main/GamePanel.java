@@ -29,6 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final TileManager tileManager = new TileManager(this);
     private final KeyHandler keyHandler = new KeyHandler();
     private Thread gameThread;
+    private final CollisionChecker collisionChecker = new CollisionChecker(this);
     private final Player player = new Player(this, keyHandler);
 
     public GamePanel() {
@@ -66,14 +67,6 @@ public class GamePanel extends JPanel implements Runnable {
         return tileSize;
     }
 
-    public int getMaxScreenCol() {
-        return maxScreenCol;
-    }
-
-    public int getMaxScreenRow() {
-        return maxScreenRow;
-    }
-
     public int getScreenWidth() {
         return screenWidth;
     }
@@ -90,16 +83,16 @@ public class GamePanel extends JPanel implements Runnable {
         return maxWorldRow;
     }
 
-    public int getWorldWidth() {
-        return worldWidth;
-    }
-
-    public int getWorldHeight() {
-        return worldHeight;
-    }
-
     public Player getPlayer() {
         return player;
+    }
+
+    public CollisionChecker getCollisionChecker() {
+        return collisionChecker;
+    }
+
+    public TileManager getTileManager() {
+        return tileManager;
     }
 
     @Override
