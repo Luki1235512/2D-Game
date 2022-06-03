@@ -1,0 +1,31 @@
+package object;
+
+import main.GamePanel;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+public class SuperObject {
+
+    protected BufferedImage image;
+    protected String name;
+    protected boolean collision = false;
+
+    public int worldX;
+    public int worldY;
+
+    public void draw(Graphics2D g2, GamePanel gamePanel) {
+
+        int screenX = worldX - gamePanel.getPlayer().worldX + gamePanel.getPlayer().getScreenX();
+        int screenY = worldY - gamePanel.getPlayer().worldY + gamePanel.getPlayer().getScreenY();
+
+        if (worldX + gamePanel.getTileSize() > gamePanel.getPlayer().worldX - gamePanel.getPlayer().getScreenX() &&
+                worldX - gamePanel.getTileSize() < gamePanel.getPlayer().worldX + gamePanel.getPlayer().getScreenX() &&
+                worldY + gamePanel.getTileSize() > gamePanel.getPlayer().worldY - gamePanel.getPlayer().getScreenY() &&
+                worldY - gamePanel.getTileSize() < gamePanel.getPlayer().worldY + gamePanel.getPlayer().getScreenY()) {
+
+            g2.drawImage(image, screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+        }
+    }
+
+}
