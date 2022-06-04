@@ -8,11 +8,15 @@ import java.awt.image.BufferedImage;
 public class SuperObject {
 
     protected BufferedImage image;
-    protected String name;
-    protected boolean collision = false;
+    public String name;
+    public boolean collision = false;
 
     public int worldX;
     public int worldY;
+
+    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    public int solidAreaDefaultX = 0;
+    public int solidAreaDefaultY = 0;
 
     public void draw(Graphics2D g2, GamePanel gamePanel) {
 

@@ -9,13 +9,15 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Player extends Entity{
+public class Player extends Entity {
 
     private final GamePanel gamePanel;
     private final KeyHandler keyHandler;
 
     private final int screenX;
     private final int screenY;
+
+    private int hasKey = 0;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
@@ -25,6 +27,8 @@ public class Player extends Entity{
         screenY = gamePanel.getScreenHeight() / 2 - (gamePanel.getTileSize() / 2);
 
         solidArea = new Rectangle(8, 16, 32, 32);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
 
         setDefaultValues();
         getPlayerImage();
@@ -71,6 +75,10 @@ public class Player extends Entity{
             collisionOn = false;
             gamePanel.getCollisionChecker().checkTile(this);
 
+            // CHECK OBJECT COLLISION
+            int objIndex =  gamePanel.getCollisionChecker().checkObject(this, true);
+            pickUpObject(objIndex);
+
             if (!collisionOn) {
                 switch (direction) {
                     case "up":
@@ -99,8 +107,27 @@ public class Player extends Entity{
                 spriteCounter = 0;
             }
         }
+    }
 
+    public void pickUpObject(int i) {
+        if (i != 999) {
+            String objectName = gamePanel.getObj()[i].name;
 
+            switch (objectName) {
+                case "Key":
+                    hasKey++;
+                    gamePanel.getObj()[i] = null;
+                    System.out.println("Key: " + hasKey);
+                    break;
+                case "Door":
+                    if (hasKey > 0) {
+                        gamePanel.getObj()[i] = null;
+                        hasKey--;
+                    }
+                    System.out.println("Key: " + hasKey);
+                    break;
+            }
+        }
     }
 
     public void draw(Graphics2D g2) {
