@@ -110,7 +110,7 @@ public class Player extends Entity {
     }
 
     public void pickUpObject(int i) {
-        if (i != 999) {
+        if (i != Integer.MAX_VALUE) {
             String objectName = gamePanel.getObj()[i].name;
 
             switch (objectName) {

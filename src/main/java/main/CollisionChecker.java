@@ -4,7 +4,7 @@ import entity.Entity;
 
 public class CollisionChecker {
 
-    GamePanel gamePanel;
+    private final GamePanel gamePanel;
 
     public CollisionChecker(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -63,7 +63,7 @@ public class CollisionChecker {
 
     public int checkObject(Entity entity, boolean player) {
 
-        int index = 999;
+        int index = Integer.MAX_VALUE;
 
         for (int i = 0; i < gamePanel.getObj().length; i++) {
             if (gamePanel.getObj()[i] != null) {
