@@ -52,11 +52,11 @@ public class UI {
             y = gamePanel.getScreenHeight() / 2 - (gamePanel.getTileSize() * 3);
             g2.drawString(text, x, y);
 
-            text = "Your Time is: " + decimalFormat.format(playTime) + "!";
-            textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-            x = gamePanel.getScreenWidth() / 2 - textLength / 2;
-            y = gamePanel.getScreenHeight() / 2 + (gamePanel.getTileSize() * 4);
-            g2.drawString(text, x, y);
+//            text = "Your Time is: " + decimalFormat.format(playTime) + "!";
+//            textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+//            x = gamePanel.getScreenWidth() / 2 - textLength / 2;
+//            y = gamePanel.getScreenHeight() / 2 + (gamePanel.getTileSize() * 4);
+//            g2.drawString(text, x, y);
 
             g2.setFont(arial_80B);
             g2.setColor(Color.YELLOW);
@@ -76,8 +76,8 @@ public class UI {
             g2.drawString("x " + gamePanel.getPlayer().getHasKey(), 74, 65);
 
             // TIME
-            playTime += (double) 1 / 60;
-            g2.drawString("Time: " + decimalFormat.format(playTime), gamePanel.getTileSize() * 11, 65);
+//            playTime += (double) 1 / 60;
+//            g2.drawString("Time: " + decimalFormat.format(playTime), gamePanel.getTileSize() * 11, 65);
 
             // MESSAGE
             if (messageOn) {
