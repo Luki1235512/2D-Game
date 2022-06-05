@@ -118,20 +118,28 @@ public class Player extends Entity {
                     gamePanel.playSE(1);
                     hasKey++;
                     gamePanel.getObj()[i] = null;
-                    System.out.println("Key: " + hasKey);
+                    gamePanel.getUi().showMessage("You got a key!");
                     break;
                 case "Door":
                     if (hasKey > 0) {
                         gamePanel.playSE(3);
                         gamePanel.getObj()[i] = null;
                         hasKey--;
+                        gamePanel.getUi().showMessage("You opened the door!");
+                    } else {
+                        gamePanel.getUi().showMessage("You need a key!");
                     }
-                    System.out.println("Key: " + hasKey);
                     break;
                 case "Boots":
                     gamePanel.playSE(2);
                     speed += 2;
                     gamePanel.getObj()[i] = null;
+                    gamePanel.getUi().showMessage("Speed up!");
+                    break;
+                case "Chest":
+                    gamePanel.getUi().setGameFinished(true);
+//                    gamePanel.stopMusic();
+                    gamePanel.playSE(4);
                     break;
             }
         }
@@ -183,5 +191,9 @@ public class Player extends Entity {
 
     public int getScreenY() {
         return screenY;
+    }
+
+    public int getHasKey() {
+        return hasKey;
     }
 }

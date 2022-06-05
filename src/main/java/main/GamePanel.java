@@ -27,9 +27,11 @@ public class GamePanel extends JPanel implements Runnable {
     // SYSTEM
     private final TileManager tileManager = new TileManager(this);
     private final KeyHandler keyHandler = new KeyHandler();
-    private final Sound sound = new Sound();
+    private final Sound music = new Sound();
+    private final Sound se = new Sound();
     private final CollisionChecker collisionChecker = new CollisionChecker(this);
     private final AssetSetter assetSetter = new AssetSetter(this);
+    private final UI ui = new UI(this);
     private Thread gameThread;
 
     // ENTITY AND OBJECT
@@ -77,22 +79,25 @@ public class GamePanel extends JPanel implements Runnable {
         // PLAYER
         player.draw(g2);
 
+        // UI
+        ui.draw(g2);
+
         g2.dispose();
     }
 
     public void playMusic(int i) {
-        sound.setFile(i);
-        sound.play();
-        sound.loop();
+        music.setFile(i);
+        music.play();
+        music.loop();
     }
 
     public void stopMusic() {
-        sound.stop();
+        music.stop();
     }
 
     public void playSE(int i) {
-        sound.setFile(i);
-        sound.play();
+        se.setFile(i);
+        se.play();
     }
 
     public int getTileSize() {
@@ -129,6 +134,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public SuperObject[] getObj() {
         return obj;
+    }
+
+    public UI getUi() {
+        return ui;
+    }
+
+    public void setGameThread(Thread gameThread) {
+        this.gameThread = gameThread;
     }
 
     @Override
