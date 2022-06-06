@@ -42,7 +42,7 @@ public class TileManager {
 
         setup(10, "grass00", false);
 
-        setup(11, "water00", false);
+        setup(11, "water00", true);
         setup(12, "water01", true);
         setup(13, "water02", true);
         setup(14, "water03", true);
