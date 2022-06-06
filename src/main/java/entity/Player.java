@@ -57,6 +57,11 @@ public class Player extends Entity {
         left2 = setup("player_left_2");
         right1 = setup("player_right_1");
         right2 = setup("player_right_2");
+
+        standUp = setup("player_stand_up");
+        standLeft = setup("player_stand_left");
+        standRight = setup("player_stand_right");
+        standDown = setup("player_stand_down");
     }
 
     public BufferedImage setup(String imageName) {
@@ -101,7 +106,7 @@ public class Player extends Entity {
                 standCounter++;
 
                 if (standCounter == 20) {
-                    spriteNum = 1;
+                    spriteNum = 0;
                     standCounter = 0;
                 }
 
@@ -127,11 +132,11 @@ public class Player extends Entity {
             }
 
             spriteCounter++;
-            if (spriteCounter > 15) {
+            if (spriteCounter > 10) {
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 }
-                else if (spriteNum == 2) {
+                else {
                     spriteNum = 1;
                 }
                 spriteCounter = 0;
@@ -188,6 +193,9 @@ public class Player extends Entity {
         BufferedImage image = null;
         switch (direction) {
             case "up":
+                if (spriteNum == 0) {
+                    image = standUp;
+                }
                 if (spriteNum == 1) {
                     image = up1;
                 }
@@ -196,6 +204,9 @@ public class Player extends Entity {
                 }
                 break;
             case "down":
+                if (spriteNum == 0) {
+                    image = standDown;
+                }
                 if (spriteNum == 1) {
                     image = down1;
                 }
@@ -204,6 +215,9 @@ public class Player extends Entity {
                 }
                 break;
             case "left":
+                if (spriteNum == 0) {
+                    image = standLeft;
+                }
                 if (spriteNum == 1) {
                     image = left1;
                 }
@@ -212,6 +226,9 @@ public class Player extends Entity {
                 }
                 break;
             case "right":
+                if (spriteNum == 0) {
+                    image = standRight;
+                }
                 if (spriteNum == 1) {
                     image = right1;
                 }

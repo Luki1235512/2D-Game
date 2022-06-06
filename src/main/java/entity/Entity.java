@@ -18,6 +18,11 @@ public class Entity {
     protected BufferedImage right1;
     protected BufferedImage right2;
 
+    protected BufferedImage standUp;
+    protected BufferedImage standLeft;
+    protected BufferedImage standRight;
+    protected BufferedImage standDown;
+
     public String direction;
 
     protected int spriteCounter = 0;
