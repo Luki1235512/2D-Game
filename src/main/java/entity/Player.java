@@ -19,6 +19,10 @@ public class Player extends Entity {
 
     private int hasKey = 0;
 
+    private int standCounter = 0;
+    private boolean moving = false;
+    private int pixelCounter = 0;
+
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
@@ -26,7 +30,7 @@ public class Player extends Entity {
         screenX = gamePanel.getScreenWidth() / 2 - (gamePanel.getTileSize() / 2);
         screenY = gamePanel.getScreenHeight() / 2 - (gamePanel.getTileSize() / 2);
 
-        solidArea = new Rectangle(8, 16, 32, 32);
+        solidArea = new Rectangle(1, 1, 46, 46);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -59,26 +63,41 @@ public class Player extends Entity {
 
     public void update() {
 
-        if (keyHandler.isUpPressed() || keyHandler.isDownPressed() ||
-                keyHandler.isLeftPressed() || keyHandler.isRightPressed()) {
-            if (keyHandler.isUpPressed()) {
-                direction = "up";
-            } else if (keyHandler.isDownPressed()) {
-                direction = "down";
-            } else if (keyHandler.isLeftPressed()) {
-                direction = "left";
+        if (!moving) {
+
+            if (keyHandler.isUpPressed() || keyHandler.isDownPressed() ||
+                    keyHandler.isLeftPressed() || keyHandler.isRightPressed()) {
+                if (keyHandler.isUpPressed()) {
+                    direction = "up";
+                } else if (keyHandler.isDownPressed()) {
+                    direction = "down";
+                } else if (keyHandler.isLeftPressed()) {
+                    direction = "left";
+                } else {
+                    direction = "right";
+                }
+
+                moving = true;
+
+                // CHECK TILE COLLISION
+                collisionOn = false;
+                gamePanel.getCollisionChecker().checkTile(this);
+
+                // CHECK OBJECT COLLISION
+                int objIndex = gamePanel.getCollisionChecker().checkObject(this, true);
+                pickUpObject(objIndex);
             } else {
-                direction = "right";
+                standCounter++;
+
+                if (standCounter == 20) {
+                    spriteNum = 1;
+                    standCounter = 0;
+                }
+
             }
+        }
 
-            // CHECK TILE COLLISION
-            collisionOn = false;
-            gamePanel.getCollisionChecker().checkTile(this);
-
-            // CHECK OBJECT COLLISION
-            int objIndex =  gamePanel.getCollisionChecker().checkObject(this, true);
-            pickUpObject(objIndex);
-
+        if (moving) {
             if (!collisionOn) {
                 switch (direction) {
                     case "up":
@@ -106,7 +125,15 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
+
+            pixelCounter += speed;
+            if (pixelCounter == 48) {
+                moving = false;
+                pixelCounter = 0;
+            }
         }
+
+
     }
 
     public void pickUpObject(int i) {
