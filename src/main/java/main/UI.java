@@ -18,6 +18,7 @@ public class UI {
     private String message = "";
     private int messageCounter = 0;
     private boolean gameFinished = false;
+
     private double playTime;
     private final DecimalFormat decimalFormat = new DecimalFormat("#0.00", new DecimalFormatSymbols(Locale.US));
 

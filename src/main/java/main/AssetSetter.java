@@ -24,11 +24,11 @@ public class AssetSetter {
 
         gamePanel.getObj()[3] = new OBJ_Door(gamePanel);
         gamePanel.getObj()[3].worldX = 10 * gamePanel.getTileSize();
-        gamePanel.getObj()[3].worldY = 11 * gamePanel.getTileSize();
+        gamePanel.getObj()[3].worldY = 12 * gamePanel.getTileSize();
 
         gamePanel.getObj()[6] = new OBJ_Chest(gamePanel);
         gamePanel.getObj()[6].worldX = 10 * gamePanel.getTileSize();
-        gamePanel.getObj()[6].worldY = 7 * gamePanel.getTileSize();
+        gamePanel.getObj()[6].worldY = 8 * gamePanel.getTileSize();
 
         gamePanel.getObj()[7] = new OBJ_Boots(gamePanel);
         gamePanel.getObj()[7].worldX = 37 * gamePanel.getTileSize();
