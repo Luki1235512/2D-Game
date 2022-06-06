@@ -25,7 +25,7 @@ public class UI {
         this.gamePanel = gamePanel;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
         arial_80B = new Font("Arial", Font.BOLD, 80);
-        OBJ_Key key = new OBJ_Key();
+        OBJ_Key key = new OBJ_Key(gamePanel);
         keyImage = key.image;
     }
 
@@ -52,12 +52,6 @@ public class UI {
             y = gamePanel.getScreenHeight() / 2 - (gamePanel.getTileSize() * 3);
             g2.drawString(text, x, y);
 
-//            text = "Your Time is: " + decimalFormat.format(playTime) + "!";
-//            textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-//            x = gamePanel.getScreenWidth() / 2 - textLength / 2;
-//            y = gamePanel.getScreenHeight() / 2 + (gamePanel.getTileSize() * 4);
-//            g2.drawString(text, x, y);
-
             g2.setFont(arial_80B);
             g2.setColor(Color.YELLOW);
 
@@ -74,10 +68,6 @@ public class UI {
             g2.setColor(Color.WHITE);
             g2.drawImage(keyImage, gamePanel.getTileSize() / 2, gamePanel.getTileSize() / 2, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
             g2.drawString("x " + gamePanel.getPlayer().getHasKey(), 74, 65);
-
-            // TIME
-//            playTime += (double) 1 / 60;
-//            g2.drawString("Time: " + decimalFormat.format(playTime), gamePanel.getTileSize() * 11, 65);
 
             // MESSAGE
             if (messageOn) {

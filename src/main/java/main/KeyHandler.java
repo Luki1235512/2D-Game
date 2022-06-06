@@ -10,6 +10,9 @@ public class KeyHandler implements KeyListener {
     private boolean leftPressed;
     private boolean rightPressed;
 
+    // DEBUG
+    public boolean checkDrawTime = false;
+
     public boolean isUpPressed() {
         return upPressed;
     }
@@ -47,6 +50,11 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
             rightPressed = true;
+        }
+
+        // DEBUG
+        if (code == KeyEvent.VK_T) {
+            checkDrawTime = !checkDrawTime;
         }
     }
 
