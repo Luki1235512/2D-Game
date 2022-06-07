@@ -1,9 +1,9 @@
 # 2D-Game
 
-![screen1](https://user-images.githubusercontent.com/49656590/172259926-22305c37-5ec4-446a-b5a2-1cf37127149e.png)
+![screen1](https://user-images.githubusercontent.com/49656590/172381443-5b2bc2a1-e2ca-4feb-bc06-1ce5f12bd364.png)
 
-![screen2](https://user-images.githubusercontent.com/49656590/172259937-050840b8-2c6c-4390-aff0-5a160038b5e6.png)
+![screen2](https://user-images.githubusercontent.com/49656590/172381499-ce01afae-3230-415c-83db-eda74b808654.png)
 
-![screen3](https://user-images.githubusercontent.com/49656590/172259956-8a067eff-9e84-4519-be76-b96cee5189fe.png)
+![screen3](https://user-images.githubusercontent.com/49656590/172381514-41de315d-5d22-4f57-bc6a-72a88efe43ec.png)
 
-![screen4](https://user-images.githubusercontent.com/49656590/172259970-4261f384-b020-4487-983f-e74cf785538a.png)
+![screen4](https://user-images.githubusercontent.com/49656590/172381526-952180d3-f702-4d73-8632-df440d95a272.png)
