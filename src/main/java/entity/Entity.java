@@ -1,9 +1,17 @@
 package entity;
 
+import main.GamePanel;
+import main.UtilityTool;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
 
 public class Entity {
+
+    GamePanel gamePanel;
 
     public int worldX;
     public int worldY;
@@ -28,8 +36,129 @@ public class Entity {
     protected int spriteCounter = 0;
     protected int spriteNum = 1;
 
-    public Rectangle solidArea;
+    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX;
     public int solidAreaDefaultY;
     public boolean collisionOn = false;
+    public int actionLockCounter = 0;
+
+    public Entity(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
+    }
+
+    public BufferedImage setup(String imagePath) {
+        UtilityTool utilityTool = new UtilityTool();
+        BufferedImage image = null;
+
+        try {
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath + ".png")));
+            image = utilityTool.scaleImage(image, gamePanel.getTileSize(), gamePanel.getTileSize());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
+    public void setAction() {
+
+    }
+
+    public void update() {
+
+        setAction();
+        collisionOn = false;
+        gamePanel.getCollisionChecker().checkTile(this);
+        gamePanel.getCollisionChecker().checkObject(this, false);
+        gamePanel.getCollisionChecker().checkPlayer(this);
+
+        if (!collisionOn) {
+            switch (direction) {
+                case "up":
+                    worldY -= speed;
+                    break;
+                case "down":
+                    worldY += speed;
+                    break;
+                case "left":
+                    worldX -= speed;
+                    break;
+                case "right":
+                    worldX += speed;
+                    break;
+            }
+        }
+
+        spriteCounter++;
+        if (spriteCounter > 10) {
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            }
+            else {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }
+    }
+    public void draw(Graphics2D g2) {
+
+        BufferedImage image = null;
+        int screenX = worldX - gamePanel.getPlayer().worldX + gamePanel.getPlayer().getScreenX();
+        int screenY = worldY - gamePanel.getPlayer().worldY + gamePanel.getPlayer().getScreenY();
+
+        if (worldX + gamePanel.getTileSize() > gamePanel.getPlayer().worldX - gamePanel.getPlayer().getScreenX() &&
+                worldX - gamePanel.getTileSize() < gamePanel.getPlayer().worldX + gamePanel.getPlayer().getScreenX() &&
+                worldY + gamePanel.getTileSize() > gamePanel.getPlayer().worldY - gamePanel.getPlayer().getScreenY() &&
+                worldY - gamePanel.getTileSize() < gamePanel.getPlayer().worldY + gamePanel.getPlayer().getScreenY()) {
+
+            switch (direction) {
+                case "up":
+                    if (spriteNum == 0) {
+                        image = standUp;
+                    }
+                    if (spriteNum == 1) {
+                        image = up1;
+                    }
+                    if (spriteNum == 2) {
+                        image = up2;
+                    }
+                    break;
+                case "down":
+                    if (spriteNum == 0) {
+                        image = standDown;
+                    }
+                    if (spriteNum == 1) {
+                        image = down1;
+                    }
+                    if (spriteNum == 2) {
+                        image = down2;
+                    }
+                    break;
+                case "left":
+                    if (spriteNum == 0) {
+                        image = standLeft;
+                    }
+                    if (spriteNum == 1) {
+                        image = left1;
+                    }
+                    if (spriteNum == 2) {
+                        image = left2;
+                    }
+                    break;
+                case "right":
+                    if (spriteNum == 0) {
+                        image = standRight;
+                    }
+                    if (spriteNum == 1) {
+                        image = right1;
+                    }
+                    if (spriteNum == 2) {
+                        image = right2;
+                    }
+                    break;
+            }
+
+            g2.drawImage(image, screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+        }
+    }
+
 }

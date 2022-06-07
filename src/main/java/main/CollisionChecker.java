@@ -129,4 +129,97 @@ public class CollisionChecker {
         return index;
     }
 
+    // NPC OR MONSTER
+    public int checkEntity(Entity entity, Entity[] target) {
+
+        int index = Integer.MAX_VALUE;
+
+        for (int i = 0; i < target.length; i++) {
+            if (target[i] != null) {
+                entity.solidArea.x = entity.worldX + entity.solidArea.x;
+                entity.solidArea.y = entity.worldY + entity.solidArea.y;
+
+                target[i].solidArea.x = target[i].worldX + target[i].solidArea.x;
+                target[i].solidArea.y = target[i].worldY + target[i].solidArea.y;
+
+                switch (entity.direction) {
+                    case "up":
+                        entity.solidArea.y -= entity.speed;
+                        if (entity.solidArea.intersects(target[i].solidArea)) {
+                            entity.collisionOn = true;
+                            index = i;
+                        }
+                        break;
+                    case "down":
+                        entity.solidArea.y += entity.speed;
+                        if (entity.solidArea.intersects(target[i].solidArea)) {
+                            entity.collisionOn = true;
+                            index = i;
+                        }
+                        break;
+                    case "left":
+                        entity.solidArea.x -= entity.speed;
+                        if (entity.solidArea.intersects(target[i].solidArea)) {
+                            entity.collisionOn = true;
+                            index = i;
+                        }
+                        break;
+                    case "right":
+                        entity.solidArea.x += entity.speed;
+                        if (entity.solidArea.intersects(target[i].solidArea)) {
+                            entity.collisionOn = true;
+                            index = i;
+                        }
+                        break;
+                }
+                entity.solidArea.x = entity.solidAreaDefaultX;
+                entity.solidArea.y = entity.solidAreaDefaultY;
+                target[i].solidArea.x = target[i].solidAreaDefaultX;
+                target[i].solidArea.y = target[i].solidAreaDefaultY;
+            }
+        }
+
+        return index;
+    }
+
+    public void checkPlayer(Entity entity) {
+
+        entity.solidArea.x = entity.worldX + entity.solidArea.x;
+        entity.solidArea.y = entity.worldY + entity.solidArea.y;
+
+        gamePanel.getPlayer().solidArea.x = gamePanel.getPlayer().worldX + gamePanel.getPlayer().solidArea.x;
+        gamePanel.getPlayer().solidArea.y = gamePanel.getPlayer().worldY + gamePanel.getPlayer().solidArea.y;
+
+        switch (entity.direction) {
+            case "up":
+                entity.solidArea.y -= entity.speed;
+                if (entity.solidArea.intersects(gamePanel.getPlayer().solidArea)) {
+                    entity.collisionOn = true;
+                }
+                break;
+            case "down":
+                entity.solidArea.y += entity.speed;
+                if (entity.solidArea.intersects(gamePanel.getPlayer().solidArea)) {
+                    entity.collisionOn = true;
+                }
+                break;
+            case "left":
+                entity.solidArea.x -= entity.speed;
+                if (entity.solidArea.intersects(gamePanel.getPlayer().solidArea)) {
+                    entity.collisionOn = true;
+                }
+                break;
+            case "right":
+                entity.solidArea.x += entity.speed;
+                if (entity.solidArea.intersects(gamePanel.getPlayer().solidArea)) {
+                    entity.collisionOn = true;
+                }
+                break;
+        }
+        entity.solidArea.x = entity.solidAreaDefaultX;
+        entity.solidArea.y = entity.solidAreaDefaultY;
+        gamePanel.getPlayer().solidArea.x = gamePanel.getPlayer().solidAreaDefaultX;
+        gamePanel.getPlayer().solidArea.y = gamePanel.getPlayer().solidAreaDefaultY;
+    }
+
 }

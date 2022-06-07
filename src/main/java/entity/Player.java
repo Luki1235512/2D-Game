@@ -12,20 +12,18 @@ import java.util.Objects;
 
 public class Player extends Entity {
 
-    private final GamePanel gamePanel;
     private final KeyHandler keyHandler;
 
     private final int screenX;
     private final int screenY;
-
-//    private int hasKey = 0;
 
     private int standCounter = 0;
     private boolean moving = false;
     private int pixelCounter = 0;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
-        this.gamePanel = gamePanel;
+        super(gamePanel);
+
         this.keyHandler = keyHandler;
 
         screenX = gamePanel.getScreenWidth() / 2 - (gamePanel.getTileSize() / 2);
@@ -49,37 +47,24 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
 
-        up1 = setup("player_up_1");
-        up2 = setup("player_up_2");
-        down1 = setup("player_down_1");
-        down2 = setup("player_down_2");
-        left1 = setup("player_left_1");
-        left2 = setup("player_left_2");
-        right1 = setup("player_right_1");
-        right2 = setup("player_right_2");
+        up1 = setup("/player/player_up_1");
+        up2 = setup("/player/player_up_2");
+        down1 = setup("/player/player_down_1");
+        down2 = setup("/player/player_down_2");
+        left1 = setup("/player/player_left_1");
+        left2 = setup("/player/player_left_2");
+        right1 = setup("/player/player_right_1");
+        right2 = setup("/player/player_right_2");
 
-        standUp = setup("player_stand_up");
-        standLeft = setup("player_stand_left");
-        standRight = setup("player_stand_right");
-        standDown = setup("player_stand_down");
-    }
-
-    public BufferedImage setup(String imageName) {
-        UtilityTool utilityTool = new UtilityTool();
-        BufferedImage image = null;
-
-        try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/" + imageName + ".png")));
-            image = utilityTool.scaleImage(image, gamePanel.getTileSize(), gamePanel.getTileSize());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
+        standUp = setup("/player/player_stand_up");
+        standLeft = setup("/player/player_stand_left");
+        standRight = setup("/player/player_stand_right");
+        standDown = setup("/player/player_stand_down");
     }
 
     public void update() {
 
-        if (!moving) {
+
 
             if (keyHandler.isUpPressed() || keyHandler.isDownPressed() ||
                     keyHandler.isLeftPressed() || keyHandler.isRightPressed()) {
@@ -93,8 +78,6 @@ public class Player extends Entity {
                     direction = "right";
                 }
 
-                moving = true;
-
                 // CHECK TILE COLLISION
                 collisionOn = false;
                 gamePanel.getCollisionChecker().checkTile(this);
@@ -102,6 +85,41 @@ public class Player extends Entity {
                 // CHECK OBJECT COLLISION
                 int objIndex = gamePanel.getCollisionChecker().checkObject(this, true);
                 pickUpObject(objIndex);
+
+                // CHECK NPC COLLISION
+                int npcIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getNpc());
+                interactNPC(npcIndex);
+
+                if (!collisionOn) {
+                    switch (direction) {
+                        case "up":
+                            worldY -= speed;
+                            break;
+                        case "down":
+                            worldY += speed;
+                            break;
+                        case "left":
+                            worldX -= speed;
+                            break;
+                        case "right":
+                            worldX += speed;
+                            break;
+                    }
+                }
+
+                spriteCounter++;
+                if (spriteCounter > 10) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    }
+                    else {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
+                }
+
+
+
             } else {
                 standCounter++;
 
@@ -111,43 +129,14 @@ public class Player extends Entity {
                 }
 
             }
-        }
 
-        if (moving) {
-            if (!collisionOn) {
-                switch (direction) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
-                }
-            }
-
-            spriteCounter++;
-            if (spriteCounter > 10) {
-                if (spriteNum == 1) {
-                    spriteNum = 2;
-                }
-                else {
-                    spriteNum = 1;
-                }
-                spriteCounter = 0;
-            }
-
-            pixelCounter += speed;
-            if (pixelCounter == 48) {
-                moving = false;
-                pixelCounter = 0;
-            }
-        }
+//        if (moving) {
+//            pixelCounter += speed;
+//            if (pixelCounter == 48) {
+//                moving = false;
+//                pixelCounter = 0;
+//            }
+//        }
 
 
     }
@@ -155,6 +144,12 @@ public class Player extends Entity {
     public void pickUpObject(int i) {
         if (i != Integer.MAX_VALUE) {
 
+        }
+    }
+
+    public void interactNPC(int i) {
+        if (i != Integer.MAX_VALUE) {
+            System.out.println("you are hitting an npc!");
         }
     }
 

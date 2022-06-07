@@ -1,5 +1,7 @@
 package main;
 
+import entity.Entity;
+import entity.NPC_OldMan;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -37,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
     // ENTITY AND OBJECT
     private final Player player = new Player(this, keyHandler);
     private final SuperObject[] obj = new SuperObject[10];
+    private Entity npc[] = new Entity[10];
 
     // GAME STATE
     private int gameState;
@@ -53,6 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame() {
         assetSetter.setObject();
+        assetSetter.setNPC();
 //        playMusic(0);
 //        stopMusic();
         gameState = playState;
@@ -66,7 +70,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         if (gameState == playState) {
+            // PLAYER
             player.update();
+
+            // NPC
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].update();
+                }
+            }
         }
         if (gameState == pauseState) {
             // TODO: later
@@ -74,7 +86,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void paintComponent(Graphics g) {
-
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
@@ -88,12 +99,21 @@ public class GamePanel extends JPanel implements Runnable {
 
         // TILE
         tileManager.draw(g2);
+
         // OBJECT
         for (SuperObject superObject : obj) {
             if (superObject != null) {
                 superObject.draw(g2, this);
             }
         }
+
+        // NPC
+        for (int i = 0; i < npc.length; i++) {
+            if (npc[i] != null) {
+                npc[i].draw(g2);
+            }
+        }
+
         // PLAYER
         player.draw(g2);
 
@@ -175,9 +195,14 @@ public class GamePanel extends JPanel implements Runnable {
         return pauseState;
     }
 
+    public Entity[] getNpc() {
+        return npc;
+    }
+
     public void setGameState(int gameState) {
         this.gameState = gameState;
     }
+
 
     @Override
     public void run() {
