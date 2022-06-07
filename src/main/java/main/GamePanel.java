@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // SYSTEM
     private final TileManager tileManager = new TileManager(this);
-    private final KeyHandler keyHandler = new KeyHandler();
+    private final KeyHandler keyHandler = new KeyHandler(this);
     private final Sound music = new Sound();
     private final Sound se = new Sound();
     private final CollisionChecker collisionChecker = new CollisionChecker(this);
@@ -37,6 +37,11 @@ public class GamePanel extends JPanel implements Runnable {
     // ENTITY AND OBJECT
     private final Player player = new Player(this, keyHandler);
     private final SuperObject[] obj = new SuperObject[10];
+
+    // GAME STATE
+    private int gameState;
+    private final int playState = 1;
+    private final int pauseState = 2;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -49,6 +54,8 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         assetSetter.setObject();
 //        playMusic(0);
+//        stopMusic();
+        gameState = playState;
     }
 
     public void startGameThread() {
@@ -58,8 +65,12 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void update() {
-
-        player.update();
+        if (gameState == playState) {
+            player.update();
+        }
+        if (gameState == pauseState) {
+            // TODO: later
+        }
     }
 
     public void paintComponent(Graphics g) {
@@ -70,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         // DEBUG
         long drawStart = 0;
-        if (keyHandler.checkDrawTime) {
+        if (keyHandler.isCheckDrawTime()) {
             drawStart = System.nanoTime();
         }
 
@@ -90,7 +101,7 @@ public class GamePanel extends JPanel implements Runnable {
         ui.draw(g2);
 
         // DEBUG
-        if (keyHandler.checkDrawTime) {
+        if (keyHandler.isCheckDrawTime()) {
             long drawEnd = System.nanoTime();
             long passed = drawEnd - drawStart;
             g2.setColor(Color.WHITE);
@@ -152,12 +163,20 @@ public class GamePanel extends JPanel implements Runnable {
         return obj;
     }
 
-    public UI getUi() {
-        return ui;
+    public int getGameState() {
+        return gameState;
     }
 
-    public void setGameThread(Thread gameThread) {
-        this.gameThread = gameThread;
+    public int getPlayState() {
+        return playState;
+    }
+
+    public int getPauseState() {
+        return pauseState;
+    }
+
+    public void setGameState(int gameState) {
+        this.gameState = gameState;
     }
 
     @Override

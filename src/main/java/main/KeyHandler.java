@@ -5,13 +5,19 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
+    GamePanel gamePanel;
+
     private boolean upPressed;
     private boolean downPressed;
     private boolean leftPressed;
     private boolean rightPressed;
 
     // DEBUG
-    public boolean checkDrawTime = false;
+    private boolean checkDrawTime = false;
+
+    public KeyHandler(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
+    }
 
     public boolean isUpPressed() {
         return upPressed;
@@ -27,6 +33,10 @@ public class KeyHandler implements KeyListener {
 
     public boolean isRightPressed() {
         return rightPressed;
+    }
+
+    public boolean isCheckDrawTime() {
+        return checkDrawTime;
     }
 
     @Override
@@ -50,6 +60,14 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
             rightPressed = true;
+        }
+        if (code == KeyEvent.VK_P) {
+            if (gamePanel.getGameState() == gamePanel.getPlayState()) {
+                gamePanel.setGameState(gamePanel.getPauseState());
+            }
+            else if (gamePanel.getGameState() == gamePanel.getPauseState()) {
+                gamePanel.setGameState(gamePanel.getPlayState());
+            }
         }
 
         // DEBUG
