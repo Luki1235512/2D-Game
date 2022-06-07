@@ -2,13 +2,10 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import main.UtilityTool;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Objects;
+
 
 public class Player extends Entity {
 
@@ -18,8 +15,6 @@ public class Player extends Entity {
     private final int screenY;
 
     private int standCounter = 0;
-    private boolean moving = false;
-    private int pixelCounter = 0;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -129,16 +124,6 @@ public class Player extends Entity {
                 }
 
             }
-
-//        if (moving) {
-//            pixelCounter += speed;
-//            if (pixelCounter == 48) {
-//                moving = false;
-//                pixelCounter = 0;
-//            }
-//        }
-
-
     }
 
     public void pickUpObject(int i) {

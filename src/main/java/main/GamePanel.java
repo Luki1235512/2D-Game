@@ -39,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
     // ENTITY AND OBJECT
     private final Player player = new Player(this, keyHandler);
     private final SuperObject[] obj = new SuperObject[10];
-    private Entity npc[] = new Entity[10];
+    private final Entity[] npc = new Entity[10];
 
     // GAME STATE
     private int gameState;
@@ -74,9 +74,9 @@ public class GamePanel extends JPanel implements Runnable {
             player.update();
 
             // NPC
-            for (int i = 0; i < npc.length; i++) {
-                if (npc[i] != null) {
-                    npc[i].update();
+            for (Entity entity : npc) {
+                if (entity != null) {
+                    entity.update();
                 }
             }
         }
@@ -108,9 +108,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         // NPC
-        for (int i = 0; i < npc.length; i++) {
-            if (npc[i] != null) {
-                npc[i].draw(g2);
+        for (Entity entity : npc) {
+            if (entity != null) {
+                entity.draw(g2);
             }
         }
 

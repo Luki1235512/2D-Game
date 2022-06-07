@@ -11,11 +11,11 @@ import java.util.Objects;
 
 public class Entity {
 
-    GamePanel gamePanel;
+    protected GamePanel gamePanel;
 
-    public int worldX;
-    public int worldY;
-    public int speed;
+    protected int worldX;
+    protected int worldY;
+    protected int speed;
 
     protected BufferedImage up1;
     protected BufferedImage up2;
@@ -31,16 +31,16 @@ public class Entity {
     protected BufferedImage standRight;
     protected BufferedImage standDown;
 
-    public String direction;
+    protected String direction;
 
     protected int spriteCounter = 0;
     protected int spriteNum = 1;
 
-    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
-    public int solidAreaDefaultX;
-    public int solidAreaDefaultY;
-    public boolean collisionOn = false;
-    public int actionLockCounter = 0;
+    protected Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    protected int solidAreaDefaultX;
+    protected int solidAreaDefaultY;
+    protected boolean collisionOn = false;
+    protected int actionLockCounter = 0;
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -161,4 +161,43 @@ public class Entity {
         }
     }
 
+    public int getWorldX() {
+        return worldX;
+    }
+
+    public int getWorldY() {
+        return worldY;
+    }
+
+    public void setWorldX(int worldX) {
+        this.worldX = worldX;
+    }
+
+    public void setWorldY(int worldY) {
+        this.worldY = worldY;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public Rectangle getSolidArea() {
+        return solidArea;
+    }
+
+    public int getSolidAreaDefaultX() {
+        return solidAreaDefaultX;
+    }
+
+    public int getSolidAreaDefaultY() {
+        return solidAreaDefaultY;
+    }
+
+    public void setCollisionOn(boolean collisionOn) {
+        this.collisionOn = collisionOn;
+    }
 }
