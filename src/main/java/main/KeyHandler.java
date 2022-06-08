@@ -11,6 +11,7 @@ public class KeyHandler implements KeyListener {
     private boolean downPressed;
     private boolean leftPressed;
     private boolean rightPressed;
+    private boolean enterPressed;
 
     // DEBUG
     private boolean checkDrawTime = false;
@@ -39,6 +40,14 @@ public class KeyHandler implements KeyListener {
         return checkDrawTime;
     }
 
+    public boolean isEnterPressed() {
+        return enterPressed;
+    }
+
+    public void setEnterPressed(boolean enterPressed) {
+        this.enterPressed = enterPressed;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -49,30 +58,45 @@ public class KeyHandler implements KeyListener {
 
         int code = e.getKeyCode();
 
-        if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
-            upPressed = true;
-        }
-        if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
-            leftPressed = true;
-        }
-        if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-            downPressed = true;
-        }
-        if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
-            rightPressed = true;
-        }
-        if (code == KeyEvent.VK_P) {
-            if (gamePanel.getGameState() == gamePanel.getPlayState()) {
+        // PLAY STATE
+        if (gamePanel.getGameState() == gamePanel.getPlayState()) {
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+                upPressed = true;
+            }
+            if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
+                leftPressed = true;
+            }
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+                downPressed = true;
+            }
+            if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
+                rightPressed = true;
+            }
+            if (code == KeyEvent.VK_P) {
                 gamePanel.setGameState(gamePanel.getPauseState());
             }
-            else if (gamePanel.getGameState() == gamePanel.getPauseState()) {
+            if (code == KeyEvent.VK_ENTER) {
+                enterPressed = true;
+            }
+
+            // DEBUG
+            if (code == KeyEvent.VK_T) {
+                checkDrawTime = !checkDrawTime;
+            }
+        }
+
+        // PAUSE STATE
+        else if (gamePanel.getGameState() == gamePanel.getPauseState()) {
+            if (code == KeyEvent.VK_P) {
                 gamePanel.setGameState(gamePanel.getPlayState());
             }
         }
 
-        // DEBUG
-        if (code == KeyEvent.VK_T) {
-            checkDrawTime = !checkDrawTime;
+        // DIALOGUE STATE
+        else if (gamePanel.getGameState() == gamePanel.getDialogueState()) {
+            if (code == KeyEvent.VK_ENTER) {
+                gamePanel.setGameState(gamePanel.getPlayState());
+            }
         }
     }
 

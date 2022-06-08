@@ -59,8 +59,6 @@ public class Player extends Entity {
 
     public void update() {
 
-
-
             if (keyHandler.isUpPressed() || keyHandler.isDownPressed() ||
                     keyHandler.isLeftPressed() || keyHandler.isRightPressed()) {
                 if (keyHandler.isUpPressed()) {
@@ -113,8 +111,6 @@ public class Player extends Entity {
                     spriteCounter = 0;
                 }
 
-
-
             } else {
                 standCounter++;
 
@@ -122,7 +118,6 @@ public class Player extends Entity {
                     spriteNum = 0;
                     standCounter = 0;
                 }
-
             }
     }
 
@@ -134,8 +129,12 @@ public class Player extends Entity {
 
     public void interactNPC(int i) {
         if (i != Integer.MAX_VALUE) {
-            System.out.println("you are hitting an npc!");
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.setGameState(gamePanel.getDialogueState());
+                gamePanel.getNpc()[i].speak();
+            }
         }
+        gamePanel.getKeyHandler().setEnterPressed(false);
     }
 
     public void draw(Graphics2D g2) {

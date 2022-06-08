@@ -13,6 +13,7 @@ public class NPC_OldMan extends Entity {
         speed = 1;
 
         getImage();
+        setDialogue();
     }
 
     public void getImage() {
@@ -30,6 +31,13 @@ public class NPC_OldMan extends Entity {
 //        standLeft = setup("player_stand_left");
 //        standRight = setup("player_stand_right");
 //        standDown = setup("player_stand_down");
+    }
+
+    public void setDialogue() {
+        dialogues[0] = "Hello!";
+        dialogues[1] = "Where am I now?";
+        dialogues[2] = "Sometimes I remember.";
+        dialogues[3] = "What do you need?";
     }
 
     public void setAction() {
@@ -55,6 +63,10 @@ public class NPC_OldMan extends Entity {
 
             actionLockCounter = 0;
         }
+    }
+
+    public void speak() {
+        super.speak();
     }
 
 }

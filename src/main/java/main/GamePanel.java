@@ -1,7 +1,6 @@
 package main;
 
 import entity.Entity;
-import entity.NPC_OldMan;
 import entity.Player;
 import object.SuperObject;
 import tile.TileManager;
@@ -45,6 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
     private int gameState;
     private final int playState = 1;
     private final int pauseState = 2;
+    private final int dialogueState = 3;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -197,6 +197,18 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Entity[] getNpc() {
         return npc;
+    }
+
+    public int getDialogueState() {
+        return dialogueState;
+    }
+
+    public UI getUi() {
+        return ui;
+    }
+
+    public KeyHandler getKeyHandler() {
+        return keyHandler;
     }
 
     public void setGameState(int gameState) {
