@@ -1,24 +1,31 @@
 package main;
 
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class UI {
 
     private final GamePanel gamePanel;
     private Graphics2D g2;
-    private final Font arial_40;
-    private final Font arial_80B;
+    private Font webfontRegular;
     private boolean messageOn = false;
     private String message = "";
     private final int messageCounter = 0;
-    private boolean gameFinished = false;
+    private final boolean gameFinished = false;
     private String currentDialogue = "";
 
 
     public UI(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        arial_40 = new Font("Arial", Font.PLAIN, 40);
-        arial_80B = new Font("Arial", Font.BOLD, 80);
+        InputStream inputStream = getClass().getResourceAsStream("/font/000webfont Regular.ttf");
+        try {
+            assert inputStream != null;
+            webfontRegular = Font.createFont(Font.TRUETYPE_FONT, inputStream);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void showMessage(String text) {
@@ -29,7 +36,8 @@ public class UI {
     public void draw(Graphics2D g2) {
         this.g2 = g2;
 
-        g2.setFont(arial_40);
+        g2.setFont(webfontRegular);
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.WHITE);
 
         // PLAY STATE
@@ -68,7 +76,7 @@ public class UI {
 
         drawSubWindow(x, y, width, height);
 
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
         x += gamePanel.getTileSize();
         y += gamePanel.getTileSize();
 
