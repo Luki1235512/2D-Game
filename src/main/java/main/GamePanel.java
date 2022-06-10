@@ -42,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // GAME STATE
     private int gameState;
+    private final int titleState = 0;
     private final int playState = 1;
     private final int pauseState = 2;
     private final int dialogueState = 3;
@@ -59,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setNPC();
 //        playMusic(0);
 //        stopMusic();
-        gameState = playState;
+        gameState = titleState;
     }
 
     public void startGameThread() {
@@ -96,29 +97,36 @@ public class GamePanel extends JPanel implements Runnable {
             drawStart = System.nanoTime();
         }
 
-
-        // TILE
-        tileManager.draw(g2);
-
-        // OBJECT
-        for (SuperObject superObject : obj) {
-            if (superObject != null) {
-                superObject.draw(g2, this);
-            }
+        // TITLE SCREEN
+        if (gameState == titleState) {
+            ui.draw(g2);
         }
 
-        // NPC
-        for (Entity entity : npc) {
-            if (entity != null) {
-                entity.draw(g2);
+        // OTHERS
+        else {
+            // TILE
+            tileManager.draw(g2);
+
+            // OBJECT
+            for (SuperObject superObject : obj) {
+                if (superObject != null) {
+                    superObject.draw(g2, this);
+                }
             }
+
+            // NPC
+            for (Entity entity : npc) {
+                if (entity != null) {
+                    entity.draw(g2);
+                }
+            }
+
+            // PLAYER
+            player.draw(g2);
+
+            // UI
+            ui.draw(g2);
         }
-
-        // PLAYER
-        player.draw(g2);
-
-        // UI
-        ui.draw(g2);
 
         // DEBUG
         if (keyHandler.isCheckDrawTime()) {
@@ -209,6 +217,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public KeyHandler getKeyHandler() {
         return keyHandler;
+    }
+
+    public int getTitleState() {
+        return titleState;
     }
 
     public void setGameState(int gameState) {

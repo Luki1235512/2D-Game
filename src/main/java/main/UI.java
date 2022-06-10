@@ -14,6 +14,7 @@ public class UI {
     private final int messageCounter = 0;
     private final boolean gameFinished = false;
     private String currentDialogue = "";
+    private int commandNum = 0;
 
 
     public UI(GamePanel gamePanel) {
@@ -40,6 +41,11 @@ public class UI {
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.WHITE);
 
+        // TITLE STATE
+        if (gamePanel.getGameState() == gamePanel.getTitleState()) {
+            drawTitleScreen();
+        }
+
         // PLAY STATE
         if (gamePanel.getGameState() == gamePanel.getPlayState()) {
             // TODO: Do playstate
@@ -53,6 +59,58 @@ public class UI {
         // DIALOGUE STATE
         if (gamePanel.getGameState() == gamePanel.getDialogueState()) {
             drawDialogueScreen();
+        }
+    }
+
+    public void drawTitleScreen() {
+
+        g2.setColor(new Color(0, 0, 0));
+        g2.fillRect(0, 0, gamePanel.getScreenWidth(), gamePanel.getScreenHeight());
+
+        // TITLE NAME
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
+        String text = "2D Game";
+        int x = getXCenterText(text);
+        int y = gamePanel.getTileSize() * 3;
+
+        // SHADOW
+        g2.setColor(Color.GRAY);
+        g2.drawString(text, x + 5, y + 5);
+
+        // MAIN COLOR
+        g2.setColor(Color.WHITE);
+        g2.drawString(text, x, y);
+
+        // MAIN CHARACTER IMAGE
+        x = gamePanel.getScreenWidth() / 2 - (gamePanel.getTileSize() * 2) / 2;
+        y += gamePanel.getTileSize() * 2;
+        g2.drawImage(gamePanel.getPlayer().getStandDown(), x, y, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
+
+        // MENU
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
+
+        text = "NEW GAME";
+        x = getXCenterText(text);
+        y += gamePanel.getTileSize() * 3;
+        g2.drawString(text, x, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x - gamePanel.getTileSize(), y);
+        }
+
+        text = "LOAD GAME";
+        x = getXCenterText(text);
+        y += gamePanel.getTileSize();
+        g2.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - gamePanel.getTileSize(), y);
+        }
+
+        text = "QUIT";
+        x = getXCenterText(text);
+        y += gamePanel.getTileSize();
+        g2.drawString(text, x, y);
+        if (commandNum == 2) {
+            g2.drawString(">", x - gamePanel.getTileSize(), y);
         }
     }
 
@@ -101,6 +159,18 @@ public class UI {
     public int getXCenterText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         return gamePanel.getScreenWidth() / 2 - length / 2;
+    }
+
+    public void decreaseCommandNum() {
+        this.commandNum--;
+    }
+
+    public void increaseCommandNum() {
+        this.commandNum++;
+    }
+
+    public int getCommandNum() {
+        return commandNum;
     }
 
     public void setCurrentDialogue(String currentDialogue) {

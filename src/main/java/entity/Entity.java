@@ -222,6 +222,10 @@ public class Entity {
         return solidAreaDefaultY;
     }
 
+    public BufferedImage getStandDown() {
+        return standDown;
+    }
+
     public void setCollisionOn(boolean collisionOn) {
         this.collisionOn = collisionOn;
     }
