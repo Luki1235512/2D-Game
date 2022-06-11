@@ -44,6 +44,10 @@ public class Entity {
     protected String[] dialogues = new String[20];
     protected int dialogueIndex = 0;
 
+    // CHARACTER STATUS
+    protected int maxLife;
+    protected int life;
+
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
@@ -224,6 +228,22 @@ public class Entity {
 
     public BufferedImage getStandDown() {
         return standDown;
+    }
+
+    public int getMaxLife() {
+        return maxLife;
+    }
+
+    public void setMaxLife(int maxLife) {
+        this.maxLife = maxLife;
+    }
+
+    public int getLife() {
+        return life;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
     }
 
     public void setCollisionOn(boolean collisionOn) {

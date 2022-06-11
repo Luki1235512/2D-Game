@@ -8,7 +8,9 @@ import java.awt.image.BufferedImage;
 
 public class SuperObject {
 
-    protected BufferedImage image;
+    public BufferedImage image;
+    public BufferedImage image2;
+    public BufferedImage image3;
     protected String name;
     public boolean collision = false;
 
