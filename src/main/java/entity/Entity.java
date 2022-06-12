@@ -234,16 +234,8 @@ public class Entity {
         return maxLife;
     }
 
-    public void setMaxLife(int maxLife) {
-        this.maxLife = maxLife;
-    }
-
     public int getLife() {
         return life;
-    }
-
-    public void setLife(int life) {
-        this.life = life;
     }
 
     public void setCollisionOn(boolean collisionOn) {

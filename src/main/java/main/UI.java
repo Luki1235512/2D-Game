@@ -18,8 +18,6 @@ public class UI {
     BufferedImage heart_blank;
     private boolean messageOn = false;
     private String message = "";
-    private final int messageCounter = 0;
-    private final boolean gameFinished = false;
     private String currentDialogue = "";
     private int commandNum = 0;
 
