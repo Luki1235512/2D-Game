@@ -33,6 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final CollisionChecker collisionChecker = new CollisionChecker(this);
     private final AssetSetter assetSetter = new AssetSetter(this);
     private final UI ui = new UI(this);
+    private final EventHandler eventHandler = new EventHandler(this);
     private Thread gameThread;
 
     // ENTITY AND OBJECT
@@ -223,6 +224,10 @@ public class GamePanel extends JPanel implements Runnable {
         return titleState;
     }
 
+    public EventHandler getEventHandler() {
+        return eventHandler;
+    }
+
     public void setGameState(int gameState) {
         this.gameState = gameState;
     }
@@ -231,7 +236,6 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() {
 
-
         double FPS = 60;
         double drawInterval = 1000000000 / FPS;
         double delta = 0;
@@ -239,7 +243,6 @@ public class GamePanel extends JPanel implements Runnable {
         long currentTime;
 
         long timer = 0;
-        int drawCount = 0;
 
         while (gameThread != null) {
 
@@ -255,11 +258,9 @@ public class GamePanel extends JPanel implements Runnable {
                 repaint();
                 delta--;
 
-                drawCount++;
             }
 
             if (timer >= 1000000000) {
-                drawCount = 0;
                 timer = 0;
             }
 

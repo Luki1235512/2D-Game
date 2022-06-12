@@ -14,7 +14,7 @@ public class Player extends Entity {
     private final int screenX;
     private final int screenY;
 
-    private int standCounter = 0;
+    private int standCounter = 20;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -24,7 +24,7 @@ public class Player extends Entity {
         screenX = gamePanel.getScreenWidth() / 2 - (gamePanel.getTileSize() / 2);
         screenY = gamePanel.getScreenHeight() / 2 - (gamePanel.getTileSize() / 2);
 
-        solidArea = new Rectangle(1, 1, 46, 46);
+        solidArea = new Rectangle(8, 16, 32, 32);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -87,6 +87,10 @@ public class Player extends Entity {
                 int npcIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getNpc());
                 interactNPC(npcIndex);
 
+                // CHECK EVENT
+                gamePanel.getEventHandler().checkEvent();
+                gamePanel.getKeyHandler().setEnterPressed(false);
+
                 if (!collisionOn) {
                     switch (direction) {
                         case "up":
@@ -118,7 +122,7 @@ public class Player extends Entity {
             } else {
                 standCounter++;
 
-                if (standCounter == 20) {
+                if (standCounter == 21) {
                     spriteNum = 0;
                     standCounter = 0;
                 }
@@ -138,7 +142,6 @@ public class Player extends Entity {
                 gamePanel.getNpc()[i].speak();
             }
         }
-        gamePanel.getKeyHandler().setEnterPressed(false);
     }
 
     public void draw(Graphics2D g2) {
