@@ -2,11 +2,13 @@ package main;
 
 import entity.Entity;
 import entity.Player;
-import object.SuperObject;
 import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -38,8 +40,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     // ENTITY AND OBJECT
     private final Player player = new Player(this, keyHandler);
-    private final SuperObject[] obj = new SuperObject[10];
+    private final Entity[] obj = new Entity[10];
     private final Entity[] npc = new Entity[10];
+    ArrayList<Entity> entityList = new ArrayList<>();
 
     // GAME STATE
     private int gameState;
@@ -108,22 +111,31 @@ public class GamePanel extends JPanel implements Runnable {
             // TILE
             tileManager.draw(g2);
 
-            // OBJECT
-            for (SuperObject superObject : obj) {
-                if (superObject != null) {
-                    superObject.draw(g2, this);
-                }
-            }
+            // ADD ENTITIES TO THE LIST
+            entityList.add(player);
 
-            // NPC
             for (Entity entity : npc) {
                 if (entity != null) {
-                    entity.draw(g2);
+                    entityList.add(entity);
                 }
             }
 
-            // PLAYER
-            player.draw(g2);
+            for (Entity entity : obj) {
+                if (entity != null) {
+                    entityList.add(entity);
+                }
+            }
+
+            // SORT
+            entityList.sort(Comparator.comparingInt(Entity::getWorldY));
+
+            // DRAW ENTITIES
+            for (Entity entity : entityList) {
+                entity.draw(g2);
+            }
+
+            // EMPTY ENTITY LIST
+            entityList.clear();
 
             // UI
             ui.draw(g2);
@@ -188,10 +200,6 @@ public class GamePanel extends JPanel implements Runnable {
         return tileManager;
     }
 
-    public SuperObject[] getObj() {
-        return obj;
-    }
-
     public int getGameState() {
         return gameState;
     }
@@ -226,6 +234,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public EventHandler getEventHandler() {
         return eventHandler;
+    }
+
+    public Entity[] getObj() {
+        return obj;
     }
 
     public void setGameState(int gameState) {

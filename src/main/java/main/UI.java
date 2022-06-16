@@ -1,7 +1,7 @@
 package main;
 
+import entity.Entity;
 import object.OBJ_Heart;
-import object.SuperObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,8 +16,6 @@ public class UI {
     BufferedImage heart_full;
     BufferedImage heart_half;
     BufferedImage heart_blank;
-    private boolean messageOn = false;
-    private String message = "";
     private String currentDialogue = "";
     private int commandNum = 0;
 
@@ -33,15 +31,10 @@ public class UI {
         }
 
         // CREATE HUD OBJECT
-        SuperObject heart = new OBJ_Heart(gamePanel);
-        heart_full = heart.image;
-        heart_half = heart.image2;
-        heart_blank = heart.image3;
-    }
-
-    public void showMessage(String text) {
-        message = text;
-        messageOn = true;
+        Entity heart = new OBJ_Heart(gamePanel);
+        heart_full = heart.getEntityImage();
+        heart_half = heart.getEntityImage2();
+        heart_blank = heart.getEntityImage3();
     }
 
     public void draw(Graphics2D g2) {

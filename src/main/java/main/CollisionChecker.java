@@ -70,14 +70,14 @@ public class CollisionChecker {
                 entity.getSolidArea().x = entity.getWorldX() + entity.getSolidArea().x;
                 entity.getSolidArea().y = entity.getWorldY() + entity.getSolidArea().y;
 
-                gamePanel.getObj()[i].solidArea.x = gamePanel.getObj()[i].worldX + gamePanel.getObj()[i].solidArea.x;
-                gamePanel.getObj()[i].solidArea.y = gamePanel.getObj()[i].worldY + gamePanel.getObj()[i].solidArea.y;
+                gamePanel.getObj()[i].getSolidArea().x = gamePanel.getObj()[i].getWorldX() + gamePanel.getObj()[i].getSolidArea().x;
+                gamePanel.getObj()[i].getSolidArea().y = gamePanel.getObj()[i].getWorldY() + gamePanel.getObj()[i].getSolidArea().y;
 
                 switch (entity.getDirection()) {
                     case "up":
                         entity.getSolidArea().y -= entity.getSpeed();
-                        if (entity.getSolidArea().intersects(gamePanel.getObj()[i].solidArea)) {
-                            if (gamePanel.getObj()[i].collision) {
+                        if (entity.getSolidArea().intersects(gamePanel.getObj()[i].getSolidArea())) {
+                            if (gamePanel.getObj()[i].isCollision()) {
                                 entity.setCollisionOn(true);
                             }
                             if (player) {
@@ -87,8 +87,8 @@ public class CollisionChecker {
                         break;
                     case "down":
                         entity.getSolidArea().y += entity.getSpeed();
-                        if (entity.getSolidArea().intersects(gamePanel.getObj()[i].solidArea)) {
-                            if (gamePanel.getObj()[i].collision) {
+                        if (entity.getSolidArea().intersects(gamePanel.getObj()[i].getSolidArea())) {
+                            if (gamePanel.getObj()[i].isCollision()) {
                                 entity.setCollisionOn(true);
                             }
                             if (player) {
@@ -98,8 +98,8 @@ public class CollisionChecker {
                         break;
                     case "left":
                         entity.getSolidArea().x -= entity.getSpeed();
-                        if (entity.getSolidArea().intersects(gamePanel.getObj()[i].solidArea)) {
-                            if (gamePanel.getObj()[i].collision) {
+                        if (entity.getSolidArea().intersects(gamePanel.getObj()[i].getSolidArea())) {
+                            if (gamePanel.getObj()[i].isCollision()) {
                                 entity.setCollisionOn(true);
                             }
                             if (player) {
@@ -109,8 +109,8 @@ public class CollisionChecker {
                         break;
                     case "right":
                         entity.getSolidArea().x += entity.getSpeed();
-                        if (entity.getSolidArea().intersects(gamePanel.getObj()[i].solidArea)) {
-                            if (gamePanel.getObj()[i].collision) {
+                        if (entity.getSolidArea().intersects(gamePanel.getObj()[i].getSolidArea())) {
+                            if (gamePanel.getObj()[i].isCollision()) {
                                 entity.setCollisionOn(true);
                             }
                             if (player) {
@@ -121,8 +121,8 @@ public class CollisionChecker {
                 }
                 entity.getSolidArea().x = entity.getSolidAreaDefaultX();
                 entity.getSolidArea().y = entity.getSolidAreaDefaultY();
-                gamePanel.getObj()[i].solidArea.x = gamePanel.getObj()[i].solidAreaDefaultX;
-                gamePanel.getObj()[i].solidArea.y = gamePanel.getObj()[i].solidAreaDefaultY;
+                gamePanel.getObj()[i].getSolidArea().x = gamePanel.getObj()[i].getSolidAreaDefaultX();
+                gamePanel.getObj()[i].getSolidArea().y = gamePanel.getObj()[i].getSolidAreaDefaultY();
             }
         }
 

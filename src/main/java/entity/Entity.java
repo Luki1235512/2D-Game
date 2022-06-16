@@ -31,7 +31,7 @@ public class Entity {
     protected BufferedImage standRight;
     protected BufferedImage standDown;
 
-    protected String direction;
+    protected String direction = "down";
 
     protected int spriteCounter = 0;
     protected int spriteNum = 1;
@@ -43,6 +43,12 @@ public class Entity {
     protected int actionLockCounter = 0;
     protected String[] dialogues = new String[20];
     protected int dialogueIndex = 0;
+
+    protected BufferedImage image;
+    protected BufferedImage image2;
+    protected BufferedImage image3;
+    protected String name;
+    protected boolean collision = false;
 
     // CHARACTER STATUS
     protected int maxLife;
@@ -236,6 +242,22 @@ public class Entity {
 
     public int getLife() {
         return life;
+    }
+
+    public BufferedImage getEntityImage() {
+        return image;
+    }
+
+    public BufferedImage getEntityImage2() {
+        return image2;
+    }
+
+    public BufferedImage getEntityImage3() {
+        return image3;
+    }
+
+    public boolean isCollision() {
+        return collision;
     }
 
     public void decreaseLife(int life) {
