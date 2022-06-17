@@ -42,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final Player player = new Player(this, keyHandler);
     private final Entity[] obj = new Entity[10];
     private final Entity[] npc = new Entity[10];
+    private final Entity[] monster = new Entity[20];
     ArrayList<Entity> entityList = new ArrayList<>();
 
     // GAME STATE
@@ -62,8 +63,8 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         assetSetter.setObject();
         assetSetter.setNPC();
+        assetSetter.setMonster();
 //        playMusic(0);
-//        stopMusic();
         gameState = titleState;
     }
 
@@ -80,6 +81,12 @@ public class GamePanel extends JPanel implements Runnable {
 
             // NPC
             for (Entity entity : npc) {
+                if (entity != null) {
+                    entity.update();
+                }
+            }
+            // MONSTER
+            for (Entity entity : monster) {
                 if (entity != null) {
                     entity.update();
                 }
@@ -111,16 +118,25 @@ public class GamePanel extends JPanel implements Runnable {
             // TILE
             tileManager.draw(g2);
 
-            // ADD ENTITIES TO THE LIST
+            // PLAYER
             entityList.add(player);
 
+            // NPC
             for (Entity entity : npc) {
                 if (entity != null) {
                     entityList.add(entity);
                 }
             }
 
+            // OBJECT
             for (Entity entity : obj) {
+                if (entity != null) {
+                    entityList.add(entity);
+                }
+            }
+
+            // MONSTER
+            for (Entity entity : monster) {
                 if (entity != null) {
                     entityList.add(entity);
                 }
@@ -238,6 +254,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Entity[] getObj() {
         return obj;
+    }
+
+    public Entity[] getMonster() {
+        return monster;
     }
 
     public void setGameState(int gameState) {

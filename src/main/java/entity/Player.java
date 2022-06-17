@@ -87,6 +87,10 @@ public class Player extends Entity {
                 int npcIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getNpc());
                 interactNPC(npcIndex);
 
+                // CHECK MONSTER COLLISION
+                int monsterIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getMonster());
+                contactMonster(monsterIndex);
+
                 // CHECK EVENT
                 gamePanel.getEventHandler().checkEvent();
                 gamePanel.getKeyHandler().setEnterPressed(false);
@@ -127,6 +131,14 @@ public class Player extends Entity {
                     standCounter = 0;
                 }
             }
+
+            if (invincible) {
+                invincibleCounter++;
+                if (invincibleCounter > 60) {
+                    invincible = false;
+                    invincibleCounter = 0;
+                }
+            }
     }
 
     public void pickUpObject(int i) {
@@ -141,6 +153,16 @@ public class Player extends Entity {
                 gamePanel.setGameState(gamePanel.getDialogueState());
                 gamePanel.getNpc()[i].speak();
             }
+        }
+    }
+
+    public void contactMonster(int i) {
+        if (i != Integer.MAX_VALUE) {
+            if (!invincible) {
+                life -= 1;
+                invincible = true;
+            }
+
         }
     }
 
@@ -193,7 +215,15 @@ public class Player extends Entity {
                 }
                 break;
         }
+
+        if (invincible) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+
         g2.drawImage(image, screenX, screenY,null);
+
+        // RESET ALPHA
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 
     public int getScreenX() {
