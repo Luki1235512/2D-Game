@@ -10,6 +10,8 @@ public class MON_BlueSlime extends Entity {
     public MON_BlueSlime(GamePanel gamePanel) {
         super(gamePanel);
 
+        this.gamePanel = gamePanel;
+
         type = 2;
         name = "Blue Slime";
         speed = 1;
@@ -28,14 +30,14 @@ public class MON_BlueSlime extends Entity {
 
     public void getImage() {
 
-        up1 = setup("/monster/blueslime_down_1");
-        up2 = setup("/monster/blueslime_down_2");
-        down1 = setup("/monster/blueslime_down_1");
-        down2 = setup("/monster/blueslime_down_2");
-        left1 = setup("/monster/blueslime_down_1");
-        left2 = setup("/monster/blueslime_down_2");
-        right1 = setup("/monster/blueslime_down_1");
-        right2 = setup("/monster/blueslime_down_2");
+        up1 = setup("/monster/blueslime_down_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        up2 = setup("/monster/blueslime_down_2", gamePanel.getTileSize(), gamePanel.getTileSize());
+        down1 = setup("/monster/blueslime_down_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        down2 = setup("/monster/blueslime_down_2", gamePanel.getTileSize(), gamePanel.getTileSize());
+        left1 = setup("/monster/blueslime_down_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        left2 = setup("/monster/blueslime_down_2", gamePanel.getTileSize(), gamePanel.getTileSize());
+        right1 = setup("/monster/blueslime_down_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        right2 = setup("/monster/blueslime_down_2", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 
     public void setAction() {
