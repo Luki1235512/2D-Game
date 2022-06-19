@@ -13,10 +13,6 @@ public class Entity {
 
     protected GamePanel gamePanel;
 
-    protected int worldX;
-    protected int worldY;
-    protected int speed;
-
     protected BufferedImage up1;
     protected BufferedImage up2;
     protected BufferedImage down1;
@@ -26,34 +22,51 @@ public class Entity {
     protected BufferedImage right1;
     protected BufferedImage right2;
 
+    protected BufferedImage attackUp1;
+    protected BufferedImage attackUp2;
+    protected BufferedImage attackDown1;
+    protected BufferedImage attackDown2;
+    protected BufferedImage attackLeft1;
+    protected BufferedImage attackLeft2;
+    protected BufferedImage attackRight1;
+    protected BufferedImage attackRight2;
+
     protected BufferedImage standUp;
     protected BufferedImage standLeft;
     protected BufferedImage standRight;
     protected BufferedImage standDown;
 
-    protected String direction = "down";
-
-    protected int spriteCounter = 0;
-    protected int spriteNum = 1;
-
-    protected Rectangle solidArea = new Rectangle(0, 0, 48, 48);
-    protected int solidAreaDefaultX;
-    protected int solidAreaDefaultY;
-    protected boolean collisionOn = false;
-    protected int actionLockCounter = 0;
-    protected boolean invincible = false;
-    protected int invincibleCounter = 0;
-    protected String[] dialogues = new String[20];
-    protected int dialogueIndex = 0;
-
     protected BufferedImage image;
     protected BufferedImage image2;
     protected BufferedImage image3;
-    protected String name;
-    protected boolean collision = false;
-    protected int type;
 
-    // CHARACTER STATUS
+    protected Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    protected Rectangle attackArea = new Rectangle(0, 0, 0, 0);
+    protected int solidAreaDefaultX;
+    protected int solidAreaDefaultY;
+    protected boolean collisionOn = false;
+
+    protected String[] dialogues = new String[20];
+
+    // STATE
+    protected int worldX;
+    protected int worldY;
+    protected String direction = "down";
+    protected int spriteNum = 1;
+    protected int dialogueIndex = 0;
+    protected boolean collision = false;
+    protected boolean invincible = false;
+    protected boolean attacking = false;
+
+    // COUNTER
+    protected int spriteCounter = 0;
+    protected int actionLockCounter = 0;
+    protected int invincibleCounter = 0;
+
+    // CHARACTER ATTRIBUTES
+    protected int type;
+    protected String name;
+    protected int speed;
     protected int maxLife;
     protected int life;
 
@@ -61,13 +74,13 @@ public class Entity {
         this.gamePanel = gamePanel;
     }
 
-    public BufferedImage setup(String imagePath) {
+    public BufferedImage setup(String imagePath, int width, int height) {
         UtilityTool utilityTool = new UtilityTool();
         BufferedImage image = null;
 
         try {
             image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath + ".png")));
-            image = utilityTool.scaleImage(image, gamePanel.getTileSize(), gamePanel.getTileSize());
+            image = utilityTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -145,6 +158,14 @@ public class Entity {
             }
             spriteCounter = 0;
         }
+
+        if (invincible) {
+            invincibleCounter++;
+            if (invincibleCounter > 40) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
     public void draw(Graphics2D g2) {
 
@@ -204,7 +225,13 @@ public class Entity {
                     break;
             }
 
+            if (invincible) {
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+            }
+
             g2.drawImage(image, screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
     }
 
