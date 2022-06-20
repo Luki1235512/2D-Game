@@ -57,11 +57,16 @@ public class Entity {
     protected boolean collision = false;
     protected boolean invincible = false;
     protected boolean attacking = false;
+    protected boolean alive = true;
+    protected boolean dying = false;
+    protected boolean hpBarOn = false;
 
     // COUNTER
     protected int spriteCounter = 0;
     protected int actionLockCounter = 0;
     protected int invincibleCounter = 0;
+    protected int dyingCounter = 0;
+    protected int hpBarCounter = 0;
 
     // CHARACTER ATTRIBUTES
     protected int type;
@@ -69,6 +74,20 @@ public class Entity {
     protected int speed;
     protected int maxLife;
     protected int life;
+    protected int level;
+    protected int strength;
+    protected int toughness;
+    protected int attack;
+    protected int defense;
+    protected int exp;
+    protected int nextLevelExp;
+    protected int coin;
+    protected Entity currentWeapon;
+    protected Entity currentShield;
+
+    // ITEM ATTRIBUTES
+    protected int attackValue;
+    protected int defenseValue;
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -88,6 +107,10 @@ public class Entity {
     }
 
     public void setAction() {
+
+    }
+
+    public void damageReaction() {
 
     }
 
@@ -126,6 +149,7 @@ public class Entity {
 
         if (this.type == 2 && contactPlayer) {
             if (!gamePanel.getPlayer().invincible) {
+                gamePanel.playSE(6);
                 gamePanel.getPlayer().life -= 1;
                 gamePanel.getPlayer().invincible = true;
             }
@@ -225,14 +249,77 @@ public class Entity {
                     break;
             }
 
+            // MONSTER HEALTH BAR
+            if (type == 2 && hpBarOn) {
+
+                double oneScale = (double) gamePanel.getTileSize() / maxLife;
+                double hpBarValue = oneScale * life;
+
+                g2.setColor(new Color(35, 35, 35));
+                g2.fillRect(screenX - 1, screenY - 16, gamePanel.getTileSize() + 2, 12);
+
+                g2.setColor(new Color(255, 0, 30));
+                g2.fillRect(screenX, screenY - 15, (int) hpBarValue, 10);
+
+                hpBarCounter++;
+                if (hpBarCounter > 600) {
+                    hpBarCounter = 0;
+                    hpBarOn = false;
+                }
+            }
+
             if (invincible) {
-                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+                hpBarOn = true;
+                hpBarCounter = 0;
+                changeAlpha(g2, 0.4f);
+            }
+
+            if (dying) {
+                dyingAnimation(g2);
             }
 
             g2.drawImage(image, screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
 
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+            changeAlpha(g2, 1f);
         }
+    }
+
+    public void dyingAnimation(Graphics2D g2) {
+        dyingCounter++;
+        int i = 5;
+
+        if (dyingCounter <= i) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i && dyingCounter <= i * 2) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i * 2 && dyingCounter <= i * 3) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 3 && dyingCounter <= i * 4) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i * 4 && dyingCounter <= i * 5) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 5 && dyingCounter <= i * 6) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i * 6 && dyingCounter <= i * 7) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i * 7 && dyingCounter <= i * 8) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i * 8) {
+            dying = false;
+            alive = false;
+        }
+    }
+
+    public void changeAlpha(Graphics2D g2, float alphaValue) {
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 
     public int getWorldX() {
@@ -293,6 +380,46 @@ public class Entity {
 
     public BufferedImage getEntityImage3() {
         return image3;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getToughness() {
+        return toughness;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public int getNextLevelExp() {
+        return nextLevelExp;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getCoin() {
+        return coin;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public boolean isDying() {
+        return dying;
     }
 
     public boolean isCollision() {

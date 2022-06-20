@@ -5,6 +5,7 @@ import main.GamePanel;
 
 import java.util.Random;
 
+
 public class MON_BlueSlime extends Entity {
 
     public MON_BlueSlime(GamePanel gamePanel) {
@@ -63,6 +64,11 @@ public class MON_BlueSlime extends Entity {
 
             actionLockCounter = 0;
         }
+    }
+
+    public void damageReaction() {
+        actionLockCounter = 0;
+        direction = gamePanel.getPlayer().getDirection();
     }
 
 }

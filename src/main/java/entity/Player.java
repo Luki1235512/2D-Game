@@ -2,6 +2,8 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Shield_Wood;
+import object.OBJ_Sword_Normal;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -15,6 +17,7 @@ public class Player extends Entity {
     private final int screenY;
 
     private int standCounter = 20;
+    private boolean attackCanceled = false;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -44,8 +47,26 @@ public class Player extends Entity {
         direction = "down";
 
         // PLAYER STATUS
+        level = 1;
         maxLife = 6;
         life = maxLife;
+        strength = 1;
+        toughness = 1;
+        exp = 0;
+        nextLevelExp = 5;
+        coin = 0;
+        currentWeapon = new OBJ_Sword_Normal(gamePanel);
+        currentShield = new OBJ_Shield_Wood(gamePanel);
+        attack = getAttack();
+        defense = getDefense();
+    }
+
+    public int getAttack() {
+        return attack = strength * currentWeapon.attackValue;
+    }
+
+    public int getDefense() {
+        return defense = toughness * currentShield.defenseValue;
     }
 
     public void getPlayerImage() {
@@ -130,6 +151,13 @@ public class Player extends Entity {
                 }
             }
 
+            if (keyHandler.isEnterPressed() && !attackCanceled) {
+                gamePanel.playSE(7);
+                attacking = true;
+                spriteCounter = 0;
+            }
+
+            attackCanceled = false;
             gamePanel.getKeyHandler().setEnterPressed(false);
 
             spriteCounter++;
@@ -218,10 +246,9 @@ public class Player extends Entity {
 
         if (gamePanel.getKeyHandler().isEnterPressed()) {
             if (i != Integer.MAX_VALUE) {
+                attackCanceled = true;
                 gamePanel.setGameState(gamePanel.getDialogueState());
                 gamePanel.getNpc()[i].speak();
-            } else {
-                attacking = true;
             }
         }
     }
@@ -229,6 +256,7 @@ public class Player extends Entity {
     public void contactMonster(int i) {
         if (i != Integer.MAX_VALUE) {
             if (!invincible) {
+                gamePanel.playSE(6);
                 life -= 1;
                 invincible = true;
             }
@@ -239,11 +267,13 @@ public class Player extends Entity {
     public void damageMonster(int i) {
         if (i != Integer.MAX_VALUE) {
             if (!gamePanel.getMonster()[i].invincible) {
+                gamePanel.playSE(5);
                 gamePanel.getMonster()[i].life -= 1;
                 gamePanel.getMonster()[i].invincible = true;
+                gamePanel.getMonster()[i].damageReaction();
 
                 if (gamePanel.getMonster()[i].life <= 0) {
-                    gamePanel.getMonster()[i] = null;
+                    gamePanel.getMonster()[i].dying = true;
                 }
             }
         }
@@ -360,5 +390,9 @@ public class Player extends Entity {
 
     public int getScreenY() {
         return screenY;
+    }
+
+    public void setAttackCanceled(boolean attackCancel) {
+        this.attackCanceled = attackCancel;
     }
 }
