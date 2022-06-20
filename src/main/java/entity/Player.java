@@ -221,6 +221,7 @@ public class Player extends Entity {
                 gamePanel.setGameState(gamePanel.getDialogueState());
                 gamePanel.getNpc()[i].speak();
             } else {
+                gamePanel.playSE(7);
                 attacking = true;
             }
         }
@@ -229,6 +230,7 @@ public class Player extends Entity {
     public void contactMonster(int i) {
         if (i != Integer.MAX_VALUE) {
             if (!invincible) {
+                gamePanel.playSE(6);
                 life -= 1;
                 invincible = true;
             }
@@ -239,11 +241,13 @@ public class Player extends Entity {
     public void damageMonster(int i) {
         if (i != Integer.MAX_VALUE) {
             if (!gamePanel.getMonster()[i].invincible) {
+                gamePanel.playSE(5);
                 gamePanel.getMonster()[i].life -= 1;
                 gamePanel.getMonster()[i].invincible = true;
+                gamePanel.getMonster()[i].damageReaction();
 
                 if (gamePanel.getMonster()[i].life <= 0) {
-                    gamePanel.getMonster()[i] = null;
+                    gamePanel.getMonster()[i].dying = true;
                 }
             }
         }

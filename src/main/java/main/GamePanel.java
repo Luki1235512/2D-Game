@@ -7,7 +7,6 @@ import tile.TileManager;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -86,9 +85,14 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             // MONSTER
-            for (Entity entity : monster) {
-                if (entity != null) {
-                    entity.update();
+            for (int i = 0; i < monster.length; i++) {
+                if (monster[i] != null) {
+                    if (monster[i].isAlive() && !monster[i].isDying()) {
+                        monster[i].update();
+                    }
+                    if (!monster[i].isAlive()) {
+                        monster[i] = null;
+                    }
                 }
             }
         }
