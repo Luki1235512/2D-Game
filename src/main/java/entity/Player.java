@@ -15,6 +15,7 @@ public class Player extends Entity {
     private final int screenY;
 
     private int standCounter = 20;
+    private boolean attackCanceled = false;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -130,6 +131,13 @@ public class Player extends Entity {
                 }
             }
 
+            if (keyHandler.isEnterPressed() && !attackCanceled) {
+                gamePanel.playSE(7);
+                attacking = true;
+                spriteCounter = 0;
+            }
+
+            attackCanceled = false;
             gamePanel.getKeyHandler().setEnterPressed(false);
 
             spriteCounter++;
@@ -218,11 +226,9 @@ public class Player extends Entity {
 
         if (gamePanel.getKeyHandler().isEnterPressed()) {
             if (i != Integer.MAX_VALUE) {
+                attackCanceled = true;
                 gamePanel.setGameState(gamePanel.getDialogueState());
                 gamePanel.getNpc()[i].speak();
-            } else {
-                gamePanel.playSE(7);
-                attacking = true;
             }
         }
     }
@@ -364,5 +370,9 @@ public class Player extends Entity {
 
     public int getScreenY() {
         return screenY;
+    }
+
+    public void setAttackCanceled(boolean attackCancel) {
+        this.attackCanceled = attackCancel;
     }
 }

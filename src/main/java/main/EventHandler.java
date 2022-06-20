@@ -92,6 +92,7 @@ public class EventHandler {
 
     public void damagePit(int gameState) {
         gamePanel.setGameState(gameState);
+        gamePanel.playSE(6);
         gamePanel.getUi().setCurrentDialogue("You fall int a pit!");
         gamePanel.getPlayer().decreaseLife(1);
         canTouchEvent = false;
@@ -99,6 +100,8 @@ public class EventHandler {
 
     public void healingPool(int gameState) {
         if (gamePanel.getKeyHandler().isEnterPressed()) {
+            gamePanel.getPlayer().setAttackCanceled(true);
+            gamePanel.playSE(2);
             gamePanel.setGameState(gameState);
             gamePanel.getUi().setCurrentDialogue("You drink the water.\nYour life has been recovered");
             gamePanel.getPlayer().setLife(gamePanel.getPlayer().getMaxLife());
