@@ -222,7 +222,6 @@ public class UI {
         g2.drawString("Weapon", textX, textY);
         textY += lineHeight;
         g2.drawString("Shield", textX, textY);
-        textY += lineHeight;
 
         // VALUES
         int tailX = (frameX + frameWidth) - 30;
@@ -234,7 +233,7 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gamePanel.getPlayer().getLife() + "/" + gamePanel.getPlayer().getMaxLife());
+        value = gamePanel.getPlayer().getLife() + "/" + gamePanel.getPlayer().getMaxLife();
         textX = getXAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
@@ -272,7 +271,6 @@ public class UI {
         value = String.valueOf(gamePanel.getPlayer().getCoin());
         textX = getXAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
-        textY += lineHeight;
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
@@ -294,8 +292,7 @@ public class UI {
 
     public int getXAlignToRightText(String text, int tailX) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = tailX - length;
-        return x;
+        return tailX - length;
     }
 
     public void decreaseCommandNum() {
