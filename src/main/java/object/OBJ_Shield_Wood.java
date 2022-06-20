@@ -9,7 +9,7 @@ public class OBJ_Shield_Wood extends Entity {
         super(gamePanel);
 
         name = "Wood Shield";
-        down1 = setup("objects/shield_wood", gamePanel.getTileSize(), gamePanel.getTileSize());
+        down1 = setup("/objects/shield_wood", gamePanel.getTileSize(), gamePanel.getTileSize());
 
         defenseValue = 1;
     }

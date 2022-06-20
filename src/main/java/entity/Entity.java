@@ -76,6 +76,7 @@ public class Entity {
     protected int life;
     protected int level;
     protected int strength;
+    protected int toughness;
     protected int attack;
     protected int defense;
     protected int exp;
