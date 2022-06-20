@@ -74,6 +74,19 @@ public class Entity {
     protected int speed;
     protected int maxLife;
     protected int life;
+    protected int level;
+    protected int strength;
+    protected int attack;
+    protected int defense;
+    protected int exp;
+    protected int nextLevelExp;
+    protected int coin;
+    protected Entity currentWeapon;
+    protected Entity currentShield;
+
+    // ITEM ATTRIBUTES
+    protected int attackValue;
+    protected int defenseValue;
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
