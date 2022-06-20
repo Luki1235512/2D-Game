@@ -382,6 +382,38 @@ public class Entity {
         return image3;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getToughness() {
+        return toughness;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public int getNextLevelExp() {
+        return nextLevelExp;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getCoin() {
+        return coin;
+    }
+
     public boolean isAlive() {
         return alive;
     }
