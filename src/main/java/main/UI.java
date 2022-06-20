@@ -65,6 +65,11 @@ public class UI {
             drawPlayerLife();
             drawDialogueScreen();
         }
+
+        // CHARACTER STATE
+        if (gamePanel.getGameState() == gamePanel.getCharacterState()) {
+            drawCharacterScreen();
+        }
     }
 
     public void drawPlayerLife() {
@@ -176,6 +181,18 @@ public class UI {
             g2.drawString(line, x, y);
             y += 40;
         }
+    }
+
+    public void drawCharacterScreen() {
+        // CREATE A FRAME
+        final int frameX = gamePanel.getTileSize() * 2;
+        final int frameY = gamePanel.getTileSize();
+        final int frameWidth = gamePanel.getTileSize() * 5;
+        final int frameHeight = gamePanel.getTileSize() * 10;
+
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
