@@ -81,8 +81,8 @@ public class Player extends Entity {
         right2 = setup("/player/player_right_2", gamePanel.getTileSize(), gamePanel.getTileSize());
 
         standUp = setup("/player/player_stand_up", gamePanel.getTileSize(), gamePanel.getTileSize());
-        standLeft = setup("/player/player_stand_left", gamePanel.getTileSize(), gamePanel.getTileSize());
-        standRight = setup("/player/player_stand_right", gamePanel.getTileSize(), gamePanel.getTileSize());
+        standLeft = setup("/player/player_left_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        standRight = setup("/player/player_right_1", gamePanel.getTileSize(), gamePanel.getTileSize());
         standDown = setup("/player/player_stand_down", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 

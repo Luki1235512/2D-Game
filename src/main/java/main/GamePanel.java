@@ -12,8 +12,8 @@ import java.util.Comparator;
 public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
-    private final int originalTileSize = 45;
-    private final int scale = 1;
+    private final int originalTileSize = 16;
+    private final int scale = 3;
 
     private final int tileSize = originalTileSize * scale;
     private final int maxScreenCol = 16;
