@@ -414,6 +414,18 @@ public class Entity {
         return coin;
     }
 
+    public Entity getCurrentWeapon() {
+        return currentWeapon;
+    }
+
+    public Entity getCurrentShield() {
+        return currentShield;
+    }
+
+    public BufferedImage getDown1() {
+        return down1;
+    }
+
     public boolean isAlive() {
         return alive;
     }

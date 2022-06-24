@@ -185,7 +185,7 @@ public class UI {
 
     public void drawCharacterScreen() {
         // CREATE A FRAME
-        final int frameX = gamePanel.getTileSize() * 2;
+        final int frameX = gamePanel.getTileSize();
         final int frameY = gamePanel.getTileSize();
         final int frameWidth = gamePanel.getTileSize() * 5;
         final int frameHeight = gamePanel.getTileSize() * 10;
@@ -218,9 +218,9 @@ public class UI {
         g2.drawString("Next level", textX, textY);
         textY += lineHeight;
         g2.drawString("Coin", textX, textY);
-        textY += lineHeight;
+        textY += lineHeight + 20;
         g2.drawString("Weapon", textX, textY);
-        textY += lineHeight;
+        textY += lineHeight + 15;
         g2.drawString("Shield", textX, textY);
 
         // VALUES
@@ -271,6 +271,11 @@ public class UI {
         value = String.valueOf(gamePanel.getPlayer().getCoin());
         textX = getXAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        g2.drawImage(gamePanel.getPlayer().getCurrentWeapon().getDown1(), tailX - gamePanel.getTileSize(), textY - 14, null);
+        textY += gamePanel.getTileSize();
+        g2.drawImage(gamePanel.getPlayer().getCurrentShield().getDown1(), tailX - gamePanel.getTileSize(), textY - 14, null);
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
