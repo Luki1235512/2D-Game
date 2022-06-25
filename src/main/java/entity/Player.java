@@ -257,7 +257,13 @@ public class Player extends Entity {
         if (i != Integer.MAX_VALUE) {
             if (!invincible) {
                 gamePanel.playSE(6);
-                life -= 1;
+
+                int damage = gamePanel.getMonster()[i].attack - defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
+                life -= damage;
                 invincible = true;
             }
 
@@ -268,7 +274,13 @@ public class Player extends Entity {
         if (i != Integer.MAX_VALUE) {
             if (!gamePanel.getMonster()[i].invincible) {
                 gamePanel.playSE(5);
-                gamePanel.getMonster()[i].life -= 1;
+
+                int damage = attack - gamePanel.getMonster()[i].defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
+                gamePanel.getMonster()[i].life -= damage;
                 gamePanel.getMonster()[i].invincible = true;
                 gamePanel.getMonster()[i].damageReaction();
 
