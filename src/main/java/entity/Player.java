@@ -281,11 +281,13 @@ public class Player extends Entity {
                 }
 
                 gamePanel.getMonster()[i].life -= damage;
+                gamePanel.getUi().addMessage(damage + " damage!");
                 gamePanel.getMonster()[i].invincible = true;
                 gamePanel.getMonster()[i].damageReaction();
 
                 if (gamePanel.getMonster()[i].life <= 0) {
                     gamePanel.getMonster()[i].dying = true;
+                    gamePanel.getUi().addMessage("Killed the " + gamePanel.getMonster()[i].name + "!");
                 }
             }
         }

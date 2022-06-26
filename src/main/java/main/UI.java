@@ -7,15 +7,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class UI {
 
     private final GamePanel gamePanel;
     private Graphics2D g2;
     private Font webfontRegular;
-    BufferedImage heart_full;
-    BufferedImage heart_half;
-    BufferedImage heart_blank;
+    private final BufferedImage heart_full;
+    private final BufferedImage heart_half;
+    private final BufferedImage heart_blank;
+    private final ArrayList<String> message = new ArrayList<>();
+    private final ArrayList<Integer> messageCounter = new ArrayList<>();
     private String currentDialogue = "";
     private int commandNum = 0;
 
@@ -37,6 +40,11 @@ public class UI {
         heart_blank = heart.getEntityImage3();
     }
 
+    public void addMessage(String text) {
+        message.add(text);
+        messageCounter.add(0);
+    }
+
     public void draw(Graphics2D g2) {
         this.g2 = g2;
 
@@ -52,6 +60,7 @@ public class UI {
         // PLAY STATE
         if (gamePanel.getGameState() == gamePanel.getPlayState()) {
             drawPlayerLife();
+            drawMessage();
         }
 
         // PAUSE STATE
@@ -98,6 +107,31 @@ public class UI {
             }
             i++;
             x += gamePanel.getTileSize();
+        }
+    }
+
+    public void drawMessage() {
+        int messageX = gamePanel.getTileSize() - 35;
+        int messageY = gamePanel.getTileSize() * 4;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
+
+        for (int i = 0; i < message.size(); i++) {
+            if (message.get(i) != null) {
+
+                g2.setColor(Color.BLACK);
+                g2.drawString(message.get(i), messageX + 2, messageY + 2);
+                g2.setColor(Color.WHITE);
+                g2.drawString(message.get(i), messageX, messageY);
+
+                int counter = messageCounter.get(i) + 1;
+                messageCounter.set(i, counter);
+                messageY += 50;
+
+                if (messageCounter.get(i) > 180) {
+                    message.remove(i);
+                    messageCounter.remove(i);
+                }
+            }
         }
     }
 
