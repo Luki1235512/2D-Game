@@ -21,6 +21,7 @@ public class Player extends Entity {
     private int standCounter = 20;
     private boolean attackCanceled = false;
     private final ArrayList<Entity> inventory = new ArrayList<>();
+    private int maxInventorySize = 20;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -249,6 +250,18 @@ public class Player extends Entity {
     public void pickUpObject(int i) {
         if (i != Integer.MAX_VALUE) {
 
+            String text;
+
+            if (inventory.size() != maxInventorySize) {
+                inventory.add(gamePanel.getObj()[i]);
+                gamePanel.playSE(1);
+                text = "Got a " + gamePanel.getObj()[i].name + "!";
+            }
+            else {
+                text = "You cannot carry anymore!";
+            }
+            gamePanel.getUi().addMessage(text);
+            gamePanel.getObj()[i] = null;
         }
     }
 

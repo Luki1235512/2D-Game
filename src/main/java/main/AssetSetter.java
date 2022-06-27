@@ -2,6 +2,7 @@ package main;
 
 import entity.NPC_OldMan;
 import monster.MON_BlueSlime;
+import object.OBJ_Key;
 
 public class AssetSetter {
 
@@ -13,6 +14,20 @@ public class AssetSetter {
 
     public void setObject() {
 
+        int i = 0;
+        gamePanel.getObj()[i] = new OBJ_Key(gamePanel);
+        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 25);
+        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 23);
+
+        i++;
+        gamePanel.getObj()[i] = new OBJ_Key(gamePanel);
+        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 21);
+        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 19);
+
+        i++;
+        gamePanel.getObj()[i] = new OBJ_Key(gamePanel);
+        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 26);
+        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 21);
     }
 
     public void setNPC() {

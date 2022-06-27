@@ -349,7 +349,7 @@ public class UI {
         int dFrameY = frameY + frameHeight;
         int dFrameWidth = frameWidth;
         int dFrameHeight = gamePanel.getTileSize() * 3;
-        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+
 
         // DRAW DESCRIPTION TEXT
         int textX = dFrameX + 20;
@@ -359,6 +359,9 @@ public class UI {
         int itemIndex = getItemIndexOnSlot();
 
         if (itemIndex < gamePanel.getPlayer().getInventory().size()) {
+
+            drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+
             for (String line : gamePanel.getPlayer().getInventory().get(itemIndex).getDescription().split("\n")) {
                 g2.drawString(line, textX, textY);
                 textY += 32;
