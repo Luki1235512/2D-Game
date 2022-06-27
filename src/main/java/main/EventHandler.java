@@ -105,6 +105,7 @@ public class EventHandler {
             gamePanel.setGameState(gameState);
             gamePanel.getUi().setCurrentDialogue("You drink the water.\nYour life has been recovered");
             gamePanel.getPlayer().setLife(gamePanel.getPlayer().getMaxLife());
+            gamePanel.getAssetSetter().setMonster();
         }
     }
 

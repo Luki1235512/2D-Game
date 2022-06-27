@@ -288,8 +288,27 @@ public class Player extends Entity {
                 if (gamePanel.getMonster()[i].life <= 0) {
                     gamePanel.getMonster()[i].dying = true;
                     gamePanel.getUi().addMessage("Killed the " + gamePanel.getMonster()[i].name + "!");
+                    gamePanel.getUi().addMessage("Exp + " + gamePanel.getMonster()[i].exp);
+                    exp += gamePanel.getMonster()[i].exp;
+                    checkLevelUp();
                 }
             }
+        }
+    }
+
+    public void checkLevelUp() {
+        if (exp >= nextLevelExp) {
+            level++;
+            nextLevelExp = nextLevelExp * 2;
+            maxLife += 2;
+            strength++;
+            toughness++;
+            attack = getAttack();
+            defense = getDefense();
+
+            gamePanel.playSE(4);
+            gamePanel.setGameState(gamePanel.getDialogueState());
+            gamePanel.getUi().setCurrentDialogue("You are level " + level + " now!\n");
         }
     }
 

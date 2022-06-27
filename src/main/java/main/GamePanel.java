@@ -269,6 +269,10 @@ public class GamePanel extends JPanel implements Runnable {
         return characterState;
     }
 
+    public AssetSetter getAssetSetter() {
+        return assetSetter;
+    }
+
     public void setGameState(int gameState) {
         this.gameState = gameState;
     }
