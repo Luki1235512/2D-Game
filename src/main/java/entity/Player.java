@@ -21,7 +21,7 @@ public class Player extends Entity {
     private int standCounter = 20;
     private boolean attackCanceled = false;
     private final ArrayList<Entity> inventory = new ArrayList<>();
-    private int maxInventorySize = 20;
+    private final int maxInventorySize = 20;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);

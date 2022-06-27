@@ -90,7 +90,7 @@ public class Entity {
     protected String description = "";
 
     // TYPE
-    protected int type;     // 0 = player, 1 = NPC, 2 = monster
+    protected int type;
     protected final int type_player = 0;
     protected final int type_npc = 1;
     protected final int type_monster = 2;
@@ -266,7 +266,7 @@ public class Entity {
             }
 
             // MONSTER HEALTH BAR
-            if (type == 2 && hpBarOn) {
+            if (type == type_monster && hpBarOn) {
 
                 double oneScale = (double) gamePanel.getTileSize() / maxLife;
                 double hpBarValue = oneScale * life;
