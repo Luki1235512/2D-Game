@@ -12,5 +12,6 @@ public class OBJ_Sword_Normal extends Entity {
         down1 = setup("/objects/sword_normal", gamePanel.getTileSize(), gamePanel.getTileSize());
 
         attackValue = 1;
+        description = "[" + name + "]\nNothing special";
     }
 }

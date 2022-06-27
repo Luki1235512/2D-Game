@@ -88,6 +88,7 @@ public class Entity {
     // ITEM ATTRIBUTES
     protected int attackValue;
     protected int defenseValue;
+    protected String description = "";
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -430,6 +431,10 @@ public class Entity {
 
     public BufferedImage getDown1() {
         return down1;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public boolean isAlive() {

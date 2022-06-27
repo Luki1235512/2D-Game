@@ -10,6 +10,7 @@ public class OBJ_Key extends Entity {
 
         name = "Key";
         down1 = setup("/objects/key", gamePanel.getTileSize(), gamePanel.getTileSize());
+        description = "[" + name + "]\nWhat does this open?";
     }
 
 }

@@ -12,5 +12,6 @@ public class OBJ_Shield_Wood extends Entity {
         down1 = setup("/objects/shield_wood", gamePanel.getTileSize(), gamePanel.getTileSize());
 
         defenseValue = 1;
+        description = "[" + name + "]\nSolid wood";
     }
 }
