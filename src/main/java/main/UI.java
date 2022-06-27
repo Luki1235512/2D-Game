@@ -248,7 +248,7 @@ public class UI {
         g2.drawString("Next level", textX, textY += lineHeight);
         g2.drawString("Coin", textX, textY+= lineHeight);
         g2.drawString("Weapon", textX, textY += lineHeight + 20);
-        g2.drawString("Shield", textX, textY += lineHeight + 15);
+        g2.drawString("Shield", textX, textY + (lineHeight + 15));
 
         // VALUES
         int tailX = (frameX + frameWidth) - 30;
@@ -320,10 +320,22 @@ public class UI {
         final int slotYStart = frameY + 20;
         int slotX = slotXStart;
         int slotY = slotYStart;
+        int slotSize = gamePanel.getTileSize() + 3;
+
+        // DRAW PLAYER ITEMS
+        for (int i = 0; i < gamePanel.getPlayer().getInventory().size(); i++) {
+            g2.drawImage(gamePanel.getPlayer().getInventory().get(i).getDown1(), slotX, slotY, null);
+            slotX += slotSize;
+
+            if (i == 4 || i == 9 || i == 14) {
+                slotX = slotXStart;
+                slotY += slotSize;
+            }
+        }
 
         // CURSOR
-        int cursorX = slotXStart + (gamePanel.getTileSize() * slotCol);
-        int cursorY = slotYStart + (gamePanel.getTileSize() * slotRow);
+        int cursorX = slotXStart + (slotSize * slotCol);
+        int cursorY = slotYStart + (slotSize * slotRow);
         int cursorWidth = gamePanel.getTileSize();
         int cursorHeight = gamePanel.getTileSize();
 
@@ -361,6 +373,30 @@ public class UI {
 
     public void increaseCommandNum() {
         this.commandNum++;
+    }
+
+    public void decreaseSlotRow() {
+        this.slotRow--;
+    }
+
+    public void increaseSlotRow() {
+        this.slotRow++;
+    }
+
+    public void decreaseSlotCol() {
+        this.slotCol--;
+    }
+
+    public void increaseSlotCol() {
+        this.slotCol++;
+    }
+
+    public int getSlotCol() {
+        return slotCol;
+    }
+
+    public int getSlotRow() {
+        return slotRow;
     }
 
     public int getCommandNum() {

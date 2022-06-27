@@ -2,11 +2,13 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 
 public class Player extends Entity {
@@ -18,6 +20,7 @@ public class Player extends Entity {
 
     private int standCounter = 20;
     private boolean attackCanceled = false;
+    private final ArrayList<Entity> inventory = new ArrayList<>();
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -37,6 +40,7 @@ public class Player extends Entity {
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
+        setItems();
     }
 
     public void setDefaultValues() {
@@ -59,6 +63,13 @@ public class Player extends Entity {
         currentShield = new OBJ_Shield_Wood(gamePanel);
         attack = getAttack();
         defense = getDefense();
+    }
+
+    public void setItems() {
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+        inventory.add(new OBJ_Key(gamePanel));
+        inventory.add(new OBJ_Key(gamePanel));
     }
 
     public int getAttack() {
@@ -423,6 +434,10 @@ public class Player extends Entity {
 
     public int getScreenY() {
         return screenY;
+    }
+
+    public ArrayList<Entity> getInventory() {
+        return inventory;
     }
 
     public void setAttackCanceled(boolean attackCancel) {
