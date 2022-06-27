@@ -21,6 +21,8 @@ public class UI {
     private final ArrayList<Integer> messageCounter = new ArrayList<>();
     private String currentDialogue = "";
     private int commandNum = 0;
+    private int slotCol = 0;
+    private int slotRow = 0;
 
 
     public UI(GamePanel gamePanel) {
@@ -78,6 +80,7 @@ public class UI {
         // CHARACTER STATE
         if (gamePanel.getGameState() == gamePanel.getCharacterState()) {
             drawCharacterScreen();
+            drawInventory();
         }
     }
 
@@ -222,7 +225,7 @@ public class UI {
         final int frameX = gamePanel.getTileSize();
         final int frameY = gamePanel.getTileSize();
         final int frameWidth = gamePanel.getTileSize() * 5;
-        final int frameHeight = gamePanel.getTileSize() * 10;
+        final int frameHeight = gamePanel.getTileSize() * 9;
 
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
@@ -232,30 +235,20 @@ public class UI {
 
         int textX = frameX + 20;
         int textY = frameY + gamePanel.getTileSize();
-        final int lineHeight = 35;
+        final int lineHeight = 30;
 
         // NAMES
         g2.drawString("Level", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Life", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Strength", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Toughness", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Attack", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Defense", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Exp", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Next level", textX, textY);
-        textY += lineHeight;
-        g2.drawString("Coin", textX, textY);
-        textY += lineHeight + 20;
-        g2.drawString("Weapon", textX, textY);
-        textY += lineHeight + 15;
-        g2.drawString("Shield", textX, textY);
+        g2.drawString("Life", textX, textY += lineHeight);
+        g2.drawString("Strength", textX, textY += lineHeight);
+        g2.drawString("Toughness", textX, textY += lineHeight);
+        g2.drawString("Attack", textX, textY += lineHeight);
+        g2.drawString("Defense", textX, textY += lineHeight);
+        g2.drawString("Exp", textX, textY += lineHeight);
+        g2.drawString("Next level", textX, textY += lineHeight);
+        g2.drawString("Coin", textX, textY+= lineHeight);
+        g2.drawString("Weapon", textX, textY += lineHeight + 20);
+        g2.drawString("Shield", textX, textY += lineHeight + 15);
 
         // VALUES
         int tailX = (frameX + frameWidth) - 30;
@@ -310,6 +303,34 @@ public class UI {
         g2.drawImage(gamePanel.getPlayer().getCurrentWeapon().getDown1(), tailX - gamePanel.getTileSize(), textY - 14, null);
         textY += gamePanel.getTileSize();
         g2.drawImage(gamePanel.getPlayer().getCurrentShield().getDown1(), tailX - gamePanel.getTileSize(), textY - 14, null);
+    }
+
+    public void drawInventory() {
+
+        // FRAME
+        int frameX = gamePanel.getTileSize() * 9;
+        int frameY = gamePanel.getTileSize();
+        int frameWidth = gamePanel.getTileSize() * 6;
+        int frameHeight = gamePanel.getTileSize() * 5;
+
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // SLOT
+        final int slotXStart = frameX + 20;
+        final int slotYStart = frameY + 20;
+        int slotX = slotXStart;
+        int slotY = slotYStart;
+
+        // CURSOR
+        int cursorX = slotXStart + (gamePanel.getTileSize() * slotCol);
+        int cursorY = slotYStart + (gamePanel.getTileSize() * slotRow);
+        int cursorWidth = gamePanel.getTileSize();
+        int cursorHeight = gamePanel.getTileSize();
+
+        // DRAW CURSOR
+        g2.setColor(Color.WHITE);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
