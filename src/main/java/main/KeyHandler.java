@@ -14,7 +14,7 @@ public class KeyHandler implements KeyListener {
     private boolean enterPressed;
 
     // DEBUG
-    private boolean checkDrawTime = false;
+    private boolean showDebugText = false;
 
     public KeyHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -36,8 +36,8 @@ public class KeyHandler implements KeyListener {
         return rightPressed;
     }
 
-    public boolean isCheckDrawTime() {
-        return checkDrawTime;
+    public boolean isShowDebugText() {
+        return showDebugText;
     }
 
     public boolean isEnterPressed() {
@@ -135,7 +135,11 @@ public class KeyHandler implements KeyListener {
 
         // DEBUG
         if (code == KeyEvent.VK_T) {
-            checkDrawTime = !checkDrawTime;
+            showDebugText = !showDebugText;
+        }
+
+        if (code == KeyEvent.VK_R) {
+            gamePanel.getTileManager().loadMap("/maps/worldV2.txt");
         }
     }
 
