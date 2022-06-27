@@ -69,7 +69,6 @@ public class Entity {
     protected int hpBarCounter = 0;
 
     // CHARACTER ATTRIBUTES
-    protected int type;
     protected String name;
     protected int speed;
     protected int maxLife;
@@ -89,6 +88,16 @@ public class Entity {
     protected int attackValue;
     protected int defenseValue;
     protected String description = "";
+
+    // TYPE
+    protected int type;     // 0 = player, 1 = NPC, 2 = monster
+    protected final int type_player = 0;
+    protected final int type_npc = 1;
+    protected final int type_monster = 2;
+    protected final int type_sword = 3;
+    protected final int type_axe = 4;
+    protected final int type_shield = 5;
+    protected final int type_consumable = 6;
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -148,7 +157,7 @@ public class Entity {
         gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getMonster());
         boolean contactPlayer = gamePanel.getCollisionChecker().checkPlayer(this);
 
-        if (this.type == 2 && contactPlayer) {
+        if (this.type == type_monster && contactPlayer) {
             if (!gamePanel.getPlayer().invincible) {
                 gamePanel.playSE(6);
 

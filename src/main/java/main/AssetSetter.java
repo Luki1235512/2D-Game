@@ -2,6 +2,7 @@ package main;
 
 import entity.NPC_OldMan;
 import monster.MON_BlueSlime;
+import object.OBJ_Axe;
 import object.OBJ_Key;
 
 public class AssetSetter {
@@ -27,6 +28,11 @@ public class AssetSetter {
         i++;
         gamePanel.getObj()[i] = new OBJ_Key(gamePanel);
         gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 26);
+        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 21);
+
+        i++;
+        gamePanel.getObj()[i] = new OBJ_Axe(gamePanel);
+        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 33);
         gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 21);
     }
 

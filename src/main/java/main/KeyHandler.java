@@ -183,6 +183,9 @@ public class KeyHandler implements KeyListener {
                 gamePanel.playSE(8);
             }
         }
+        if (code == KeyEvent.VK_ENTER) {
+            gamePanel.getPlayer().selectItem();
+        }
     }
 
     @Override

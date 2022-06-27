@@ -35,9 +35,6 @@ public class Player extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
-        attackArea.width = 36;
-        attackArea.height = 36;
-
         setDefaultValues();
         getPlayerImage();
         getPlayerAttackImage();
@@ -73,6 +70,7 @@ public class Player extends Entity {
     }
 
     public int getAttack() {
+        attackArea = currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
     }
 
@@ -332,6 +330,25 @@ public class Player extends Entity {
             gamePanel.playSE(4);
             gamePanel.setGameState(gamePanel.getDialogueState());
             gamePanel.getUi().setCurrentDialogue("You are level " + level + " now!\n");
+        }
+    }
+
+    public void selectItem() {
+
+        int itemIndex = gamePanel.getUi().getItemIndexOnSlot();
+        if (itemIndex < inventory.size()) {
+            Entity selectedItem = inventory.get(itemIndex);
+            if (selectedItem.type == type_sword || selectedItem.type == type_axe) {
+                currentWeapon = selectedItem;
+                attack = getAttack();
+            }
+            if (selectedItem.type == type_shield) {
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
+            if (selectedItem.type == type_consumable) {
+                // TODO: add consumables
+            }
         }
     }
 
