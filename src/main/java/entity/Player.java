@@ -290,7 +290,7 @@ public class Player extends Entity {
 
     public void contactMonster(int i) {
         if (i != Integer.MAX_VALUE) {
-            if (!invincible) {
+            if (!invincible && !gamePanel.getMonster()[i].dying) {
                 gamePanel.playSE(6);
 
                 int damage = gamePanel.getMonster()[i].attack - defense;

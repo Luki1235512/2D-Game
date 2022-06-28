@@ -332,7 +332,7 @@ public class Entity {
             changeAlpha(g2, 1f);
         }
         if (dyingCounter > i * 8) {
-            dying = false;
+//            dying = false;
             alive = false;
         }
     }
