@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Fireball;
 import object.OBJ_Key;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
@@ -59,6 +60,7 @@ public class Player extends Entity {
         coin = 0;
         currentWeapon = new OBJ_Sword_Normal(gamePanel);
         currentShield = new OBJ_Shield_Wood(gamePanel);
+        projectile = new OBJ_Fireball(gamePanel);
         attack = getAttack();
         defense = getDefense();
     }
@@ -201,6 +203,13 @@ public class Player extends Entity {
                 spriteNum = 0;
                 standCounter = 0;
             }
+        }
+
+        if (gamePanel.getKeyHandler().isShotKeyPressed() && !projectile.alive) {
+            projectile.set(worldX, worldY, direction, true, this);
+            gamePanel.getProjectileList().add(projectile);
+//            TODO: sound for fireball
+//            gamePanel.playSE();
         }
 
         if (invincible) {

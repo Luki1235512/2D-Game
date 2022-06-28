@@ -12,76 +12,13 @@ public class KeyHandler implements KeyListener {
     private boolean leftPressed;
     private boolean rightPressed;
     private boolean enterPressed;
+    private boolean shotKeyPressed;
 
     // DEBUG
     private boolean showDebugText = false;
 
     public KeyHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-    }
-
-    public boolean isUpPressed() {
-        return upPressed;
-    }
-
-    public boolean isDownPressed() {
-        return downPressed;
-    }
-
-    public boolean isLeftPressed() {
-        return leftPressed;
-    }
-
-    public boolean isRightPressed() {
-        return rightPressed;
-    }
-
-    public boolean isShowDebugText() {
-        return showDebugText;
-    }
-
-    public boolean isEnterPressed() {
-        return enterPressed;
-    }
-
-    public void setEnterPressed(boolean enterPressed) {
-        this.enterPressed = enterPressed;
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-        int code = e.getKeyCode();
-
-        // TITLE STATE
-        if (gamePanel.getGameState() == gamePanel.getTitleState()) {
-            titleState(code);
-        }
-
-        // PLAY STATE
-        else if (gamePanel.getGameState() == gamePanel.getPlayState()) {
-            playState(code);
-        }
-
-        // PAUSE STATE
-        else if (gamePanel.getGameState() == gamePanel.getPauseState()) {
-            pauseState(code);
-        }
-
-        // DIALOGUE STATE
-        else if (gamePanel.getGameState() == gamePanel.getDialogueState()) {
-            dialogueState(code);
-        }
-
-        // CHARACTER STATE
-        else if (gamePanel.getGameState() == gamePanel.getCharacterState()) {
-            characterState(code);
-        }
     }
 
     public void titleState(int code) {
@@ -131,6 +68,9 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
+        }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = true;
         }
 
         // DEBUG
@@ -188,6 +128,74 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    public boolean isUpPressed() {
+        return upPressed;
+    }
+
+    public boolean isDownPressed() {
+        return downPressed;
+    }
+
+    public boolean isLeftPressed() {
+        return leftPressed;
+    }
+
+    public boolean isRightPressed() {
+        return rightPressed;
+    }
+
+    public boolean isShowDebugText() {
+        return showDebugText;
+    }
+
+    public boolean isEnterPressed() {
+        return enterPressed;
+    }
+
+    public boolean isShotKeyPressed() {
+        return shotKeyPressed;
+    }
+
+    public void setEnterPressed(boolean enterPressed) {
+        this.enterPressed = enterPressed;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+        int code = e.getKeyCode();
+
+        // TITLE STATE
+        if (gamePanel.getGameState() == gamePanel.getTitleState()) {
+            titleState(code);
+        }
+
+        // PLAY STATE
+        else if (gamePanel.getGameState() == gamePanel.getPlayState()) {
+            playState(code);
+        }
+
+        // PAUSE STATE
+        else if (gamePanel.getGameState() == gamePanel.getPauseState()) {
+            pauseState(code);
+        }
+
+        // DIALOGUE STATE
+        else if (gamePanel.getGameState() == gamePanel.getDialogueState()) {
+            dialogueState(code);
+        }
+
+        // CHARACTER STATE
+        else if (gamePanel.getGameState() == gamePanel.getCharacterState()) {
+            characterState(code);
+        }
+    }
+
     @Override
     public void keyReleased(KeyEvent e) {
 
@@ -204,6 +212,9 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
             rightPressed = false;
+        }
+        if (code == KeyEvent.VK_F) {
+            shotKeyPressed = false;
         }
     }
 }
