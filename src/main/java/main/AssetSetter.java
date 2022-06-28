@@ -4,6 +4,7 @@ import entity.NPC_OldMan;
 import monster.MON_BlueSlime;
 import object.OBJ_Axe;
 import object.OBJ_Key;
+import object.OBJ_Potion_Red;
 import object.OBJ_Shield2;
 
 public class AssetSetter {
@@ -40,6 +41,11 @@ public class AssetSetter {
         gamePanel.getObj()[i] = new OBJ_Shield2(gamePanel);
         gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 35);
         gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 21);
+
+        i++;
+        gamePanel.getObj()[i] = new OBJ_Potion_Red(gamePanel);
+        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 22);
+        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 27);
     }
 
     public void setNPC() {

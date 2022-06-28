@@ -156,7 +156,7 @@ public class KeyHandler implements KeyListener {
     }
 
     public void characterState(int code) {
-        if (code == KeyEvent.VK_C) {
+        if (code == KeyEvent.VK_C || code == KeyEvent.VK_ESCAPE) {
             gamePanel.setGameState(gamePanel.getPlayState());
         }
         if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {

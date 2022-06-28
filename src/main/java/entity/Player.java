@@ -362,7 +362,8 @@ public class Player extends Entity {
                 defense = getDefense();
             }
             if (selectedItem.type == type_consumable) {
-                // TODO: add consumables
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
             }
         }
     }

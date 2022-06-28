@@ -147,6 +147,9 @@ public class Entity {
         }
     }
 
+    public void use(Entity entity) {
+
+    }
     public void update() {
 
         setAction();
