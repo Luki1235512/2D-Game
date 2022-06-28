@@ -65,6 +65,7 @@ public class Entity {
     protected int spriteCounter = 0;
     protected int actionLockCounter = 0;
     protected int invincibleCounter = 0;
+    protected int shotAvailableCounter = 0;
     protected int dyingCounter = 0;
     protected int hpBarCounter = 0;
 

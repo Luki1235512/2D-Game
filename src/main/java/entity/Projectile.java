@@ -21,6 +21,17 @@ public class Projectile extends Entity {
 
     public void update() {
 
+        if (user == gamePanel.getPlayer()) {
+            int monsterIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getMonster());
+            if (monsterIndex != Integer.MAX_VALUE) {
+                gamePanel.getPlayer().damageMonster(monsterIndex, attack);
+                alive = false;
+            }
+        }
+        if (user != gamePanel.getPlayer()) {
+
+        }
+
         switch (direction) {
             case "up":
                 worldY -= speed;

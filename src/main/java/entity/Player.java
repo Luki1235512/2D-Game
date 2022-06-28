@@ -205,9 +205,10 @@ public class Player extends Entity {
             }
         }
 
-        if (gamePanel.getKeyHandler().isShotKeyPressed() && !projectile.alive) {
+        if (gamePanel.getKeyHandler().isShotKeyPressed() && !projectile.alive && shotAvailableCounter == 30) {
             projectile.set(worldX, worldY, direction, true, this);
             gamePanel.getProjectileList().add(projectile);
+            shotAvailableCounter = 0;
 //            TODO: sound for fireball
 //            gamePanel.playSE();
         }
@@ -218,6 +219,9 @@ public class Player extends Entity {
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if (shotAvailableCounter < 30) {
+            shotAvailableCounter++;
         }
     }
 
@@ -254,7 +258,7 @@ public class Player extends Entity {
             solidArea.height = attackArea.height;
 
             int monsterIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getMonster());
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
 
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -314,7 +318,7 @@ public class Player extends Entity {
         }
     }
 
-    public void damageMonster(int i) {
+    public void damageMonster(int i, int attack) {
         if (i != Integer.MAX_VALUE) {
             if (!gamePanel.getMonster()[i].invincible) {
                 gamePanel.playSE(5);
