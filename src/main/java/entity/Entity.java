@@ -73,6 +73,8 @@ public class Entity {
     protected int speed;
     protected int maxLife;
     protected int life;
+    protected int maxMana;
+    protected int mana;
     protected int level;
     protected int strength;
     protected int toughness;
@@ -83,11 +85,13 @@ public class Entity {
     protected int coin;
     protected Entity currentWeapon;
     protected Entity currentShield;
+    protected Projectile projectile;
 
     // ITEM ATTRIBUTES
     protected int attackValue;
     protected int defenseValue;
     protected String description = "";
+    protected int useCost;
 
     // TYPE
     protected int type;
