@@ -10,7 +10,7 @@ public class OBJ_SlimeBall extends Projectile {
         this.gamePanel = gamePanel;
 
         name = "Slime ball";
-        speed = 8;
+        speed = 4;
         maxLife = 80;
         life = maxLife;
         attack = 2;

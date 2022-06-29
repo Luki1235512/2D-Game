@@ -22,15 +22,15 @@ public class AssetSetter {
         gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 25);
         gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 23);
 
-        i++;
-        gamePanel.getObj()[i] = new OBJ_Key(gamePanel);
-        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 21);
-        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 19);
-
-        i++;
-        gamePanel.getObj()[i] = new OBJ_Key(gamePanel);
-        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 26);
-        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 21);
+//        i++;
+//        gamePanel.getObj()[i] = new OBJ_Key(gamePanel);
+//        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 21);
+//        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 19);
+//
+//        i++;
+//        gamePanel.getObj()[i] = new OBJ_Key(gamePanel);
+//        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 26);
+//        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 21);
 
         i++;
         gamePanel.getObj()[i] = new OBJ_Axe(gamePanel);
