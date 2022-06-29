@@ -23,7 +23,7 @@ public class OBJ_Potion_Red extends Entity {
         gamePanel.setGameState(gamePanel.getDialogueState());
         gamePanel.getUi().setCurrentDialogue("You drink the " + name + "!\n" +
                 "Your life has been recovered by " + value + ".");
-        entity.setLife(entity.getLife() + value);
+        entity.increaseLife(value);
         gamePanel.playSE(2);
     }
 
