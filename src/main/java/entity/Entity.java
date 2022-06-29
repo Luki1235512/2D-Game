@@ -471,6 +471,10 @@ public class Entity {
         return mana;
     }
 
+    public void decreaseMana(int mana) {
+        this.mana -= mana;
+    }
+
     public boolean isAlive() {
         return alive;
     }
@@ -489,6 +493,10 @@ public class Entity {
 
     public void setLife(int life) {
         this.life = life;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
     }
 
     public void setCollisionOn(boolean collisionOn) {

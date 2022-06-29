@@ -68,4 +68,12 @@ public class Projectile extends Entity {
         }
 
     }
+
+    public boolean haveResource(Entity user) {
+        return false;
+    }
+
+    public void subtractResource(Entity user) {
+    }
+
 }

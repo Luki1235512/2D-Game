@@ -18,9 +18,9 @@ public class UI {
     private final BufferedImage heart_full;
     private final BufferedImage heart_half;
     private final BufferedImage heart_blank;
-    private BufferedImage crystal_full;
-    private BufferedImage crystal_half;
-    private BufferedImage crystal_blank;
+    private final BufferedImage crystal_full;
+    private final BufferedImage crystal_half;
+    private final BufferedImage crystal_blank;
     private final ArrayList<String> message = new ArrayList<>();
     private final ArrayList<Integer> messageCounter = new ArrayList<>();
     private String currentDialogue = "";
@@ -330,11 +330,6 @@ public class UI {
         textX = getXAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
-
-//        value = String.valueOf(gamePanel.getPlayer().getNextLevelExp());
-//        textX = getXAlignToRightText(value, tailX);
-//        g2.drawString(value, textX, textY);
-//        textY += lineHeight;
 
         value = String.valueOf(gamePanel.getPlayer().getCoin());
         textX = getXAlignToRightText(value, tailX);

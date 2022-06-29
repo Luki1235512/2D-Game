@@ -207,8 +207,9 @@ public class Player extends Entity {
             }
         }
 
-        if (gamePanel.getKeyHandler().isShotKeyPressed() && !projectile.alive && shotAvailableCounter == 30) {
+        if (gamePanel.getKeyHandler().isShotKeyPressed() && !projectile.alive && shotAvailableCounter == 30 && projectile.haveResource(this)) {
             projectile.set(worldX, worldY, direction, true, this);
+            projectile.subtractResource(this);
             gamePanel.getProjectileList().add(projectile);
             shotAvailableCounter = 0;
 //            TODO: sound for fireball
