@@ -89,6 +89,7 @@ public class Entity {
     protected Projectile projectile;
 
     // ITEM ATTRIBUTES
+    protected int value;
     protected int attackValue;
     protected int defenseValue;
     protected String description = "";
@@ -103,6 +104,7 @@ public class Entity {
     protected final int type_axe = 4;
     protected final int type_shield = 5;
     protected final int type_consumable = 6;
+    protected final int type_pickupOnly = 7;
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -311,8 +313,7 @@ public class Entity {
                 dyingAnimation(g2);
             }
 
-            g2.drawImage(image, screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
-
+            g2.drawImage(image, screenX, screenY, null);
             changeAlpha(g2, 1f);
         }
     }
@@ -473,6 +474,10 @@ public class Entity {
 
     public void decreaseMana(int mana) {
         this.mana -= mana;
+    }
+
+    public void increaseCoin(int value) {
+        this.coin += value;
     }
 
     public boolean isAlive() {

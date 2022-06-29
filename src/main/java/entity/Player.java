@@ -278,18 +278,28 @@ public class Player extends Entity {
     public void pickUpObject(int i) {
         if (i != Integer.MAX_VALUE) {
 
-            String text;
+            // PICKUP ONLY ITEMS
+            if (gamePanel.getObj()[i].type == type_pickupOnly) {
 
-            if (inventory.size() != maxInventorySize) {
-                inventory.add(gamePanel.getObj()[i]);
-                gamePanel.playSE(1);
-                text = "Got a " + gamePanel.getObj()[i].name + "!";
+                gamePanel.getObj()[i].use(this);
+                gamePanel.getObj()[i] = null;
             }
+
+            // INVENTORY ITEMS
             else {
-                text = "You cannot carry anymore!";
+                String text;
+
+                if (inventory.size() != maxInventorySize) {
+                    inventory.add(gamePanel.getObj()[i]);
+                    gamePanel.playSE(1);
+                    text = "Got a " + gamePanel.getObj()[i].name + "!";
+                }
+                else {
+                    text = "You cannot carry anymore!";
+                }
+                gamePanel.getUi().addMessage(text);
+                gamePanel.getObj()[i] = null;
             }
-            gamePanel.getUi().addMessage(text);
-            gamePanel.getObj()[i] = null;
         }
     }
 

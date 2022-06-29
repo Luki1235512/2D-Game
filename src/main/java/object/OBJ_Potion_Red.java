@@ -5,8 +5,6 @@ import main.GamePanel;
 
 public class OBJ_Potion_Red extends Entity {
 
-    int value = 5;
-
     public OBJ_Potion_Red(GamePanel gamePanel) {
         super(gamePanel);
 
@@ -14,6 +12,7 @@ public class OBJ_Potion_Red extends Entity {
 
         type = type_consumable;
         name = "Red Potion";
+        value = 5;
         down1 = setup("/objects/potion_red", gamePanel.getTileSize(), gamePanel.getTileSize());
         description = "[" + name + "]\nMay cause cancer if\nconsumed in excess";
     }
