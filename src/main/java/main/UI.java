@@ -2,6 +2,7 @@ package main;
 
 import entity.Entity;
 import object.OBJ_Heart;
+import object.OBJ_ManaCrystal;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -17,6 +18,9 @@ public class UI {
     private final BufferedImage heart_full;
     private final BufferedImage heart_half;
     private final BufferedImage heart_blank;
+    private BufferedImage crystal_full;
+    private BufferedImage crystal_half;
+    private BufferedImage crystal_blank;
     private final ArrayList<String> message = new ArrayList<>();
     private final ArrayList<Integer> messageCounter = new ArrayList<>();
     private String currentDialogue = "";
@@ -40,6 +44,11 @@ public class UI {
         heart_full = heart.getEntityImage();
         heart_half = heart.getEntityImage2();
         heart_blank = heart.getEntityImage3();
+
+        Entity crystal = new OBJ_ManaCrystal(gamePanel);
+        crystal_full = crystal.getEntityImage();
+        crystal_half = crystal.getEntityImage2();
+        crystal_blank = crystal.getEntityImage3();
     }
 
     public void addMessage(String text) {
@@ -89,7 +98,7 @@ public class UI {
         int y = gamePanel.getTileSize() / 2;
         int i = 0;
 
-        // DRAW NAX LIFE
+        // DRAW MAX LIFE
         while (i < gamePanel.getPlayer().getMaxLife() / 2) {
             g2.drawImage(heart_blank, x, y, null);
             i++;
@@ -111,6 +120,32 @@ public class UI {
             i++;
             x += gamePanel.getTileSize();
         }
+
+        // DRAW MAX MANA
+        x = (gamePanel.getTileSize() / 2) ;
+        y = (int) (gamePanel.getTileSize() * 1.5);
+        i = 0;
+        while (i < gamePanel.getPlayer().getMaxMana() / 2) {
+            g2.drawImage(crystal_blank, x, y, null);
+            i++;
+            x += gamePanel.getTileSize();
+        }
+
+        x = (gamePanel.getTileSize() / 2) ;
+        y = (int) (gamePanel.getTileSize() * 1.5);
+        i = 0;
+
+        // DRAW CURRENT MANA
+        while (i < gamePanel.getPlayer().getMana()) {
+            g2.drawImage(crystal_half, x, y, null);
+            i++;
+            if (i < gamePanel.getPlayer().getMana()) {
+                g2.drawImage(crystal_full, x, y, null);
+            }
+            i++;
+            x += gamePanel.getTileSize();
+        }
+
     }
 
     public void drawMessage() {
@@ -240,14 +275,15 @@ public class UI {
         // NAMES
         g2.drawString("Level", textX, textY);
         g2.drawString("Life", textX, textY += lineHeight);
+        g2.drawString("Mana", textX, textY += lineHeight);
         g2.drawString("Strength", textX, textY += lineHeight);
         g2.drawString("Toughness", textX, textY += lineHeight);
         g2.drawString("Attack", textX, textY += lineHeight);
         g2.drawString("Defense", textX, textY += lineHeight);
         g2.drawString("Exp", textX, textY += lineHeight);
-        g2.drawString("Next level", textX, textY += lineHeight);
+//        g2.drawString("Next level", textX, textY += lineHeight);
         g2.drawString("Coin", textX, textY+= lineHeight);
-        g2.drawString("Weapon", textX, textY += lineHeight + 20);
+        g2.drawString("Weapon", textX, textY += lineHeight + 10);
         g2.drawString("Shield", textX, textY + (lineHeight + 15));
 
         // VALUES
@@ -261,6 +297,11 @@ public class UI {
         textY += lineHeight;
 
         value = gamePanel.getPlayer().getLife() + "/" + gamePanel.getPlayer().getMaxLife();
+        textX = getXAlignToRightText(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = gamePanel.getPlayer().getMana() + "/" + gamePanel.getPlayer().getMaxMana();
         textX = getXAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
@@ -285,24 +326,24 @@ public class UI {
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gamePanel.getPlayer().getExp());
+        value = gamePanel.getPlayer().getExp() + "/" + gamePanel.getPlayer().getNextLevelExp();
         textX = getXAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        value = String.valueOf(gamePanel.getPlayer().getNextLevelExp());
-        textX = getXAlignToRightText(value, tailX);
-        g2.drawString(value, textX, textY);
-        textY += lineHeight;
+//        value = String.valueOf(gamePanel.getPlayer().getNextLevelExp());
+//        textX = getXAlignToRightText(value, tailX);
+//        g2.drawString(value, textX, textY);
+//        textY += lineHeight;
 
         value = String.valueOf(gamePanel.getPlayer().getCoin());
         textX = getXAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
         textY += lineHeight;
 
-        g2.drawImage(gamePanel.getPlayer().getCurrentWeapon().getDown1(), tailX - gamePanel.getTileSize(), textY - 14, null);
+        g2.drawImage(gamePanel.getPlayer().getCurrentWeapon().getDown1(), tailX - gamePanel.getTileSize(), textY - 24, null);
         textY += gamePanel.getTileSize();
-        g2.drawImage(gamePanel.getPlayer().getCurrentShield().getDown1(), tailX - gamePanel.getTileSize(), textY - 14, null);
+        g2.drawImage(gamePanel.getPlayer().getCurrentShield().getDown1(), tailX - gamePanel.getTileSize(), textY - 24, null);
     }
 
     public void drawInventory() {

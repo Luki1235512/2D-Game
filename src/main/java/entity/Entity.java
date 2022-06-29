@@ -463,6 +463,14 @@ public class Entity {
         return description;
     }
 
+    public int getMaxMana() {
+        return maxMana;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
     public boolean isAlive() {
         return alive;
     }
