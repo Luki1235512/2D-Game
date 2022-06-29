@@ -2,6 +2,9 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_Coin;
+import object.OBJ_Heart;
+import object.OBJ_ManaCrystal;
 import object.OBJ_SlimeBall;
 
 import java.util.Random;
@@ -81,6 +84,21 @@ public class MON_BlueSlime extends Entity {
     public void damageReaction() {
         actionLockCounter = 0;
         direction = gamePanel.getPlayer().getDirection();
+    }
+
+    public void checkDrop() {
+        int i = new Random().nextInt(100) + 1;
+
+        // SET THE MONSTER DROP
+        if (i >= 45 && i < 60) {
+            dropItem(new OBJ_Heart(gamePanel));
+        }
+        if (i >= 60 && i < 75) {
+            dropItem(new OBJ_ManaCrystal(gamePanel));
+        }
+        if (i >= 75 && i < 100) {
+            dropItem(new OBJ_Coin(gamePanel));
+        }
     }
 
 }

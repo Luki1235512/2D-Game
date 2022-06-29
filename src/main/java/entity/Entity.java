@@ -157,6 +157,22 @@ public class Entity {
     public void use(Entity entity) {
 
     }
+    public void checkDrop() {
+
+    }
+
+    public void dropItem(Entity droppedItem) {
+
+        for (int i = 0; i < gamePanel.getObj().length; i++) {
+            if (gamePanel.getObj()[i] == null) {
+                gamePanel.getObj()[i] = droppedItem;
+                gamePanel.getObj()[i].worldX = worldX;
+                gamePanel.getObj()[i].worldY = worldY;
+                break;
+            }
+        }
+    }
+
     public void update() {
 
         setAction();
