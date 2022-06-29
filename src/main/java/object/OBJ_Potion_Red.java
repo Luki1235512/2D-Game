@@ -5,6 +5,8 @@ import main.GamePanel;
 
 public class OBJ_Potion_Red extends Entity {
 
+    GamePanel gamePanel;
+
     public OBJ_Potion_Red(GamePanel gamePanel) {
         super(gamePanel);
 
@@ -22,9 +24,6 @@ public class OBJ_Potion_Red extends Entity {
         gamePanel.getUi().setCurrentDialogue("You drink the " + name + "!\n" +
                 "Your life has been recovered by " + value + ".");
         entity.setLife(entity.getLife() + value);
-        if (gamePanel.getPlayer().getLife() > gamePanel.getPlayer().getMaxLife()) {
-            gamePanel.getPlayer().setLife(gamePanel.getPlayer().getMaxLife());
-        }
         gamePanel.playSE(2);
     }
 

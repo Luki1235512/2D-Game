@@ -43,6 +43,16 @@ public class AssetSetter {
         gamePanel.getObj()[i] = new OBJ_Potion_Red(gamePanel);
         gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 22);
         gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 27);
+
+        i++;
+        gamePanel.getObj()[i] = new OBJ_Heart(gamePanel);
+        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 22);
+        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 29);
+
+        i++;
+        gamePanel.getObj()[i] = new OBJ_ManaCrystal(gamePanel);
+        gamePanel.getObj()[i].setWorldX(gamePanel.getTileSize() * 22);
+        gamePanel.getObj()[i].setWorldY(gamePanel.getTileSize() * 31);
     }
 
     public void setNPC() {

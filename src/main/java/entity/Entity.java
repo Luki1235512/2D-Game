@@ -496,12 +496,20 @@ public class Entity {
         this.life -= life;
     }
 
+    public void increaseLife(int life) {
+        this.life += life;
+    }
+
     public void setLife(int life) {
         this.life = life;
     }
 
     public void setMana(int mana) {
         this.mana = mana;
+    }
+
+    public void increaseMana(int mana) {
+        this.mana += mana;
     }
 
     public void setCollisionOn(boolean collisionOn) {

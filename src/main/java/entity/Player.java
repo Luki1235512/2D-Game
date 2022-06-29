@@ -226,6 +226,15 @@ public class Player extends Entity {
         if (shotAvailableCounter < 30) {
             shotAvailableCounter++;
         }
+
+        if (life > maxLife) {
+            life = maxLife;
+        }
+
+        if (mana > maxMana) {
+            mana = maxMana;
+        }
+
     }
 
     public void attacking() {
@@ -282,7 +291,6 @@ public class Player extends Entity {
             if (gamePanel.getObj()[i].type == type_pickupOnly) {
 
                 gamePanel.getObj()[i].use(this);
-                gamePanel.getObj()[i] = null;
             }
 
             // INVENTORY ITEMS
@@ -298,8 +306,8 @@ public class Player extends Entity {
                     text = "You cannot carry anymore!";
                 }
                 gamePanel.getUi().addMessage(text);
-                gamePanel.getObj()[i] = null;
             }
+            gamePanel.getObj()[i] = null;
         }
     }
 
