@@ -2,6 +2,7 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
+import object.OBJ_SlimeBall;
 
 import java.util.Random;
 
@@ -21,6 +22,7 @@ public class MON_BlueSlime extends Entity {
         attack = 5;
         defense = 0;
         exp = 2;
+        projectile = new OBJ_SlimeBall(gamePanel);
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -66,6 +68,13 @@ public class MON_BlueSlime extends Entity {
             }
 
             actionLockCounter = 0;
+        }
+
+        int i = new Random().nextInt(100) + 1;
+        if (i > 99 && !projectile.isAlive() && shotAvailableCounter == 30) {
+            projectile.set(worldX, worldY, direction, true, this);
+            gamePanel.getProjectileList().add(projectile);
+            shotAvailableCounter = 0;
         }
     }
 
