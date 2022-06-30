@@ -369,7 +369,9 @@ public class Player extends Entity {
         if (exp >= nextLevelExp) {
             level++;
             nextLevelExp = nextLevelExp * 2;
+            exp = 0;
             maxLife += 2;
+            maxMana += 2;
             strength++;
             toughness++;
             attack = getAttack();
