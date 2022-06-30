@@ -3,6 +3,7 @@ package main;
 import entity.NPC_OldMan;
 import monster.MON_BlueSlime;
 import object.*;
+import tile_interactive.IT_SickTree;
 
 public class AssetSetter {
 
@@ -89,7 +90,30 @@ public class AssetSetter {
         gamePanel.getMonster()[i].setWorldX(gamePanel.getTileSize() * 38);
         gamePanel.getMonster()[i].setWorldY(gamePanel.getTileSize() * 42);
 
+    }
 
+    public void setInteractiveTile() {
+
+        int i = 0;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 27, 12);
+
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 28, 12);
+
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 29, 12);
+
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 30, 12);
+
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 31, 12);
+
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 32, 12);
+
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 33, 12);
     }
 
 

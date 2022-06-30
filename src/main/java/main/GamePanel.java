@@ -3,6 +3,7 @@ package main;
 import entity.Entity;
 import entity.Player;
 import tile.TileManager;
+import tile_interactive.InteractiveTile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final Entity[] obj = new Entity[20];
     private final Entity[] npc = new Entity[10];
     private final Entity[] monster = new Entity[20];
+    private final InteractiveTile[] iTile = new InteractiveTile[50];
     private final ArrayList<Entity> projectileList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -65,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setObject();
         assetSetter.setNPC();
         assetSetter.setMonster();
+        assetSetter.setInteractiveTile();
 //        playMusic(0);
         gameState = titleState;
     }
@@ -110,7 +113,11 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             }
-
+            for (InteractiveTile interactiveTile : iTile) {
+                if (interactiveTile != null) {
+                    interactiveTile.update();
+                }
+            }
         }
         if (gameState == pauseState) {
             // TODO: later
@@ -137,6 +144,13 @@ public class GamePanel extends JPanel implements Runnable {
         else {
             // TILE
             tileManager.draw(g2);
+
+            // INTERACTIVE TILE
+            for (InteractiveTile interactiveTile : iTile) {
+                if (interactiveTile != null) {
+                    interactiveTile.draw(g2);
+                }
+            }
 
             // PLAYER
             entityList.add(player);
@@ -199,7 +213,7 @@ public class GamePanel extends JPanel implements Runnable {
             g2.drawString("WorldY: " + player.getWorldY(), x, y += lineHeight);
             g2.drawString("Col: " + (player.getWorldX() + player.getSolidArea().x) / tileSize, x, y += lineHeight);
             g2.drawString("Row: " + (player.getWorldY() + player.getSolidArea().y) / tileSize, x, y += lineHeight);
-            g2.drawString("Draw Time: " + passed, x, y += lineHeight);
+            g2.drawString("Draw Time: " + passed, x, y + lineHeight);
 //            System.out.println("Draw Time: " + passed, x, y);
         }
 
@@ -307,6 +321,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public ArrayList<Entity> getProjectileList() {
         return projectileList;
+    }
+
+    public InteractiveTile[] getITile() {
+        return iTile;
     }
 
     public void setGameState(int gameState) {
