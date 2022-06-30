@@ -1,5 +1,6 @@
 package tile_interactive;
 
+import entity.Entity;
 import main.GamePanel;
 
 public class IT_SickTree extends InteractiveTile {
@@ -16,4 +17,9 @@ public class IT_SickTree extends InteractiveTile {
         down1 = setup("/tiles_interactive/sick_tree", gamePanel.getTileSize(), gamePanel.getTileSize());
         destructible = true;
     }
+
+    public boolean isCorrectItem(Entity entity) {
+        return entity.getCurrentWeapon().getType() == type_axe;
+    }
+
 }

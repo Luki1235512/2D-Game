@@ -158,6 +158,9 @@ public class Player extends Entity {
             int monsterIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getMonster());
             contactMonster(monsterIndex);
 
+            // CHECK INTERACTIVE TILE COLLISION
+            gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getITile());
+
             // CHECK EVENT
             gamePanel.getEventHandler().checkEvent();
 
@@ -370,7 +373,7 @@ public class Player extends Entity {
 
     public void damageInteractiveTile(int i) {
 
-        if (i != Integer.MAX_VALUE && gamePanel.getITile()[i].isDestructible()) {
+        if (i != Integer.MAX_VALUE && gamePanel.getITile()[i].isDestructible() && gamePanel.getITile()[i].isCorrectItem(this)) {
             gamePanel.getITile()[i] = null;
         }
     }

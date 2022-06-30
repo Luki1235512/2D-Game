@@ -487,6 +487,10 @@ public class Entity {
         return mana;
     }
 
+    public int getType() {
+        return type;
+    }
+
     public void decreaseMana(int mana) {
         this.mana -= mana;
     }
