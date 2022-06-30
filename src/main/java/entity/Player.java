@@ -272,6 +272,9 @@ public class Player extends Entity {
             int monsterIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getMonster());
             damageMonster(monsterIndex, attack);
 
+            int iTileIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getITile());
+            damageInteractiveTile(iTileIndex);
+
             worldX = currentWorldX;
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
@@ -362,6 +365,13 @@ public class Player extends Entity {
                     checkLevelUp();
                 }
             }
+        }
+    }
+
+    public void damageInteractiveTile(int i) {
+
+        if (i != Integer.MAX_VALUE && gamePanel.getITile()[i].isDestructible()) {
+            gamePanel.getITile()[i] = null;
         }
     }
 

@@ -17,4 +17,7 @@ public class InteractiveTile extends Entity {
 
     }
 
+    public boolean isDestructible() {
+        return destructible;
+    }
 }
