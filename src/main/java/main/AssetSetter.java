@@ -96,24 +96,31 @@ public class AssetSetter {
 
         int i = 0;
         gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 27, 12);
-
         i++;
         gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 28, 12);
-
         i++;
         gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 29, 12);
-
         i++;
         gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 30, 12);
-
         i++;
         gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 31, 12);
-
         i++;
         gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 32, 12);
-
         i++;
         gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 33, 12);
+
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 20, 20);
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 20, 21);
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 20, 22);
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 22, 24);
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 23, 24);
+        i++;
+        gamePanel.getITile()[i] = new IT_SickTree(gamePanel, 24, 24);
     }
 
 

@@ -16,10 +16,20 @@ public class IT_SickTree extends InteractiveTile {
 
         down1 = setup("/tiles_interactive/sick_tree", gamePanel.getTileSize(), gamePanel.getTileSize());
         destructible = true;
+        life = 3;
     }
 
     public boolean isCorrectItem(Entity entity) {
         return entity.getCurrentWeapon().getType() == type_axe;
+    }
+
+    public void playSE() {
+        gamePanel.playSE(9);
+    }
+
+    public InteractiveTile getDestroyedForm() {
+        InteractiveTile tile = new IT_Trunk(gamePanel, worldX / gamePanel.getTileSize(), worldY / gamePanel.getTileSize());
+        return tile;
     }
 
 }

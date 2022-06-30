@@ -373,8 +373,15 @@ public class Player extends Entity {
 
     public void damageInteractiveTile(int i) {
 
-        if (i != Integer.MAX_VALUE && gamePanel.getITile()[i].isDestructible() && gamePanel.getITile()[i].isCorrectItem(this)) {
-            gamePanel.getITile()[i] = null;
+        if (i != Integer.MAX_VALUE && gamePanel.getITile()[i].isDestructible()
+                && gamePanel.getITile()[i].isCorrectItem(this) && !gamePanel.getITile()[i].invincible) {
+            gamePanel.getITile()[i].playSE();
+            gamePanel.getITile()[i].life--;
+            gamePanel.getITile()[i].invincible = true;
+
+            if (gamePanel.getITile()[i].life == 0) {
+                gamePanel.getITile()[i] = gamePanel.getITile()[i].getDestroyedForm();
+            }
         }
     }
 
