@@ -3,6 +3,8 @@ package object;
 import entity.Projectile;
 import main.GamePanel;
 
+import java.awt.*;
+
 public class OBJ_SlimeBall extends Projectile {
 
     public OBJ_SlimeBall(GamePanel gamePanel) {
@@ -30,6 +32,20 @@ public class OBJ_SlimeBall extends Projectile {
         right2 = setup("/projectile/slime_ball_down_1", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 
+    public Color getParticleColor() {
+        return new Color(10, 30, 80);
+    }
 
+    public int getParticleSize() {
+        return 10;
+    }
+
+    public int getParticleSpeed() {
+        return 1;
+    }
+
+    public int getParticleMaxLife() {
+        return 20;
+    }
 
 }

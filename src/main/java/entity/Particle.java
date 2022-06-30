@@ -35,6 +35,7 @@ public class Particle extends Entity {
 
         if (life < maxLife / 3) {
             yd++;
+            size--;
         }
 
         worldX += xd * speed;
