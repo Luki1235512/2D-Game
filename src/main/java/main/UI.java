@@ -436,6 +436,7 @@ public class UI {
                 options_fullScreenNotification(frameX, frameY);
                 break;
             case 2:
+                options_control(frameX, frameY);
                 break;
         }
 
@@ -483,6 +484,10 @@ public class UI {
         g2.drawString("Controls", textX, textY);
         if (commandNum == 3) {
             g2.drawString(">", textX - 25, textY);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 2;
+                commandNum = 0;
+            }
         }
 
         // QUIT GAME
@@ -534,6 +539,50 @@ public class UI {
 
         // BACK
         textY = frameY + gamePanel.getTileSize() * 9;
+        g2.drawString("Back", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
+            }
+        }
+    }
+
+    public void options_control(int frameX, int frameY) {
+
+        int textX;
+        int textY;
+
+        // TILE
+        String text = "Controls";
+        textX = getXCenterText(text);
+        textY = frameY + gamePanel.getTileSize();
+        g2.drawString(text, textX, textY);
+
+        textX = frameX + gamePanel.getTileSize();
+        textY += gamePanel.getTileSize();
+
+        g2.drawString("Move", textX, textY);
+        g2.drawString("Confirm/Attack", textX, textY += gamePanel.getTileSize());
+        g2.drawString("Shoot/Cast", textX, textY += gamePanel.getTileSize());
+        g2.drawString("Character Screen", textX, textY += gamePanel.getTileSize());
+        g2.drawString("Pause", textX, textY += gamePanel.getTileSize());
+        g2.drawString("Options", textX, textY += gamePanel.getTileSize());
+
+        textX = frameX + gamePanel.getTileSize() * 6;
+        textY = frameY + gamePanel.getTileSize() * 2;
+
+        g2.drawString("WASD", textX, textY);
+        g2.drawString("ENTER", textX, textY += gamePanel.getTileSize());
+        g2.drawString("F", textX, textY += gamePanel.getTileSize());
+        g2.drawString("C", textX, textY += gamePanel.getTileSize());
+        g2.drawString("P", textX, textY += gamePanel.getTileSize());
+        g2.drawString("ESC", textX, textY += gamePanel.getTileSize());
+
+        // BACK
+        textX = frameX + gamePanel.getTileSize();
+        textY = frameY + gamePanel.getTileSize() * 9;
+
         g2.drawString("Back", textX, textY);
         if (commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
