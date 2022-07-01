@@ -511,10 +511,14 @@ public class UI {
         // MUSIC VOLUME
         textY += gamePanel.getTileSize();
         g2.drawRect(textX, textY, 120, 24);
+        int volumeWidth = 24 * gamePanel.getMusic().getVolumeScale();
+        g2.fillRect(textX, textY, volumeWidth, 24);
 
         // SE VOLUME
         textY += gamePanel.getTileSize();
         g2.drawRect(textX, textY, 120, 24);
+        volumeWidth = 24 * gamePanel.getSe().getVolumeScale();
+        g2.fillRect(textX, textY, volumeWidth, 24);
 
     }
 

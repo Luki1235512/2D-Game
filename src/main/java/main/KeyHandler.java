@@ -158,6 +158,34 @@ public class KeyHandler implements KeyListener {
                 gamePanel.getUi().setCommandNum(0);
             }
         }
+
+        if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
+            if (gamePanel.getUi().getSubState() == 0) {
+                if (gamePanel.getUi().getCommandNum() == 1 && gamePanel.getMusic().getVolumeScale() > 0) {
+                    gamePanel.getMusic().decreaseVolumeScale();
+                    gamePanel.getMusic().checkVolume();
+                    gamePanel.playSE(8);
+                }
+                if (gamePanel.getUi().getCommandNum() == 2 && gamePanel.getSe().getVolumeScale() > 0) {
+                    gamePanel.getSe().decreaseVolumeScale();
+                    gamePanel.playSE(8);
+                }
+            }
+        }
+
+        if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
+            if (gamePanel.getUi().getSubState() == 0) {
+                if (gamePanel.getUi().getCommandNum() == 1 && gamePanel.getMusic().getVolumeScale() < 5) {
+                    gamePanel.getMusic().increaseVolumeScale();
+                    gamePanel.getMusic().checkVolume();
+                    gamePanel.playSE(8);
+                }
+                if (gamePanel.getUi().getCommandNum() == 2 && gamePanel.getSe().getVolumeScale() < 5) {
+                    gamePanel.getSe().increaseVolumeScale();
+                    gamePanel.playSE(8);
+                }
+            }
+        }
     }
 
     public boolean isUpPressed() {
