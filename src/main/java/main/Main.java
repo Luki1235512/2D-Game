@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+//        System.setProperty("sun.java2d.d3d", "false");
         window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);

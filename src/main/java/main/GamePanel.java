@@ -88,12 +88,20 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setFullScreen() {
 
-        GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice graphicsDevice = graphicsEnvironment.getDefaultScreenDevice();
-        graphicsDevice.setFullScreenWindow(Main.window);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
+        Main.window.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        screenWidthFull = Main.window.getWidth();
-        screenHeightFull = Main.window.getHeight();
+        screenWidthFull = (int) width;
+        screenHeightFull = (int) height;
+
+//        GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+//        GraphicsDevice graphicsDevice = graphicsEnvironment.getDefaultScreenDevice();
+//        graphicsDevice.setFullScreenWindow(Main.window);
+
+//        screenWidthFull = Main.window.getWidth();
+//        screenHeightFull = Main.window.getHeight();
     }
 
     public void startGameThread() {
