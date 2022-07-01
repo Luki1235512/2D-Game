@@ -438,6 +438,9 @@ public class UI {
             case 2:
                 options_control(frameX, frameY);
                 break;
+            case 3:
+                options_endGameConfirmation(frameX, frameY);
+                break;
         }
 
         gamePanel.getKeyHandler().setEnterPressed(false);
@@ -495,6 +498,10 @@ public class UI {
         g2.drawString("Quit Game", textX, textY);
         if (commandNum == 4) {
             g2.drawString(">", textX - 25, textY);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 3;
+                commandNum = 0;
+            }
         }
 
         // BACK
@@ -548,6 +555,48 @@ public class UI {
         }
     }
 
+    public void options_endGameConfirmation(int frameX, int frameY) {
+
+        int textX = frameX + gamePanel.getTileSize();
+        int textY = frameY + gamePanel.getTileSize() * 3;
+
+        currentDialogue = "Quit the game and\nreturn to the\ntitle screen?";
+
+        for (String line : currentDialogue.split("\n")) {
+            g2.drawString(line, textX, textY);
+            textY += 40;
+        }
+
+
+            // YES
+            String text = "Yes";
+            textX = getXCenterText(text);
+            textY += gamePanel.getTileSize() * 3;
+            g2.drawString(text, textX, textY);
+            if (commandNum == 0) {
+                g2.drawString(">", textX - 25, textY);
+                if (gamePanel.getKeyHandler().isEnterPressed()) {
+                    subState = 0;
+                    gamePanel.setGameState(gamePanel.getTitleState());
+                }
+            }
+
+            // NO
+            text = "No";
+            textX = getXCenterText(text);
+            textY += gamePanel.getTileSize();
+            g2.drawString(text, textX, textY);
+            if (commandNum == 1) {
+                g2.drawString(">", textX - 25, textY);
+                if (gamePanel.getKeyHandler().isEnterPressed()) {
+                    subState = 0;
+                    commandNum = 4;
+                }
+            }
+
+        }
+
+
     public void options_control(int frameX, int frameY) {
 
         int textX;
@@ -588,6 +637,7 @@ public class UI {
             g2.drawString(">", textX - 25, textY);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 subState = 0;
+                commandNum = 3;
             }
         }
     }

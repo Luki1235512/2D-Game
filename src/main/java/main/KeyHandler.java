@@ -140,8 +140,14 @@ public class KeyHandler implements KeyListener {
         }
 
         int maxCommandNum = 0;
-        if (gamePanel.getUi().getSubState() == 0) {
-            maxCommandNum = 5;
+        switch (gamePanel.getUi().getSubState()) {
+            case 0:
+                maxCommandNum = 5;
+                break;
+            case 3:
+                maxCommandNum = 1;
+                break;
+
         }
 
         if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
