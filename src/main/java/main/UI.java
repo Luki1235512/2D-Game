@@ -257,7 +257,7 @@ public class UI {
 
     public void drawCharacterScreen() {
         // CREATE A FRAME
-        final int frameX = gamePanel.getTileSize();
+        final int frameX = gamePanel.getTileSize() * 2;
         final int frameY = gamePanel.getTileSize();
         final int frameWidth = gamePanel.getTileSize() * 5;
         final int frameHeight = gamePanel.getTileSize() * 9;
@@ -344,7 +344,7 @@ public class UI {
     public void drawInventory() {
 
         // FRAME
-        int frameX = gamePanel.getTileSize() * 9;
+        int frameX = gamePanel.getTileSize() * 12;
         int frameY = gamePanel.getTileSize();
         int frameWidth = gamePanel.getTileSize() * 6;
         int frameHeight = gamePanel.getTileSize() * 5;
@@ -389,14 +389,12 @@ public class UI {
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
         // DESCRIPTION FRAME
-        int dFrameX = frameX;
         int dFrameY = frameY + frameHeight;
-        int dFrameWidth = frameWidth;
         int dFrameHeight = gamePanel.getTileSize() * 3;
 
 
         // DRAW DESCRIPTION TEXT
-        int textX = dFrameX + 20;
+        int textX = frameX + 20;
         int textY = dFrameY + gamePanel.getTileSize();
         g2.setFont(g2.getFont().deriveFont(28F));
 
@@ -404,7 +402,7 @@ public class UI {
 
         if (itemIndex < gamePanel.getPlayer().getInventory().size()) {
 
-            drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+            drawSubWindow(frameX, dFrameY, frameWidth, dFrameHeight);
 
             for (String line : gamePanel.getPlayer().getInventory().get(itemIndex).getDescription().split("\n")) {
                 g2.drawString(line, textX, textY);
