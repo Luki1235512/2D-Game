@@ -509,6 +509,10 @@ public class UI {
         g2.drawString("Back", textX, textY);
         if (commandNum == 5) {
             g2.drawString(">", textX - 25, textY);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.setGameState(gamePanel.getPlayState());
+                commandNum = 0;
+            }
         }
 
         // FULL SCREEN CHECK BOX
