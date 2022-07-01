@@ -138,6 +138,26 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
         }
+
+        int maxCommandNum = 0;
+        if (gamePanel.getUi().getSubState() == 0) {
+            maxCommandNum = 5;
+        }
+
+        if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+            gamePanel.getUi().decreaseCommandNum();
+            gamePanel.playSE(8);
+            if (gamePanel.getUi().getCommandNum() < 0) {
+                gamePanel.getUi().setCommandNum(maxCommandNum);
+            }
+        }
+        if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+            gamePanel.getUi().increaseCommandNum();
+            gamePanel.playSE(8);
+            if (gamePanel.getUi().getCommandNum() > maxCommandNum) {
+                gamePanel.getUi().setCommandNum(0);
+            }
+        }
     }
 
     public boolean isUpPressed() {

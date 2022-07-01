@@ -453,26 +453,44 @@ public class UI {
         textX = frameX + gamePanel.getTileSize();
         textY += gamePanel.getTileSize() * 2;
         g2.drawString("Full Screen", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+        }
 
         // MUSIC
         textY += gamePanel.getTileSize();
         g2.drawString("Music", textX, textY);
+        if (commandNum == 1) {
+            g2.drawString(">", textX - 25, textY);
+        }
 
         // SE
         textY += gamePanel.getTileSize();
         g2.drawString("Sound Effects", textX, textY);
+        if (commandNum == 2) {
+            g2.drawString(">", textX - 25, textY);
+        }
 
         // CONTROLS
         textY += gamePanel.getTileSize();
         g2.drawString("Controls", textX, textY);
+        if (commandNum == 3) {
+            g2.drawString(">", textX - 25, textY);
+        }
 
         // QUIT GAME
         textY += gamePanel.getTileSize();
         g2.drawString("Quit Game", textX, textY);
+        if (commandNum == 4) {
+            g2.drawString(">", textX - 25, textY);
+        }
 
         // BACK
         textY += gamePanel.getTileSize() * 2;
         g2.drawString("Back", textX, textY);
+        if (commandNum == 5) {
+            g2.drawString(">", textX - 25, textY);
+        }
 
     }
 
@@ -538,7 +556,17 @@ public class UI {
         return commandNum;
     }
 
+    public int getSubState() {
+        return subState;
+    }
+
+
+
     public void setCurrentDialogue(String currentDialogue) {
         this.currentDialogue = currentDialogue;
+    }
+
+    public void setCommandNum(int commandNum) {
+        this.commandNum = commandNum;
     }
 }
