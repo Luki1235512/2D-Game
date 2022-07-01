@@ -433,10 +433,13 @@ public class UI {
                 options_top(frameX, frameY);
                 break;
             case 1:
+                options_fullScreenNotification(frameX, frameY);
                 break;
             case 2:
                 break;
         }
+
+        gamePanel.getKeyHandler().setEnterPressed(false);
     }
 
     public void options_top(int frameX, int frameY) {
@@ -455,6 +458,10 @@ public class UI {
         g2.drawString("Full Screen", textX, textY);
         if (commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                gamePanel.setFullScreenStatus(!gamePanel.isFullScreenStatus());
+                subState = 1;
+            }
         }
 
         // MUSIC
@@ -466,7 +473,7 @@ public class UI {
 
         // SE
         textY += gamePanel.getTileSize();
-        g2.drawString("Sound Effects", textX, textY);
+        g2.drawString("SE", textX, textY);
         if (commandNum == 2) {
             g2.drawString(">", textX - 25, textY);
         }
@@ -492,6 +499,44 @@ public class UI {
             g2.drawString(">", textX - 25, textY);
         }
 
+        // FULL SCREEN CHECK BOX
+        textX = frameX + (int) (gamePanel.getTileSize() * 4.5);
+        textY = frameY + gamePanel.getTileSize() * 2 + 24;
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRect(textX, textY, 24, 24);
+        if (gamePanel.isFullScreenStatus()) {
+            g2.fillRect(textX, textY, 24, 24);
+        }
+
+        // MUSIC VOLUME
+        textY += gamePanel.getTileSize();
+        g2.drawRect(textX, textY, 120, 24);
+
+        // SE VOLUME
+        textY += gamePanel.getTileSize();
+        g2.drawRect(textX, textY, 120, 24);
+
+    }
+
+    public void options_fullScreenNotification(int frameX, int frameY) {
+        int textX = frameX + gamePanel.getTileSize();
+        int textY = frameY + gamePanel.getTileSize() * 3;
+
+        currentDialogue = "The change will take\neffect after restarting\nthe game";
+        for (String line : currentDialogue.split("\n")) {
+            g2.drawString(line, textX, textY);
+            textY += 40;
+        }
+
+        // BACK
+        textY = frameY + gamePanel.getTileSize() * 9;
+        g2.drawString("Back", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 0;
+            }
+        }
     }
 
     public int getItemIndexOnSlot() {

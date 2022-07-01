@@ -33,6 +33,7 @@ public class GamePanel extends JPanel implements Runnable {
     private int screenHeightFull = screenHeight;
     private BufferedImage tempScreen;
     private Graphics2D g2;
+    private boolean fullScreenStatus = false;
 
 
     // SYSTEM
@@ -388,10 +389,17 @@ public class GamePanel extends JPanel implements Runnable {
         return optionState;
     }
 
+    public boolean isFullScreenStatus() {
+        return fullScreenStatus;
+    }
+
     public void setGameState(int gameState) {
         this.gameState = gameState;
     }
 
+    public void setFullScreenStatus(boolean fullScreenStatus) {
+        this.fullScreenStatus = fullScreenStatus;
+    }
 
     @Override
     public void run() {
