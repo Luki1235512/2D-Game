@@ -27,6 +27,7 @@ public class UI {
     private int commandNum = 0;
     private int slotCol = 0;
     private int slotRow = 0;
+    private int subState = 0;
 
 
     public UI(GamePanel gamePanel) {
@@ -90,6 +91,10 @@ public class UI {
         if (gamePanel.getGameState() == gamePanel.getCharacterState()) {
             drawCharacterScreen();
             drawInventory();
+        }
+
+        if (gamePanel.getGameState() == gamePanel.getOptionState()) {
+            drawOptionScreen();
         }
     }
 
@@ -409,6 +414,66 @@ public class UI {
                 textY += 32;
             }
         }
+    }
+
+    public void drawOptionScreen() {
+
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(32F));
+
+        // SUB WINDOW;
+        int frameX = gamePanel.getTileSize() * 6;
+        int frameY = gamePanel.getTileSize();
+        int frameWidth = gamePanel.getTileSize() * 8;
+        int frameHeight = gamePanel.getTileSize() * 10;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        switch (subState) {
+            case 0:
+                options_top(frameX, frameY);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+    }
+
+    public void options_top(int frameX, int frameY) {
+        int textX;
+        int textY;
+
+        // TITLE
+        String text = "Options";
+        textX = getXCenterText(text);
+        textY = frameY + gamePanel.getTileSize();
+        g2.drawString(text, textX, textY);
+
+        // FULL SCREEN ON/OFF
+        textX = frameX + gamePanel.getTileSize();
+        textY += gamePanel.getTileSize() * 2;
+        g2.drawString("Full Screen", textX, textY);
+
+        // MUSIC
+        textY += gamePanel.getTileSize();
+        g2.drawString("Music", textX, textY);
+
+        // SE
+        textY += gamePanel.getTileSize();
+        g2.drawString("Sound Effects", textX, textY);
+
+        // CONTROLS
+        textY += gamePanel.getTileSize();
+        g2.drawString("Controls", textX, textY);
+
+        // QUIT GAME
+        textY += gamePanel.getTileSize();
+        g2.drawString("Quit Game", textX, textY);
+
+        // BACK
+        textY += gamePanel.getTileSize() * 2;
+        g2.drawString("Back", textX, textY);
+
     }
 
     public int getItemIndexOnSlot() {

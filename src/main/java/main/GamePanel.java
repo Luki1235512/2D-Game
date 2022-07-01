@@ -63,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final int pauseState = 2;
     private final int dialogueState = 3;
     private final int characterState = 4;
+    private final int optionState = 5;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -381,6 +382,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public ArrayList<Entity> getParticleList() {
         return particleList;
+    }
+
+    public int getOptionState() {
+        return optionState;
     }
 
     public void setGameState(int gameState) {

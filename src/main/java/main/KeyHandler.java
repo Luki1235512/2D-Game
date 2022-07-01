@@ -72,6 +72,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = true;
         }
+        if (code == KeyEvent.VK_ESCAPE) {
+            gamePanel.setGameState(gamePanel.getOptionState());
+        }
 
         // DEBUG
         if (code == KeyEvent.VK_T) {
@@ -125,6 +128,15 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_ENTER) {
             gamePanel.getPlayer().selectItem();
+        }
+    }
+
+    public void optionState(int code) {
+        if (code == KeyEvent.VK_ESCAPE) {
+            gamePanel.setGameState(gamePanel.getPlayState());
+        }
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
         }
     }
 
@@ -193,6 +205,10 @@ public class KeyHandler implements KeyListener {
         // CHARACTER STATE
         else if (gamePanel.getGameState() == gamePanel.getCharacterState()) {
             characterState(code);
+        }
+
+        else if (gamePanel.getGameState() == gamePanel.getOptionState()) {
+            optionState(code);
         }
     }
 
