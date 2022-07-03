@@ -536,6 +536,8 @@ public class UI {
         volumeWidth = 24 * gamePanel.getSe().getVolumeScale();
         g2.fillRect(textX, textY, volumeWidth, 24);
 
+        gamePanel.getConfig().saveConfig();
+
     }
 
     public void options_fullScreenNotification(int frameX, int frameY) {
@@ -620,7 +622,7 @@ public class UI {
         g2.drawString("Shoot/Cast", textX, textY += gamePanel.getTileSize());
         g2.drawString("Character Screen", textX, textY += gamePanel.getTileSize());
         g2.drawString("Pause", textX, textY += gamePanel.getTileSize());
-        g2.drawString("Options", textX, textY += gamePanel.getTileSize());
+        g2.drawString("Options", textX, textY + gamePanel.getTileSize());
 
         textX = frameX + gamePanel.getTileSize() * 6;
         textY = frameY + gamePanel.getTileSize() * 2;
@@ -630,7 +632,7 @@ public class UI {
         g2.drawString("F", textX, textY += gamePanel.getTileSize());
         g2.drawString("C", textX, textY += gamePanel.getTileSize());
         g2.drawString("P", textX, textY += gamePanel.getTileSize());
-        g2.drawString("ESC", textX, textY += gamePanel.getTileSize());
+        g2.drawString("ESC", textX, textY + gamePanel.getTileSize());
 
         // BACK
         textX = frameX + gamePanel.getTileSize();

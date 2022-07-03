@@ -82,6 +82,10 @@ public class Sound {
         return volumeScale;
     }
 
+    public void setVolumeScale(int volumeScale) {
+        this.volumeScale = volumeScale;
+    }
+
     public void decreaseVolumeScale() {
         this.volumeScale--;
     }

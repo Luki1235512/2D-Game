@@ -45,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final AssetSetter assetSetter = new AssetSetter(this);
     private final UI ui = new UI(this);
     private final EventHandler eventHandler = new EventHandler(this);
+    private final Config config = new Config(this);
     private Thread gameThread;
 
     // ENTITY AND OBJECT
@@ -85,7 +86,10 @@ public class GamePanel extends JPanel implements Runnable {
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
 
-//        setFullScreen();
+        if (fullScreenStatus) {
+            setFullScreen();
+        }
+
     }
 
     public void setFullScreen() {
@@ -403,6 +407,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Sound getSe() {
         return se;
+    }
+
+    public Config getConfig() {
+        return config;
     }
 
     public void setFullScreenStatus(boolean fullScreenStatus) {
