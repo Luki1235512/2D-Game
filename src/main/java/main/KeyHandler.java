@@ -194,6 +194,35 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    public void gameOverState(int code) {
+
+        if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+            gamePanel.getUi().decreaseCommandNum();
+            if (gamePanel.getUi().getCommandNum() < 0) {
+                gamePanel.getUi().setCommandNum(1);
+            }
+            gamePanel.playSE(8);
+        }
+        if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+            gamePanel.getUi().increaseCommandNum();
+            if (gamePanel.getUi().getCommandNum() > 1) {
+                gamePanel.getUi().setCommandNum(0);
+            }
+            gamePanel.playSE(8);
+        }
+
+        if (code == KeyEvent.VK_ENTER) {
+            if (gamePanel.getUi().getCommandNum() == 0) {
+                gamePanel.setGameState(gamePanel.getPlayState());
+                gamePanel.retry();
+            }
+            else if (gamePanel.getUi().getCommandNum() == 1) {
+                gamePanel.setGameState(gamePanel.getTitleState());
+                gamePanel.restart();
+            }
+        }
+    }
+
     public boolean isUpPressed() {
         return upPressed;
     }
@@ -261,8 +290,14 @@ public class KeyHandler implements KeyListener {
             characterState(code);
         }
 
+        // OPTION STATE
         else if (gamePanel.getGameState() == gamePanel.getOptionState()) {
             optionState(code);
+        }
+
+        // GAME OVER STATE
+        else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
+            gameOverState(code);
         }
     }
 
