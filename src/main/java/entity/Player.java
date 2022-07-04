@@ -46,6 +46,8 @@ public class Player extends Entity {
 
         worldX = gamePanel.getTileSize() * 23;
         worldY = gamePanel.getTileSize() * 21;
+//        worldX = gamePanel.getTileSize() * 12;
+//        worldY = gamePanel.getTileSize() * 13;
         speed = 4;
         direction = "down";
 
@@ -317,9 +319,8 @@ public class Player extends Entity {
         if (i != Integer.MAX_VALUE) {
 
             // PICKUP ONLY ITEMS
-            if (gamePanel.getObj()[i].type == type_pickupOnly) {
-
-                gamePanel.getObj()[i].use(this);
+            if (gamePanel.getObj()[gamePanel.getCurrentMap()][i].type == type_pickupOnly) {
+                gamePanel.getObj()[gamePanel.getCurrentMap()][i].use(this);
             }
 
             // INVENTORY ITEMS
@@ -327,16 +328,16 @@ public class Player extends Entity {
                 String text;
 
                 if (inventory.size() != maxInventorySize) {
-                    inventory.add(gamePanel.getObj()[i]);
+                    inventory.add(gamePanel.getObj()[gamePanel.getCurrentMap()][i]);
                     gamePanel.playSE(1);
-                    text = "Got a " + gamePanel.getObj()[i].name + "!";
+                    text = "Got a " + gamePanel.getObj()[gamePanel.getCurrentMap()][i].name + "!";
                 }
                 else {
                     text = "You cannot carry anymore!";
                 }
                 gamePanel.getUi().addMessage(text);
             }
-            gamePanel.getObj()[i] = null;
+            gamePanel.getObj()[gamePanel.getCurrentMap()][i] = null;
         }
     }
 
@@ -346,17 +347,17 @@ public class Player extends Entity {
             if (i != Integer.MAX_VALUE) {
                 attackCanceled = true;
                 gamePanel.setGameState(gamePanel.getDialogueState());
-                gamePanel.getNpc()[i].speak();
+                gamePanel.getNpc()[gamePanel.getCurrentMap()][i].speak();
             }
         }
     }
 
     public void contactMonster(int i) {
         if (i != Integer.MAX_VALUE) {
-            if (!invincible && !gamePanel.getMonster()[i].dying) {
+            if (!invincible && !gamePanel.getMonster()[gamePanel.getCurrentMap()][i].dying) {
                 gamePanel.playSE(6);
 
-                int damage = gamePanel.getMonster()[i].attack - defense;
+                int damage = gamePanel.getMonster()[gamePanel.getCurrentMap()][i].attack - defense;
                 if (damage < 0) {
                     damage = 0;
                 }
@@ -370,24 +371,24 @@ public class Player extends Entity {
 
     public void damageMonster(int i, int attack) {
         if (i != Integer.MAX_VALUE) {
-            if (!gamePanel.getMonster()[i].invincible) {
+            if (!gamePanel.getMonster()[gamePanel.getCurrentMap()][i].invincible) {
                 gamePanel.playSE(5);
 
-                int damage = attack - gamePanel.getMonster()[i].defense;
+                int damage = attack - gamePanel.getMonster()[gamePanel.getCurrentMap()][i].defense;
                 if (damage < 0) {
                     damage = 0;
                 }
 
-                gamePanel.getMonster()[i].life -= damage;
+                gamePanel.getMonster()[gamePanel.getCurrentMap()][i].life -= damage;
                 gamePanel.getUi().addMessage(damage + " damage!");
-                gamePanel.getMonster()[i].invincible = true;
-                gamePanel.getMonster()[i].damageReaction();
+                gamePanel.getMonster()[gamePanel.getCurrentMap()][i].invincible = true;
+                gamePanel.getMonster()[gamePanel.getCurrentMap()][i].damageReaction();
 
-                if (gamePanel.getMonster()[i].life <= 0) {
-                    gamePanel.getMonster()[i].dying = true;
-                    gamePanel.getUi().addMessage("Killed the " + gamePanel.getMonster()[i].name + "!");
-                    gamePanel.getUi().addMessage("Exp + " + gamePanel.getMonster()[i].exp);
-                    exp += gamePanel.getMonster()[i].exp;
+                if (gamePanel.getMonster()[gamePanel.getCurrentMap()][i].life <= 0) {
+                    gamePanel.getMonster()[gamePanel.getCurrentMap()][i].dying = true;
+                    gamePanel.getUi().addMessage("Killed the " + gamePanel.getMonster()[gamePanel.getCurrentMap()][i].name + "!");
+                    gamePanel.getUi().addMessage("Exp + " + gamePanel.getMonster()[gamePanel.getCurrentMap()][i].exp);
+                    exp += gamePanel.getMonster()[gamePanel.getCurrentMap()][i].exp;
                     checkLevelUp();
                 }
             }
@@ -396,17 +397,17 @@ public class Player extends Entity {
 
     public void damageInteractiveTile(int i) {
 
-        if (i != Integer.MAX_VALUE && gamePanel.getITile()[i].isDestructible()
-                && gamePanel.getITile()[i].isCorrectItem(this) && !gamePanel.getITile()[i].invincible) {
-            gamePanel.getITile()[i].playSE();
-            gamePanel.getITile()[i].life--;
-            gamePanel.getITile()[i].invincible = true;
+        if (i != Integer.MAX_VALUE && gamePanel.getITile()[gamePanel.getCurrentMap()][i].isDestructible()
+                && gamePanel.getITile()[gamePanel.getCurrentMap()][i].isCorrectItem(this) && !gamePanel.getITile()[gamePanel.getCurrentMap()][i].invincible) {
+            gamePanel.getITile()[gamePanel.getCurrentMap()][i].playSE();
+            gamePanel.getITile()[gamePanel.getCurrentMap()][i].life--;
+            gamePanel.getITile()[gamePanel.getCurrentMap()][i].invincible = true;
 
             // GENERATE PARTICLE
-            generateParticle(gamePanel.getITile()[i], gamePanel.getITile()[i]);
+            generateParticle(gamePanel.getITile()[gamePanel.getCurrentMap()][i], gamePanel.getITile()[gamePanel.getCurrentMap()][i]);
 
-            if (gamePanel.getITile()[i].life == 0) {
-                gamePanel.getITile()[i] = gamePanel.getITile()[i].getDestroyedForm();
+            if (gamePanel.getITile()[gamePanel.getCurrentMap()][i].life == 0) {
+                gamePanel.getITile()[gamePanel.getCurrentMap()][i] = gamePanel.getITile()[gamePanel.getCurrentMap()][i].getDestroyedForm();
             }
         }
     }

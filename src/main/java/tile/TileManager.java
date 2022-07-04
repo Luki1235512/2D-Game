@@ -15,15 +15,16 @@ public class TileManager {
 
     private final GamePanel gamePanel;
     private final Tile[] tile;
-    private final int[][] mapTileNum;
+    private final int[][][] mapTileNum;
 
     public TileManager(GamePanel gamePanel) {
 
         this.gamePanel = gamePanel;
         tile = new Tile[50];
-        mapTileNum = new int[gamePanel.getMaxWorldCol()][gamePanel.getMaxWorldRow()];
+        mapTileNum = new int[gamePanel.getMaxMap()][gamePanel.getMaxWorldCol()][gamePanel.getMaxWorldRow()];
         getTileImage();
-        loadMap("/maps/worldV2.txt");
+        loadMap("/maps/worldV2.txt", 0);
+        loadMap("/maps/interior01.txt", 1);
     }
 
     public void getTileImage() {
@@ -63,7 +64,7 @@ public class TileManager {
         setup(39, "wall", true);
         setup(40, "tree", true);
         setup(41, "location_change", false);
-        setup(42, "floor01", true);
+        setup(42, "floor01", false);
         setup(43, "table", true);
     }
 
@@ -81,7 +82,7 @@ public class TileManager {
         }
     }
 
-    public void loadMap(String filePath) {
+    public void loadMap(String filePath, int map) {
 
         try {
             InputStream is = getClass().getResourceAsStream(filePath);
@@ -102,7 +103,7 @@ public class TileManager {
 
                     int num = Integer.parseInt(numbers[col]);
 
-                    mapTileNum[col][row] = num;
+                    mapTileNum[map][col][row] = num;
                     col++;
                 }
 
@@ -123,7 +124,7 @@ public class TileManager {
 
         while(worldCol < gamePanel.getMaxWorldCol() && worldRow < gamePanel.getMaxWorldRow()) {
 
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gamePanel.getCurrentMap()][worldCol][worldRow];
 
             int worldX = worldCol * gamePanel.getTileSize();
             int worldY = worldRow * gamePanel.getTileSize();
@@ -147,7 +148,7 @@ public class TileManager {
 
     }
 
-    public int[][] getMapTileNum() {
+    public int[][][] getMapTileNum() {
         return mapTileNum;
     }
 

@@ -163,11 +163,11 @@ public class Entity {
 
     public void dropItem(Entity droppedItem) {
 
-        for (int i = 0; i < gamePanel.getObj().length; i++) {
-            if (gamePanel.getObj()[i] == null) {
-                gamePanel.getObj()[i] = droppedItem;
-                gamePanel.getObj()[i].worldX = worldX;
-                gamePanel.getObj()[i].worldY = worldY;
+        for (int i = 0; i < gamePanel.getObj()[1].length; i++) {
+            if (gamePanel.getObj()[gamePanel.getCurrentMap()][i] == null) {
+                gamePanel.getObj()[gamePanel.getCurrentMap()][i] = droppedItem;
+                gamePanel.getObj()[gamePanel.getCurrentMap()][i].worldX = worldX;
+                gamePanel.getObj()[gamePanel.getCurrentMap()][i].worldY = worldY;
                 break;
             }
         }
