@@ -528,6 +528,10 @@ public class Entity {
         return type;
     }
 
+    public ArrayList<Entity> getInventory() {
+        return inventory;
+    }
+
     public void decreaseMana(int mana) {
         this.mana -= mana;
     }

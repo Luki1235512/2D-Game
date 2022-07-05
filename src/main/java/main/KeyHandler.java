@@ -110,33 +110,10 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_C || code == KeyEvent.VK_ESCAPE) {
             gamePanel.setGameState(gamePanel.getPlayState());
         }
-        if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
-            if (gamePanel.getUi().getSlotRow() != 0) {
-                gamePanel.getUi().decreaseSlotRow();
-                gamePanel.playSE(8);
-            }
-        }
-        if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
-            if (gamePanel.getUi().getSlotCol() != 0) {
-                gamePanel.getUi().decreaseSlotCol();
-                gamePanel.playSE(8);
-            }
-        }
-        if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
-            if (gamePanel.getUi().getSlotRow() != 3) {
-                gamePanel.getUi().increaseSlotRow();
-                gamePanel.playSE(8);
-            }
-        }
-        if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
-            if (gamePanel.getUi().getSlotCol() != 4) {
-                gamePanel.getUi().increaseSlotCol();
-                gamePanel.playSE(8);
-            }
-        }
         if (code == KeyEvent.VK_ENTER) {
             gamePanel.getPlayer().selectItem();
         }
+        playerInventory(code);
     }
 
     public void optionState(int code) {
@@ -250,6 +227,66 @@ public class KeyHandler implements KeyListener {
                 if (gamePanel.getUi().getCommandNum() > 2) {
                     gamePanel.getUi().setCommandNum(0);
                 }
+                gamePanel.playSE(8);
+            }
+        }
+        if (gamePanel.getUi().getSubState() == 1) {
+            npcInventory(code);
+            if (code == KeyEvent.VK_ESCAPE) {
+                gamePanel.getUi().setSubState(0);
+            }
+        }
+    }
+
+    public void playerInventory(int code) {
+        if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+            if (gamePanel.getUi().getPlayerSlotRow() != 0) {
+                gamePanel.getUi().decreasePlayerSlotRow();
+                gamePanel.playSE(8);
+            }
+        }
+        if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
+            if (gamePanel.getUi().getPlayerSlotCol() != 0) {
+                gamePanel.getUi().decreasePlayerSlotCol();
+                gamePanel.playSE(8);
+            }
+        }
+        if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+            if (gamePanel.getUi().getPlayerSlotRow() != 3) {
+                gamePanel.getUi().increasePlayerSlotRow();
+                gamePanel.playSE(8);
+            }
+        }
+        if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
+            if (gamePanel.getUi().getPlayerSlotCol() != 4) {
+                gamePanel.getUi().increasePlayerSlotCol();
+                gamePanel.playSE(8);
+            }
+        }
+    }
+
+    public void npcInventory(int code) {
+        if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+            if (gamePanel.getUi().getNpcSlotRow() != 0) {
+                gamePanel.getUi().decreaseNpcSlotRow();
+                gamePanel.playSE(8);
+            }
+        }
+        if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) {
+            if (gamePanel.getUi().getNpcSlotCol() != 0) {
+                gamePanel.getUi().decreaseNpcSlotCol();
+                gamePanel.playSE(8);
+            }
+        }
+        if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+            if (gamePanel.getUi().getNpcSlotRow() != 3) {
+                gamePanel.getUi().increaseNpcSlotRow();
+                gamePanel.playSE(8);
+            }
+        }
+        if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) {
+            if (gamePanel.getUi().getNpcSlotCol() != 4) {
+                gamePanel.getUi().increaseNpcSlotCol();
                 gamePanel.playSE(8);
             }
         }

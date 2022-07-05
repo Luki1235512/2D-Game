@@ -429,7 +429,7 @@ public class Player extends Entity {
 
     public void selectItem() {
 
-        int itemIndex = gamePanel.getUi().getItemIndexOnSlot();
+        int itemIndex = gamePanel.getUi().getItemIndexOnSlot(gamePanel.getUi().getPlayerSlotCol(), gamePanel.getUi().getPlayerSlotRow());
         if (itemIndex < inventory.size()) {
             Entity selectedItem = inventory.get(itemIndex);
             if (selectedItem.type == type_sword || selectedItem.type == type_axe) {
@@ -559,10 +559,6 @@ public class Player extends Entity {
 
     public int getScreenY() {
         return screenY;
-    }
-
-    public ArrayList<Entity> getInventory() {
-        return inventory;
     }
 
     public void setAttackCanceled(boolean attackCancel) {
