@@ -8,6 +8,9 @@ public class EventHandler {
     private int previousEventX;
     private int previousEventY;
     private boolean canTouchEvent = true;
+    private int tempMap;
+    private int tempCol;
+    private int tempRow;
 
     public EventHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -94,11 +97,11 @@ public class EventHandler {
     }
 
     public void teleport(int map, int col, int row) {
-        gamePanel.setCurrentMap(map);
-        gamePanel.getPlayer().setWorldX(gamePanel.getTileSize() * col);
-        gamePanel.getPlayer().setWorldY(gamePanel.getTileSize() * row);
-        previousEventX = gamePanel.getPlayer().getWorldX();
-        previousEventY = gamePanel.getPlayer().getWorldY();
+
+        gamePanel.setGameState(gamePanel.getTransitionState());
+        tempMap = map;
+        tempCol = col;
+        tempRow = row;
         canTouchEvent = false;
         // TODO: transition se
 //        gamePanel.playSE();
@@ -124,4 +127,23 @@ public class EventHandler {
         }
     }
 
+    public int getTempMap() {
+        return tempMap;
+    }
+
+    public int getTempCol() {
+        return tempCol;
+    }
+
+    public int getTempRow() {
+        return tempRow;
+    }
+
+    public void setPreviousEventX(int previousEventX) {
+        this.previousEventX = previousEventX;
+    }
+
+    public void setPreviousEventY(int previousEventY) {
+        this.previousEventY = previousEventY;
+    }
 }
