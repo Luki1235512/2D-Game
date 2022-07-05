@@ -443,6 +443,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.fullScreenStatus = fullScreenStatus;
     }
 
+    public void setCurrentMap(int currentMap) {
+        this.currentMap = currentMap;
+    }
+
     @Override
     public void run() {
 

@@ -52,12 +52,15 @@ public class EventHandler {
             if (hit(0, 27, 16, "right")) {
                 damagePit(gamePanel.getDialogueState());
             }
-            if (hit(0, 23, 12, "up")) {
+            else if (hit(0, 23, 12, "up")) {
                 healingPool(gamePanel.getDialogueState());
             }
-//        if (hit(27, 16, "right")) {
-//            teleport(27, 16, gamePanel.getDialogueState());
-//        }
+            else if (hit(0, 10, 39, "any")) {
+                teleport(1, 12, 13);
+            }
+            else if (hit(1, 12, 13, "any")) {
+                teleport(0, 10, 39);
+            }
         }
 
 
@@ -90,11 +93,15 @@ public class EventHandler {
         return hit;
     }
 
-    public void teleport(int gameState) {
-        gamePanel.setGameState(gameState);
-        gamePanel.getUi().setCurrentDialogue("Teleport!");
-        gamePanel.getPlayer().setWorldX(gamePanel.getTileSize() * 37);
-        gamePanel.getPlayer().setWorldY(gamePanel.getTileSize() * 10);
+    public void teleport(int map, int col, int row) {
+        gamePanel.setCurrentMap(map);
+        gamePanel.getPlayer().setWorldX(gamePanel.getTileSize() * col);
+        gamePanel.getPlayer().setWorldY(gamePanel.getTileSize() * row);
+        previousEventX = gamePanel.getPlayer().getWorldX();
+        previousEventY = gamePanel.getPlayer().getWorldY();
+        canTouchEvent = false;
+        // TODO: transition se
+//        gamePanel.playSE();
     }
 
     public void damagePit(int gameState) {
