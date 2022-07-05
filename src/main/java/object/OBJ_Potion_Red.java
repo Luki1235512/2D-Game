@@ -17,6 +17,7 @@ public class OBJ_Potion_Red extends Entity {
         value = 5;
         down1 = setup("/objects/potion_red", gamePanel.getTileSize(), gamePanel.getTileSize());
         description = "[" + name + "]\nMay cause cancer if\nconsumed in excess";
+        price = 25;
     }
 
     public void use(Entity entity) {

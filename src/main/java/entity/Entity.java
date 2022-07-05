@@ -97,6 +97,7 @@ public class Entity {
     protected int defenseValue;
     protected String description = "";
     protected int useCost;
+    protected int price;
 
     // TYPE
     protected int type;
@@ -532,12 +533,24 @@ public class Entity {
         return inventory;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public int getMaxInventorySize() {
+        return maxInventorySize;
+    }
+
     public void decreaseMana(int mana) {
         this.mana -= mana;
     }
 
     public void increaseCoin(int value) {
         this.coin += value;
+    }
+
+    public void decreaseCoin(int value) {
+        this.coin -= value;
     }
 
     public boolean isAlive() {

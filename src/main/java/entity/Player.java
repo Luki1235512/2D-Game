@@ -57,7 +57,7 @@ public class Player extends Entity {
         toughness = 1;
         exp = 0;
         nextLevelExp = 5;
-        coin = 0;
+        coin = 500;
 //        currentWeapon = new OBJ_Sword_Normal(gamePanel);
         currentWeapon = new OBJ_Axe(gamePanel);
         currentShield = new OBJ_Shield_Wood(gamePanel);

@@ -14,5 +14,6 @@ public class OBJ_Shield_Wood extends Entity {
 
         defenseValue = 1;
         description = "[" + name + "]\nSolid wood";
+        price = 35;
     }
 }

@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import object.OBJ_Coin;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 
@@ -21,6 +22,7 @@ public class UI {
     private final BufferedImage crystal_full;
     private final BufferedImage crystal_half;
     private final BufferedImage crystal_blank;
+    private final BufferedImage coin;
     private final ArrayList<String> message = new ArrayList<>();
     private final ArrayList<Integer> messageCounter = new ArrayList<>();
     private String currentDialogue = "";
@@ -54,6 +56,9 @@ public class UI {
         crystal_full = crystal.getEntityImage();
         crystal_half = crystal.getEntityImage2();
         crystal_blank = crystal.getEntityImage3();
+
+        Entity goldCoin = new OBJ_Coin(gamePanel);
+        coin = goldCoin.getDown1();
     }
 
     public void addMessage(String text) {
@@ -815,6 +820,57 @@ public class UI {
 
         // DRAW NPC INVENTORY
         drawInventory(npc, true);
+
+        // DRAW HINT WINDOW
+        int x = gamePanel.getTileSize() * 2;
+        int y = gamePanel.getTileSize() * 9;
+        int width = gamePanel.getTileSize() * 6;
+        int height = gamePanel.getTileSize() * 2;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("[ESC] Back", x + 24, y + 55);
+
+        // DRAW PLAYER COIN WINDOW
+        x = gamePanel.getTileSize() * 12;
+        y = gamePanel.getTileSize() * 9;
+        width = gamePanel.getTileSize() * 6;
+        height = gamePanel.getTileSize() * 2;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("Your Coins: " + gamePanel.getPlayer().getCoin(), x + 24, y + 55);
+
+        // DRAW PRICE WINDOW
+        int itemIndex = getItemIndexOnSlot(npcSlotCol, npcSlotRow);
+        if (itemIndex < npc.getInventory().size()) {
+            x = (int) (gamePanel.getTileSize() * 5.5);
+            y = (int) (gamePanel.getTileSize() * 5.5);
+            width = (int) (gamePanel.getTileSize() * 2.5);
+            height = gamePanel.getTileSize();
+            drawSubWindow(x, y, width, height);
+            g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
+
+            int price = npc.getInventory().get(itemIndex).getPrice();
+            String text = "" + price;
+            x = getXAlignToRightText(text, gamePanel.getTileSize() * 8 - 20);
+            g2.drawString(text, x, y + 28);
+
+            // BUY AN ITEM
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                if (npc.getInventory().get(itemIndex).getPrice() > gamePanel.getPlayer().getCoin()) {
+                    subState = 0;
+                    gamePanel.setGameState(gamePanel.getDialogueState());
+                    currentDialogue = "You don't have enough money for that!";
+                    drawDialogueScreen();
+                }
+                else if (gamePanel.getPlayer().getInventory().size() == gamePanel.getPlayer().getMaxInventorySize()) {
+                    subState = 0;
+                    gamePanel.setGameState(gamePanel.getDialogueState());
+                    currentDialogue = "Your inventory is full";
+                }
+                else {
+                    gamePanel.getPlayer().decreaseCoin(npc.getInventory().get(itemIndex).getPrice());
+                    gamePanel.getPlayer().getInventory().add(npc.getInventory().get(itemIndex));
+                }
+            }
+        }
     }
 
     public void trade_sell() {

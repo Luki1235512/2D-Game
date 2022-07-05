@@ -14,5 +14,6 @@ public class OBJ_Shield2 extends Entity {
 
         defenseValue = 2;
         description = "[" + name + "]\nMight be magic";
+        price = 250;
     }
 }

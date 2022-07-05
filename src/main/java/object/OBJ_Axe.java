@@ -16,5 +16,6 @@ public class OBJ_Axe extends Entity {
         attackArea.height = 30;
 
         description = "[" + name + "]\nCan cut trees";
+        price = 75;
     }
 }
