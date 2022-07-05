@@ -2,10 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
-import object.OBJ_Fireball;
-import object.OBJ_Key;
-import object.OBJ_Shield_Wood;
-import object.OBJ_Sword_Normal;
+import object.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,8 +18,7 @@ public class Player extends Entity {
 
     private int standCounter = 20;
     private boolean attackCanceled = false;
-    private final ArrayList<Entity> inventory = new ArrayList<>();
-    private final int maxInventorySize = 20;
+
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -44,10 +40,10 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
 
-        worldX = gamePanel.getTileSize() * 23;
-        worldY = gamePanel.getTileSize() * 21;
-//        worldX = gamePanel.getTileSize() * 12;
-//        worldY = gamePanel.getTileSize() * 13;
+//        worldX = gamePanel.getTileSize() * 23;
+//        worldY = gamePanel.getTileSize() * 21;
+        worldX = gamePanel.getTileSize() * 9;
+        worldY = gamePanel.getTileSize() * 40;
         speed = 4;
         direction = "down";
 
@@ -62,7 +58,8 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
-        currentWeapon = new OBJ_Sword_Normal(gamePanel);
+//        currentWeapon = new OBJ_Sword_Normal(gamePanel);
+        currentWeapon = new OBJ_Axe(gamePanel);
         currentShield = new OBJ_Shield_Wood(gamePanel);
         projectile = new OBJ_Fireball(gamePanel);
         attack = getAttack();

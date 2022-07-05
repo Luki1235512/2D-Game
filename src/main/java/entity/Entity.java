@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Entity {
@@ -89,6 +90,8 @@ public class Entity {
     protected Projectile projectile;
 
     // ITEM ATTRIBUTES
+    protected final ArrayList<Entity> inventory = new ArrayList<>();
+    protected final int maxInventorySize = 20;
     protected int value;
     protected int attackValue;
     protected int defenseValue;
@@ -239,7 +242,7 @@ public class Entity {
         }
 
         spriteCounter++;
-        if (spriteCounter > 10) {
+        if (spriteCounter > 24) {
             if (spriteNum == 1) {
                 spriteNum = 2;
             }
