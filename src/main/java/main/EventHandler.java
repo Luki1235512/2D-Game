@@ -3,7 +3,7 @@ package main;
 public class EventHandler {
 
     private final GamePanel gamePanel;
-    private final EventRect[][] eventRect;
+    private final EventRect[][][] eventRect;
 
     private int previousEventX;
     private int previousEventY;
@@ -12,22 +12,27 @@ public class EventHandler {
     public EventHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
 
-        eventRect = new EventRect[gamePanel.getMaxWorldCol()][gamePanel.getMaxWorldRow()];
+        eventRect = new EventRect[gamePanel.getMaxMap()][gamePanel.getMaxWorldCol()][gamePanel.getMaxWorldRow()];
+        int map = 0;
         int col = 0;
         int row = 0;
-        while (col < gamePanel.getMaxWorldCol() && row < gamePanel.getMaxWorldRow()) {
-            eventRect[col][row] = new EventRect();
-            eventRect[col][row].x = 23;
-            eventRect[col][row].y = 23;
-            eventRect[col][row].width = 2;
-            eventRect[col][row].height = 2;
-            eventRect[col][row].eventRectDefaultX = eventRect[col][row].x;
-            eventRect[col][row].eventRectDefaultY = eventRect[col][row].y;
+        while (col < gamePanel.getMaxWorldCol() && row < gamePanel.getMaxWorldRow() && map < gamePanel.getMaxMap()) {
+            eventRect[map][col][row] = new EventRect();
+            eventRect[map][col][row].x = 23;
+            eventRect[map][col][row].y = 23;
+            eventRect[map][col][row].width = 2;
+            eventRect[map][col][row].height = 2;
+            eventRect[map][col][row].eventRectDefaultX = eventRect[map][col][row].x;
+            eventRect[map][col][row].eventRectDefaultY = eventRect[map][col][row].y;
 
             col++;
             if (col == gamePanel.getMaxWorldCol()) {
                 col = 0;
                 row++;
+                if (row == gamePanel.getMaxWorldRow()) {
+                    row = 0;
+                    map++;
+                }
             }
         }
 
@@ -44,10 +49,10 @@ public class EventHandler {
         }
 
         if (canTouchEvent) {
-            if (hit(27, 16, "right")) {
+            if (hit(0, 27, 16, "right")) {
                 damagePit(gamePanel.getDialogueState());
             }
-            if (hit(23, 12, "up")) {
+            if (hit(0, 23, 12, "up")) {
                 healingPool(gamePanel.getDialogueState());
             }
 //        if (hit(27, 16, "right")) {
@@ -58,27 +63,29 @@ public class EventHandler {
 
     }
 
-    public boolean hit(int col, int row, String reqDirection) {
+    public boolean hit(int map, int col, int row, String reqDirection) {
 
         boolean hit = false;
 
-        gamePanel.getPlayer().getSolidArea().x = gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getSolidArea().x;
-        gamePanel.getPlayer().getSolidArea().y = gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getSolidArea().y;
-        eventRect[col][row].x = col * gamePanel.getTileSize() + eventRect[col][row].x;
-        eventRect[col][row].y = row * gamePanel.getTileSize() + eventRect[col][row].y;
+        if (map == gamePanel.getCurrentMap()) {
+            gamePanel.getPlayer().getSolidArea().x = gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getSolidArea().x;
+            gamePanel.getPlayer().getSolidArea().y = gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getSolidArea().y;
+            eventRect[map][col][row].x = col * gamePanel.getTileSize() + eventRect[map][col][row].x;
+            eventRect[map][col][row].y = row * gamePanel.getTileSize() + eventRect[map][col][row].y;
 
-        if (gamePanel.getPlayer().getSolidArea().intersects(eventRect[col][row]) && !eventRect[col][row].eventDone) {
-            if (gamePanel.getPlayer().getDirection().contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
-                hit = true;
+            if (gamePanel.getPlayer().getSolidArea().intersects(eventRect[map][col][row]) && !eventRect[map][col][row].eventDone) {
+                if (gamePanel.getPlayer().getDirection().contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
+                    hit = true;
 
-                previousEventX = gamePanel.getPlayer().getWorldX();
-                previousEventY = gamePanel.getPlayer().getWorldY();
+                    previousEventX = gamePanel.getPlayer().getWorldX();
+                    previousEventY = gamePanel.getPlayer().getWorldY();
+                }
             }
+            gamePanel.getPlayer().getSolidArea().x = gamePanel.getPlayer().getSolidAreaDefaultX();
+            gamePanel.getPlayer().getSolidArea().y = gamePanel.getPlayer().getSolidAreaDefaultY();
+            eventRect[map][col][row].x = eventRect[map][col][row].eventRectDefaultX;
+            eventRect[map][col][row].y = eventRect[map][col][row].eventRectDefaultY;
         }
-        gamePanel.getPlayer().getSolidArea().x = gamePanel.getPlayer().getSolidAreaDefaultX();
-        gamePanel.getPlayer().getSolidArea().y = gamePanel.getPlayer().getSolidAreaDefaultY();
-        eventRect[col][row].x = eventRect[col][row].eventRectDefaultX;
-        eventRect[col][row].y = eventRect[col][row].eventRectDefaultY;
 
         return hit;
     }
