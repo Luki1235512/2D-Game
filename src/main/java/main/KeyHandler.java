@@ -232,6 +232,29 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    public void tradeState(int code) {
+
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
+        }
+        if (gamePanel.getUi().getSubState() == 0) {
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
+                gamePanel.getUi().decreaseCommandNum();
+                if (gamePanel.getUi().getCommandNum() < 0) {
+                    gamePanel.getUi().setCommandNum(2);
+                }
+                gamePanel.playSE(8);
+            }
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) {
+                gamePanel.getUi().increaseCommandNum();
+                if (gamePanel.getUi().getCommandNum() > 2) {
+                    gamePanel.getUi().setCommandNum(0);
+                }
+                gamePanel.playSE(8);
+            }
+        }
+    }
+
     public boolean isUpPressed() {
         return upPressed;
     }
@@ -307,6 +330,11 @@ public class KeyHandler implements KeyListener {
         // GAME OVER STATE
         else if (gamePanel.getGameState() == gamePanel.getGameOverState()) {
             gameOverState(code);
+        }
+
+        // TRADE STATE
+        else if (gamePanel.getGameState() == gamePanel.getTradeState()) {
+            tradeState(code);
         }
     }
 

@@ -70,6 +70,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final int optionState = 5;
     private final int gameOverState = 6;
     private final int transitionState = 7;
+    private final int tradeState = 8;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -450,6 +451,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public int getTransitionState() {
         return transitionState;
+    }
+
+    public int getTradeState() {
+        return tradeState;
     }
 
     @Override

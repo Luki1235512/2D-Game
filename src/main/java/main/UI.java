@@ -29,6 +29,7 @@ public class UI {
     private int slotRow = 0;
     private int subState = 0;
     private int counter = 0;
+    private Entity npc;
 
 
     public UI(GamePanel gamePanel) {
@@ -107,6 +108,11 @@ public class UI {
         // TRANSITION STATE
         if (gamePanel.getGameState() == gamePanel.getTransitionState()) {
             drawTransition();
+        }
+
+        // TRADE STATE
+        if (gamePanel.getGameState() == gamePanel.getTradeState()) {
+            drawTradeScreen();
         }
     }
 
@@ -255,10 +261,10 @@ public class UI {
     public void drawDialogueScreen() {
 
         // WINDOW
-        int x = gamePanel.getTileSize() * 2;
+        int x = gamePanel.getTileSize() * 3;
         int y = gamePanel.getTileSize() / 2;
-        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 4);
-        int height = gamePanel.getTileSize() * 3;
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 6);
+        int height = gamePanel.getTileSize() * 4;
 
         drawSubWindow(x, y, width, height);
 
@@ -720,6 +726,75 @@ public class UI {
         }
     }
 
+
+    public void drawTradeScreen() {
+
+        switch (subState) {
+            case 0:
+                trade_select();
+                break;
+            case 1:
+                trade_buy();
+                break;
+            case 2:
+                trade_sell();
+                break;
+        }
+        gamePanel.getKeyHandler().setEnterPressed(false);
+    }
+
+    public void trade_select() {
+        drawDialogueScreen();
+
+        // DRAW WINDOW
+        int x = gamePanel.getTileSize() * 15;
+        int y = gamePanel.getTileSize() * 4;
+        int width = gamePanel.getTileSize() * 3;
+        int height = (int) (gamePanel.getTileSize() * 3.5);
+        drawSubWindow(x, y, width, height);
+
+        // DRAW TEXTS
+        x += gamePanel.getTileSize();
+        y += gamePanel.getTileSize();
+        g2.drawString("Buy" , x, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x - 24, y);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 1;
+            }
+        }
+        y += gamePanel.getTileSize();
+
+        g2.drawString("Sell" , x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - 24, y);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                subState = 2;
+            }
+        }
+        y += gamePanel.getTileSize();
+
+        g2.drawString("Leave" , x, y);
+        if (commandNum == 2) {
+            g2.drawString(">", x - 24, y);
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                commandNum = 0;
+                gamePanel.setGameState(gamePanel.getDialogueState());
+                currentDialogue = "See you soon!";
+            }
+        }
+        y += gamePanel.getTileSize();
+    }
+
+    public void trade_buy() {
+
+    }
+
+    public void trade_sell() {
+
+    }
+
+
     public int getItemIndexOnSlot() {
         return slotCol + (slotRow * 5);
     }
@@ -794,5 +869,9 @@ public class UI {
 
     public void setCommandNum(int commandNum) {
         this.commandNum = commandNum;
+    }
+
+    public void setNpc(Entity npc) {
+        this.npc = npc;
     }
 }

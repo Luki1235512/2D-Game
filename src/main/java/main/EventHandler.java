@@ -1,5 +1,7 @@
 package main;
 
+import entity.Entity;
+
 public class EventHandler {
 
     private final GamePanel gamePanel;
@@ -64,6 +66,9 @@ public class EventHandler {
             else if (hit(1, 12, 13, "any")) {
                 teleport(0, 10, 39);
             }
+            else if (hit(1, 12, 9, "up")) {
+                speak(gamePanel.getNpc()[1][0]);
+            }
         }
 
 
@@ -124,6 +129,15 @@ public class EventHandler {
             gamePanel.getPlayer().setLife(gamePanel.getPlayer().getMaxLife());
             gamePanel.getPlayer().setMana(gamePanel.getPlayer().getMaxMana());
             gamePanel.getAssetSetter().setMonster();
+        }
+    }
+
+    public void speak(Entity entity) {
+
+        if (gamePanel.getKeyHandler().isEnterPressed()) {
+            gamePanel.setGameState(gamePanel.getDialogueState());
+            gamePanel.getPlayer().setAttackCanceled(true);
+            entity.speak();
         }
     }
 
