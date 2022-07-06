@@ -875,6 +875,61 @@ public class UI {
 
     public void trade_sell() {
 
+        // DRAW PLAYER INVENTORY
+        drawInventory(gamePanel.getPlayer(), true);
+
+        int x;
+        int y;
+        int width;
+        int height;
+
+        // DRAW HINT WINDOW
+        x = gamePanel.getTileSize() * 2;
+        y = gamePanel.getTileSize() * 9;
+        width = gamePanel.getTileSize() * 6;
+        height = gamePanel.getTileSize() * 2;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("[ESC] Back", x + 24, y + 55);
+
+        // DRAW PLAYER COIN WINDOW
+        x = gamePanel.getTileSize() * 12;
+        y = gamePanel.getTileSize() * 9;
+        width = gamePanel.getTileSize() * 6;
+        height = gamePanel.getTileSize() * 2;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("Your Coins: " + gamePanel.getPlayer().getCoin(), x + 24, y + 55);
+
+        // DRAW PRICE WINDOW
+        int itemIndex = getItemIndexOnSlot(playerSlotCol, playerSlotRow);
+        if (itemIndex < gamePanel.getPlayer().getInventory().size()) {
+            x = (int) (gamePanel.getTileSize() * 15.5);
+            y = (int) (gamePanel.getTileSize() * 5.5);
+            width = (int) (gamePanel.getTileSize() * 2.5);
+            height = gamePanel.getTileSize();
+            drawSubWindow(x, y, width, height);
+            g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
+
+            int price = gamePanel.getPlayer().getInventory().get(itemIndex).getPrice() / 2;
+            String text = "" + price;
+            x = getXAlignToRightText(text, gamePanel.getTileSize() * 18 - 20);
+            g2.drawString(text, x, y + 28);
+
+            // SELL AN ITEM
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                if (gamePanel.getPlayer().getInventory().get(itemIndex) == gamePanel.getPlayer().getCurrentWeapon() ||
+                    gamePanel.getPlayer().getInventory().get(itemIndex) == gamePanel.getPlayer().getCurrentShield()) {
+                    commandNum = 0;
+                    subState = 0;
+                    gamePanel.setGameState(gamePanel.getDialogueState());
+                    currentDialogue = "You cannot sell an equipped item!";
+                }
+                else {
+                    gamePanel.getPlayer().getInventory().remove(itemIndex);
+                    gamePanel.getPlayer().increaseCoin(price);
+                }
+            }
+        }
+
     }
 
 

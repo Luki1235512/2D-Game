@@ -236,6 +236,12 @@ public class KeyHandler implements KeyListener {
                 gamePanel.getUi().setSubState(0);
             }
         }
+        if (gamePanel.getUi().getSubState() == 2) {
+            playerInventory(code);
+            if (code == KeyEvent.VK_ESCAPE) {
+                gamePanel.getUi().setSubState(0);
+            }
+        }
     }
 
     public void playerInventory(int code) {
