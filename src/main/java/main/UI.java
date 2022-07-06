@@ -92,7 +92,6 @@ public class UI {
 
         // DIALOGUE STATE
         if (gamePanel.getGameState() == gamePanel.getDialogueState()) {
-            drawPlayerLife();
             drawDialogueScreen();
         }
 
