@@ -40,10 +40,10 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
 
-//        worldX = gamePanel.getTileSize() * 23;
-//        worldY = gamePanel.getTileSize() * 21;
-        worldX = gamePanel.getTileSize() * 9;
-        worldY = gamePanel.getTileSize() * 40;
+        worldX = gamePanel.getTileSize() * 23;
+        worldY = gamePanel.getTileSize() * 21;
+//        worldX = gamePanel.getTileSize() * 9;
+//        worldY = gamePanel.getTileSize() * 40;
         speed = 4;
         direction = "down";
 
@@ -58,8 +58,8 @@ public class Player extends Entity {
         exp = 0;
         nextLevelExp = 5;
         coin = 500;
-//        currentWeapon = new OBJ_Sword_Normal(gamePanel);
-        currentWeapon = new OBJ_Axe(gamePanel);
+        currentWeapon = new OBJ_Sword_Normal(gamePanel);
+//        currentWeapon = new OBJ_Axe(gamePanel);
         currentShield = new OBJ_Shield_Wood(gamePanel);
         projectile = new OBJ_Fireball(gamePanel);
         attack = getAttack();
