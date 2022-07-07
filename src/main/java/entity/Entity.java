@@ -61,6 +61,7 @@ public class Entity {
     protected boolean alive = true;
     protected boolean dying = false;
     protected boolean hpBarOn = false;
+    protected boolean onPath = false;
 
     // COUNTER
     protected int spriteCounter = 0;
@@ -125,6 +126,76 @@ public class Entity {
             e.printStackTrace();
         }
         return image;
+    }
+
+    public void searchPath(int goalCol, int goalRow) {
+
+        int startCol = (worldX + solidArea.x) / gamePanel.getTileSize();
+        int startRow = (worldY + solidArea.y) / gamePanel.getTileSize();
+
+        gamePanel.getPathFinder().setNodes(startCol, startRow, goalCol, goalRow);
+
+        if (gamePanel.getPathFinder().search()) {
+
+            int nextX = gamePanel.getPathFinder().getPathList().get(0).getCol() * gamePanel.getTileSize();
+            int nextY = gamePanel.getPathFinder().getPathList().get(0).getRow() * gamePanel.getTileSize();
+
+            int enLeftX = worldX + solidArea.x;
+            int enRightX = worldX + solidArea.x + solidArea.width;
+            int enTopY = worldY + solidArea.y;
+            int enBottomY = worldY + solidArea.y + solidArea.height;
+
+            if (enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gamePanel.getTileSize()) {
+                direction = "up";
+            }
+            else if (enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gamePanel.getTileSize()) {
+                direction = "down";
+            }
+            else if (enTopY >= nextY && enBottomY < nextY + gamePanel.getTileSize()) {
+                if (enLeftX > nextX) {
+                    direction = "left";
+                }
+                if (enLeftX < nextX) {
+                    direction = "right";
+                }
+            }
+            else if (enTopY > nextY && enLeftX > nextX) {
+                direction = "up";
+                checkCollision();
+                if (collisionOn) {
+                    direction = "left";
+                }
+            }
+            else if (enTopY > nextY && enLeftX < nextX) {
+                direction = "up";
+                checkCollision();
+                if (collisionOn) {
+                    direction = "right";
+                }
+            }
+            else if (enTopY < nextY && enLeftX > nextX) {
+                direction = "down";
+                checkCollision();
+                if (collisionOn) {
+                    direction = "left";
+                }
+            }
+            else if (enTopY < nextY && enLeftX < nextX) {
+                direction = "down";
+                checkCollision();
+                if (collisionOn) {
+                    direction = "right";
+                }
+            }
+
+            // If reaches the goal, stop the search
+            int nextCol = gamePanel.getPathFinder().getPathList().get(0).getCol();
+            int nextRow = gamePanel.getPathFinder().getPathList().get(0).getRow();
+
+            if (nextCol == goalCol && nextRow == goalRow) {
+                onPath = false;
+            }
+        }
     }
 
     public void setAction() {
@@ -210,9 +281,7 @@ public class Entity {
         gamePanel.getParticleList().add(particle4);
     }
 
-    public void update() {
-
-        setAction();
+    public void checkCollision() {
         collisionOn = false;
         gamePanel.getCollisionChecker().checkTile(this);
         gamePanel.getCollisionChecker().checkObject(this, false);
@@ -224,6 +293,12 @@ public class Entity {
         if (this.type == type_monster && contactPlayer) {
             damagePlayer(attack);
         }
+    }
+
+    public void update() {
+
+        setAction();
+        checkCollision();
 
         if (!collisionOn) {
             switch (direction) {
@@ -579,6 +654,14 @@ public class Entity {
 
     public void setMana(int mana) {
         this.mana = mana;
+    }
+
+    public boolean isOnPath() {
+        return onPath;
+    }
+
+    public void setOnPath(boolean onPath) {
+        this.onPath = onPath;
     }
 
     public void increaseMana(int mana) {

@@ -1,5 +1,6 @@
 package main;
 
+import ai.PathFinder;
 import entity.Entity;
 import entity.Player;
 import tile.TileManager;
@@ -48,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final UI ui = new UI(this);
     private final EventHandler eventHandler = new EventHandler(this);
     private final Config config = new Config(this);
+    private PathFinder pathFinder = new PathFinder(this);
     private Thread gameThread;
 
     // ENTITY AND OBJECT
@@ -455,6 +457,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public int getTradeState() {
         return tradeState;
+    }
+
+    public PathFinder getPathFinder() {
+        return pathFinder;
+    }
+
+    public void setPathFinder(PathFinder pathFinder) {
+        this.pathFinder = pathFinder;
     }
 
     @Override

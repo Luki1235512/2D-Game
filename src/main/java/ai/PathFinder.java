@@ -201,4 +201,75 @@ public class PathFinder {
         }
     }
 
+    public GamePanel getGamePanel() {
+        return gamePanel;
+    }
+
+    public void setGamePanel(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
+    }
+
+    public Node[][] getNode() {
+        return node;
+    }
+
+    public void setNode(Node[][] node) {
+        this.node = node;
+    }
+
+    public ArrayList<Node> getOpenList() {
+        return openList;
+    }
+
+    public void setOpenList(ArrayList<Node> openList) {
+        this.openList = openList;
+    }
+
+    public ArrayList<Node> getPathList() {
+        return pathList;
+    }
+
+    public void setPathList(ArrayList<Node> pathList) {
+        this.pathList = pathList;
+    }
+
+    public Node getStartNode() {
+        return startNode;
+    }
+
+    public void setStartNode(Node startNode) {
+        this.startNode = startNode;
+    }
+
+    public Node getGoalNode() {
+        return goalNode;
+    }
+
+    public void setGoalNode(Node goalNode) {
+        this.goalNode = goalNode;
+    }
+
+    public Node getCurrentNode() {
+        return currentNode;
+    }
+
+    public void setCurrentNode(Node currentNode) {
+        this.currentNode = currentNode;
+    }
+
+    public boolean isGoalReached() {
+        return goalReached;
+    }
+
+    public void setGoalReached(boolean goalReached) {
+        this.goalReached = goalReached;
+    }
+
+    public int getStep() {
+        return step;
+    }
+
+    public void setStep(int step) {
+        this.step = step;
+    }
 }
