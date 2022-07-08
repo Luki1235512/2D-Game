@@ -16,6 +16,7 @@ public class TileManager {
     private final GamePanel gamePanel;
     private final Tile[] tile;
     private final int[][][] mapTileNum;
+    private boolean drawPath = true;
 
     public TileManager(GamePanel gamePanel) {
 
@@ -143,6 +144,19 @@ public class TileManager {
             if (worldCol == gamePanel.getMaxWorldCol()) {
                 worldCol = 0;
                 worldRow++;
+            }
+        }
+
+        if (drawPath) {
+            g2.setColor(new Color(255, 0, 0, 70));
+
+            for (int i = 0; i < gamePanel.getPathFinder().getPathList().size(); i++) {
+                int worldX = gamePanel.getPathFinder().getPathList().get(i).getCol() * gamePanel.getTileSize();
+                int worldY = gamePanel.getPathFinder().getPathList().get(i).getRow() * gamePanel.getTileSize();
+                int screenX = worldX - gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getScreenX();
+                int screenY = worldY - gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getScreenY();
+
+                g2.fillRect(screenX, screenY, gamePanel.getTileSize(), gamePanel.getTileSize());
             }
         }
 
