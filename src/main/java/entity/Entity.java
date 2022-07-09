@@ -189,12 +189,12 @@ public class Entity {
             }
 
             // If reaches the goal, stop the search
-            int nextCol = gamePanel.getPathFinder().getPathList().get(0).getCol();
-            int nextRow = gamePanel.getPathFinder().getPathList().get(0).getRow();
-
-            if (nextCol == goalCol && nextRow == goalRow) {
-                onPath = false;
-            }
+//            int nextCol = gamePanel.getPathFinder().getPathList().get(0).getCol();
+//            int nextRow = gamePanel.getPathFinder().getPathList().get(0).getRow();
+//
+//            if (nextCol == goalCol && nextRow == goalRow) {
+//                onPath = false;
+//            }
         }
     }
 

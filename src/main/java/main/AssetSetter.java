@@ -123,18 +123,18 @@ public class AssetSetter {
         i++;
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 33, 12);
 
-//        i++;
-//        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 20, 20);
-//        i++;
-//        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 20, 21);
-//        i++;
-//        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 20, 22);
-//        i++;
-//        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 22, 24);
-//        i++;
-//        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 23, 24);
-//        i++;
-//        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 24, 24);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 20, 20);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 20, 21);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 20, 22);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 22, 24);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 23, 24);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 24, 24);
 
         i++;
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 18, 40);
