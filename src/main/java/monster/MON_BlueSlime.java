@@ -49,41 +49,69 @@ public class MON_BlueSlime extends Entity {
         right2 = setup("/monster/blueslime_down_2", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 
+    public void update() {
+        super.update();
+
+        int xDistance = Math.abs(worldX - gamePanel.getPlayer().getWorldX());
+        int yDistance = Math.abs(worldY - gamePanel.getPlayer().getWorldY());
+        int tileDistance = (xDistance + yDistance) / gamePanel.getTileSize();
+
+        if (!onPath && tileDistance < 5) {
+            int i = new Random().nextInt(100) + 1;
+            if (i > 50) {
+                onPath = true;
+            }
+        }
+        if (onPath && tileDistance > 20) {
+            onPath = false;
+        }
+    }
+
     public void setAction() {
 
-        actionLockCounter++;
+        if (onPath) {
+            int goalCol = (gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getSolidArea().x) / gamePanel.getTileSize();
+            int goalRow = (gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getSolidArea().y) / gamePanel.getTileSize();
 
-        if (actionLockCounter == 120) {
-            Random random = new Random();
-            int i = random.nextInt(100) + 1;
+            searchPath(goalCol, goalRow);
 
-            if (i <= 25) {
-                direction = "up";
-            }
-            if (i > 25 && i <= 50) {
-                direction = "down";
-            }
-            if (i > 50 && i <= 75) {
-                direction = "left";
-            }
-            if (i > 75) {
-                direction = "right";
+            int i = new Random().nextInt(200) + 1;
+            if (i > 195 && !projectile.isAlive() && shotAvailableCounter == 30) {
+                projectile.set(worldX, worldY, direction, true, this);
+                gamePanel.getProjectileList().add(projectile);
+                shotAvailableCounter = 0;
             }
 
-            actionLockCounter = 0;
         }
+        else {
+            actionLockCounter++;
 
-        int i = new Random().nextInt(100) + 1;
-        if (i > 99 && !projectile.isAlive() && shotAvailableCounter == 30) {
-            projectile.set(worldX, worldY, direction, true, this);
-            gamePanel.getProjectileList().add(projectile);
-            shotAvailableCounter = 0;
+            if (actionLockCounter == 120) {
+                Random random = new Random();
+                int i = random.nextInt(100) + 1;
+
+                if (i <= 25) {
+                    direction = "up";
+                }
+                if (i > 25 && i <= 50) {
+                    direction = "down";
+                }
+                if (i > 50 && i <= 75) {
+                    direction = "left";
+                }
+                if (i > 75) {
+                    direction = "right";
+                }
+
+                actionLockCounter = 0;
+            }
         }
     }
 
     public void damageReaction() {
         actionLockCounter = 0;
-        direction = gamePanel.getPlayer().getDirection();
+//        direction = gamePanel.getPlayer().getDirection();
+        onPath = true;
     }
 
     public void checkDrop() {
