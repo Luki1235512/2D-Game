@@ -62,6 +62,7 @@ public class Entity {
     protected boolean dying = false;
     protected boolean hpBarOn = false;
     protected boolean onPath = false;
+    protected boolean knockBack = false;
 
     // COUNTER
     protected int spriteCounter = 0;
@@ -70,9 +71,11 @@ public class Entity {
     protected int shotAvailableCounter = 0;
     protected int dyingCounter = 0;
     protected int hpBarCounter = 0;
+    protected int knockBackCounter = 0;
 
     // CHARACTER ATTRIBUTES
     protected String name;
+    protected int defaultSpeed;
     protected int speed;
     protected int maxLife;
     protected int life;
@@ -297,23 +300,57 @@ public class Entity {
 
     public void update() {
 
-        setAction();
-        checkCollision();
+        if (knockBack) {
 
-        if (!collisionOn) {
-            switch (direction) {
-                case "up":
-                    worldY -= speed;
-                    break;
-                case "down":
-                    worldY += speed;
-                    break;
-                case "left":
-                    worldX -= speed;
-                    break;
-                case "right":
-                    worldX += speed;
-                    break;
+            checkCollision();
+
+            if (collisionOn) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else {
+                switch (gamePanel.getPlayer().direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
+            knockBackCounter++;
+            if (knockBackCounter == 10) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+        }
+        else {
+            setAction();
+            checkCollision();
+
+            if (!collisionOn) {
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
             }
         }
 

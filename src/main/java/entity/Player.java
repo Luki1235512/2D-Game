@@ -6,7 +6,6 @@ import object.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 
 public class Player extends Entity {
@@ -44,7 +43,8 @@ public class Player extends Entity {
         worldY = gamePanel.getTileSize() * 21;
 //        worldX = gamePanel.getTileSize() * 9;
 //        worldY = gamePanel.getTileSize() * 40;
-        speed = 4;
+        defaultSpeed = 4;
+        speed = defaultSpeed;
         direction = "down";
 
         // PLAYER STATUS
@@ -381,6 +381,8 @@ public class Player extends Entity {
             if (!gamePanel.getMonster()[gamePanel.getCurrentMap()][i].invincible) {
                 gamePanel.playSE(5);
 
+                knockBack(gamePanel.getMonster()[gamePanel.getCurrentMap()][i]);
+
                 int damage = attack - gamePanel.getMonster()[gamePanel.getCurrentMap()][i].defense;
                 if (damage < 0) {
                     damage = 0;
@@ -400,6 +402,12 @@ public class Player extends Entity {
                 }
             }
         }
+    }
+
+    public void knockBack(Entity entity) {
+        entity.direction = direction;
+        entity.speed += 10;
+        entity.knockBack = true;
     }
 
     public void damageInteractiveTile(int i) {
