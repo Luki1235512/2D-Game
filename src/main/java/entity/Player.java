@@ -227,7 +227,14 @@ public class Player extends Entity {
         if (gamePanel.getKeyHandler().isShotKeyPressed() && !projectile.alive && shotAvailableCounter == 30 && projectile.haveResource(this)) {
             projectile.set(worldX, worldY, direction, true, this);
             projectile.subtractResource(this);
-            gamePanel.getProjectileList().add(projectile);
+
+            for (int i = 0; i < gamePanel.getProjectile()[1].length; i++) {
+                if (gamePanel.getProjectile()[gamePanel.getCurrentMap()][i] == null) {
+                    gamePanel.getProjectile()[gamePanel.getCurrentMap()][i] = projectile;
+                    break;
+                }
+            }
+
             shotAvailableCounter = 0;
 //            TODO: sound for fireball
 //            gamePanel.playSE();
@@ -299,6 +306,9 @@ public class Player extends Entity {
 
             int iTileIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getITile());
             damageInteractiveTile(iTileIndex);
+
+            int projectileIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getProjectile());
+            damageProjectile(projectileIndex);
 
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -406,6 +416,14 @@ public class Player extends Entity {
             if (gamePanel.getITile()[gamePanel.getCurrentMap()][i].life == 0) {
                 gamePanel.getITile()[gamePanel.getCurrentMap()][i] = gamePanel.getITile()[gamePanel.getCurrentMap()][i].getDestroyedForm();
             }
+        }
+    }
+
+    public void damageProjectile(int i) {
+        if (i != Integer.MAX_VALUE) {
+            Entity projectile = gamePanel.getProjectile()[gamePanel.getCurrentMap()][i];
+            projectile.alive = false;
+            generateParticle(projectile, projectile);
         }
     }
 

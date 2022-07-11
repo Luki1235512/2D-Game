@@ -78,7 +78,15 @@ public class MON_BlueSlime extends Entity {
             int i = new Random().nextInt(200) + 1;
             if (i > 195 && !projectile.isAlive() && shotAvailableCounter == 30) {
                 projectile.set(worldX, worldY, direction, true, this);
-                gamePanel.getProjectileList().add(projectile);
+//                gamePanel.getProjectileList().add(projectile);
+
+                for (int j = 0; j < gamePanel.getProjectile()[1].length; j++) {
+                    if (gamePanel.getProjectile()[gamePanel.getCurrentMap()][j] == null) {
+                        gamePanel.getProjectile()[gamePanel.getCurrentMap()][j] = projectile;
+                        break;
+                    }
+                }
+
                 shotAvailableCounter = 0;
             }
 

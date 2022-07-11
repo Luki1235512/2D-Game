@@ -58,7 +58,8 @@ public class GamePanel extends JPanel implements Runnable {
     private final Entity[][] npc = new Entity[maxMap][10];
     private final Entity[][] monster = new Entity[maxMap][20];
     private final InteractiveTile[][] iTile = new InteractiveTile[maxMap][50];
-    private final ArrayList<Entity> projectileList = new ArrayList<>();
+    private final Entity projectile[][] = new Entity[maxMap][20];
+//    private final ArrayList<Entity> projectileList = new ArrayList<>();
     private final ArrayList<Entity> particleList = new ArrayList<>();
     private final ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -159,13 +160,13 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             // PROJECTILE
-            for (int i = 0; i < projectileList.size(); i++) {
-                if (projectileList.get(i) != null) {
-                    if (projectileList.get(i).isAlive()) {
-                        projectileList.get(i).update();
+            for (int i = 0; i < projectile[1].length; i++) {
+                if (projectile[currentMap][i] != null) {
+                    if (projectile[currentMap][i].isAlive()) {
+                        projectile[currentMap][i].update();
                     }
-                    if (!projectileList.get(i).isAlive()) {
-                        projectileList.remove(i);
+                    if (!projectile[currentMap][i].isAlive()) {
+                        projectile[currentMap][i] = null;
                     }
                 }
             }
@@ -243,9 +244,9 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             // PROJECTILE
-            for (Entity entity : projectileList) {
-                if (entity != null) {
-                    entityList.add(entity);
+            for (int i = 0; i < projectile[1].length; i++) {
+                if (projectile[currentMap][i] != null) {
+                    entityList.add(projectile[currentMap][i]);
                 }
             }
 
@@ -395,8 +396,8 @@ public class GamePanel extends JPanel implements Runnable {
         return assetSetter;
     }
 
-    public ArrayList<Entity> getProjectileList() {
-        return projectileList;
+    public Entity[][] getProjectile() {
+        return projectile;
     }
 
     public InteractiveTile[][] getITile() {
