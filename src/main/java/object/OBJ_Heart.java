@@ -21,10 +21,12 @@ public class OBJ_Heart extends Entity {
         image3 = setup("/objects/heart_blank", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 
-    public void use(Entity entity) {
+    public boolean use(Entity entity) {
         gamePanel.playSE(2);
         gamePanel.getUi().addMessage("Life +" + value);
         entity.increaseLife(value);
+
+        return true;
     }
 
 }

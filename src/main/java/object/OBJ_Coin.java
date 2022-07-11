@@ -17,9 +17,11 @@ public class OBJ_Coin extends Entity {
         down1 = setup("/objects/coin", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 
-    public void use(Entity entity) {
+    public boolean use(Entity entity) {
         gamePanel.playSE(1);
         gamePanel.getUi().addMessage("Coin +" + value);
         gamePanel.getPlayer().increaseCoin(value);
+
+        return true;
     }
 }

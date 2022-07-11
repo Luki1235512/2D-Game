@@ -114,6 +114,7 @@ public class Entity {
     protected final int type_shield = 5;
     protected final int type_consumable = 6;
     protected final int type_pickupOnly = 7;
+    protected final int type_obstacle = 8;
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -202,6 +203,45 @@ public class Entity {
         }
     }
 
+    public int getDetected(Entity user, Entity[][] target, String targetName) {
+        int index = Integer.MAX_VALUE;
+
+        // Check the surrounding object
+        int nextWorldX = user.getLeftX();
+        int nextWorldY = user.getTopY();
+
+        switch (user.direction) {
+            case "up":
+                nextWorldY = user.getTopY() - 1;
+                break;
+            case "down":
+                nextWorldY = user.getBottomY() + 1;
+                break;
+            case "left":
+                nextWorldX = user.getLeftX() - 1;
+                break;
+            case "right":
+                nextWorldX = user.getRightX() + 1;
+                break;
+        }
+
+        int col = nextWorldX / gamePanel.getTileSize();
+        int row = nextWorldY / gamePanel.getTileSize();
+
+        for (int i = 0; i < target[1].length; i++) {
+            if (target[gamePanel.getCurrentMap()][i] != null) {
+                if (target[gamePanel.getCurrentMap()][i].getCol() == col &&
+                    target[gamePanel.getCurrentMap()][i].getRow() == row &&
+                    target[gamePanel.getCurrentMap()][i].name.equals(targetName)) {
+
+                    index = i;
+                    break;
+                }
+            }
+        }
+        return index;
+    }
+
     public void setAction() {
 
     }
@@ -233,8 +273,12 @@ public class Entity {
         }
     }
 
-    public void use(Entity entity) {
+    public void interact() {
 
+    }
+
+    public boolean use(Entity entity) {
+        return false;
     }
     public void checkDrop() {
 
@@ -654,6 +698,30 @@ public class Entity {
         return maxInventorySize;
     }
 
+    public int getLeftX() {
+        return worldX + solidArea.x;
+    }
+
+    public int getRightX() {
+        return worldX + solidArea.x + solidArea.width;
+    }
+
+    public int getTopY() {
+        return worldY + solidArea.y;
+    }
+
+    public int getBottomY() {
+        return worldY + solidArea.y + solidArea.height;
+    }
+
+    public int getCol() {
+        return (worldX + solidArea.x) / gamePanel.getTileSize();
+    }
+
+    public int getRow() {
+        return (worldY + solidArea.y) / gamePanel.getTileSize();
+    }
+
     public void decreaseMana(int mana) {
         this.mana -= mana;
     }
@@ -692,14 +760,6 @@ public class Entity {
 
     public void setMana(int mana) {
         this.mana = mana;
-    }
-
-    public boolean isOnPath() {
-        return onPath;
-    }
-
-    public void setOnPath(boolean onPath) {
-        this.onPath = onPath;
     }
 
     public void increaseMana(int mana) {

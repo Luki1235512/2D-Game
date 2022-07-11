@@ -21,10 +21,12 @@ public class OBJ_ManaCrystal extends Entity {
         image3 = setup("/objects/mana_crystal_blank", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 
-    public void use(Entity entity) {
+    public boolean use(Entity entity) {
         gamePanel.playSE(2);
         gamePanel.getUi().addMessage("Mana +" + value);
         entity.increaseMana(value);
+
+        return true;
     }
 
 }

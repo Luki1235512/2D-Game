@@ -328,6 +328,15 @@ public class Player extends Entity {
             // PICKUP ONLY ITEMS
             if (gamePanel.getObj()[gamePanel.getCurrentMap()][i].type == type_pickupOnly) {
                 gamePanel.getObj()[gamePanel.getCurrentMap()][i].use(this);
+                gamePanel.getObj()[gamePanel.getCurrentMap()][i] = null;
+            }
+
+            // OBSTACLE
+            else if (gamePanel.getObj()[gamePanel.getCurrentMap()][i].type == type_obstacle) {
+                if (keyHandler.isEnterPressed()) {
+                    attackCanceled = true;
+                    gamePanel.getObj()[gamePanel.getCurrentMap()][i].interact();
+                }
             }
 
             // INVENTORY ITEMS
@@ -343,8 +352,9 @@ public class Player extends Entity {
                     text = "You cannot carry anymore!";
                 }
                 gamePanel.getUi().addMessage(text);
+                gamePanel.getObj()[gamePanel.getCurrentMap()][i] = null;
             }
-            gamePanel.getObj()[gamePanel.getCurrentMap()][i] = null;
+
         }
     }
 
@@ -470,8 +480,10 @@ public class Player extends Entity {
                 defense = getDefense();
             }
             if (selectedItem.type == type_consumable) {
-                selectedItem.use(this);
-                inventory.remove(itemIndex);
+
+                if (selectedItem.use(this)) {
+                    inventory.remove(itemIndex);
+                }
             }
         }
     }
