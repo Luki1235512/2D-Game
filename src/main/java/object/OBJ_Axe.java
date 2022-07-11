@@ -17,5 +17,6 @@ public class OBJ_Axe extends Entity {
 
         description = "[" + name + "]\nCan cut trees";
         price = 75;
+        knockBackPower = 10;
     }
 }

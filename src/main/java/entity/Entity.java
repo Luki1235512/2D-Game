@@ -102,6 +102,7 @@ public class Entity {
     protected String description = "";
     protected int useCost;
     protected int price;
+    protected int knockBackPower = 0;
 
     // TYPE
     protected int type;
