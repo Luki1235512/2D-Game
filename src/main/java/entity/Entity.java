@@ -694,6 +694,10 @@ public class Entity {
         return price;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getMaxInventorySize() {
         return maxInventorySize;
     }

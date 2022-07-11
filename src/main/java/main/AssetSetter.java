@@ -64,8 +64,13 @@ public class AssetSetter {
 
         i++;
         gamePanel.getObj()[mapNum][i] = new OBJ_Door(gamePanel);
-        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 12);
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 10);
         gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 12);
+
+        i++;
+        gamePanel.getObj()[mapNum][i] = new OBJ_Chest(gamePanel, new OBJ_Key(gamePanel));
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 30);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 28);
     }
 
     public void setNPC() {
@@ -119,6 +124,9 @@ public class AssetSetter {
 
         int mapNum = 0;
         int i = 0;
+
+        // SPAWN BLOCKING TREES
+
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 27, 12);
         i++;
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 28, 12);
@@ -146,6 +154,7 @@ public class AssetSetter {
         i++;
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 24, 24);
 
+        // SHOP BLOCKING TREES
         i++;
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 18, 40);
         i++;
@@ -168,6 +177,20 @@ public class AssetSetter {
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 10, 41);
         i++;
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 10, 40);
+
+        // CHEST BLOCKING TREES
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 25, 27);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 26, 27);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 27, 27);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 28, 28);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 28, 29);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 30, 29);
 
 
     }
