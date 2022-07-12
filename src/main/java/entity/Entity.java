@@ -732,6 +732,10 @@ public class Entity {
         return amount;
     }
 
+    public void decreaseAmount() {
+        amount--;
+    }
+
     public void decreaseMana(int mana) {
         this.mana -= mana;
     }

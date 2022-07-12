@@ -418,7 +418,7 @@ public class UI {
             g2.drawImage(entity.getInventory().get(i).getDown1(), slotX, slotY, null);
 
             // DISPLAY AMOUNT
-            if (entity.getInventory().get(i).getAmount() > 1) {
+            if (entity == gamePanel.getPlayer() && entity.getInventory().get(i).getAmount() > 1) {
                 g2.setFont(g2.getFont().deriveFont(32f));
                 int amountX;
                 int amountY;
@@ -879,14 +879,15 @@ public class UI {
                     currentDialogue = "You don't have enough money for that!";
                     drawDialogueScreen();
                 }
-                else if (gamePanel.getPlayer().getInventory().size() == gamePanel.getPlayer().getMaxInventorySize()) {
-                    subState = 0;
-                    gamePanel.setGameState(gamePanel.getDialogueState());
-                    currentDialogue = "Your inventory is full";
-                }
                 else {
-                    gamePanel.getPlayer().decreaseCoin(npc.getInventory().get(itemIndex).getPrice());
-                    gamePanel.getPlayer().getInventory().add(npc.getInventory().get(itemIndex));
+                    if (gamePanel.getPlayer().canObtainItem(npc.getInventory().get(itemIndex))) {
+                        gamePanel.getPlayer().decreaseCoin(npc.getInventory().get(itemIndex).getPrice());
+                    }
+                    else {
+                        subState = 0;
+                        gamePanel.setGameState(gamePanel.getDialogueState());
+                        currentDialogue = "Your inventory is full";
+                    }
                 }
             }
         }
@@ -943,7 +944,12 @@ public class UI {
                     currentDialogue = "You cannot sell an equipped item!";
                 }
                 else {
-                    gamePanel.getPlayer().getInventory().remove(itemIndex);
+                    if (gamePanel.getPlayer().getInventory().get(itemIndex).getAmount() > 1) {
+                        gamePanel.getPlayer().getInventory().get(itemIndex).decreaseAmount();
+                    }
+                    else {
+                        gamePanel.getPlayer().getInventory().remove(itemIndex);
+                    }
                     gamePanel.getPlayer().increaseCoin(price);
                 }
             }
