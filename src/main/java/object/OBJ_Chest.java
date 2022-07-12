@@ -19,7 +19,7 @@ public class OBJ_Chest extends Entity {
         name = "Chest";
 
         image  = setup("/objects/chest", gamePanel.getTileSize(), gamePanel.getTileSize());
-        image2 = setup("/objects/chest", gamePanel.getTileSize(), gamePanel.getTileSize());
+        image2 = setup("/objects/chest_opened", gamePanel.getTileSize(), gamePanel.getTileSize());
         down1 = image;
         collision = true;
 

@@ -147,7 +147,7 @@ public class TileManager {
             }
         }
 
-        if (drawPath) {
+        if (drawPath && gamePanel.getKeyHandler().isShowDebugText()) {
             g2.setColor(new Color(255, 0, 0, 70));
 
             for (int i = 0; i < gamePanel.getPathFinder().getPathList().size(); i++) {
