@@ -18,6 +18,7 @@ public class OBJ_Key extends Entity {
         description = "[" + name + "]\nWhat does this open?";
 
         price = 100;
+        stackable = true;
     }
 
     public boolean use(Entity entity) {

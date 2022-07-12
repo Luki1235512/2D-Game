@@ -343,8 +343,7 @@ public class Player extends Entity {
             else {
                 String text;
 
-                if (inventory.size() != maxInventorySize) {
-                    inventory.add(gamePanel.getObj()[gamePanel.getCurrentMap()][i]);
+                if (canObtainItem(gamePanel.getObj()[gamePanel.getCurrentMap()][i])) {
                     gamePanel.playSE(1);
                     text = "Got a " + gamePanel.getObj()[gamePanel.getCurrentMap()][i].name + "!";
                 }
@@ -486,6 +485,46 @@ public class Player extends Entity {
                 }
             }
         }
+    }
+
+    public int searchItemInInventory(String itemName) {
+
+        int itemIndex = Integer.MAX_VALUE;
+
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).name.equals(itemName)) {
+                itemIndex = i;
+                break;
+            }
+        }
+        return itemIndex;
+    }
+
+    public boolean canObtainItem(Entity item) {
+
+        boolean canObtain = false;
+
+        // CHECK IF STACKABLE
+        if (item.stackable) {
+            int index = searchItemInInventory(item.name);
+            if (index != Integer.MAX_VALUE) {
+                inventory.get(index).amount++;
+                canObtain = true;
+            }
+            else {
+                if (inventory.size() != maxInventorySize) {
+                    inventory.add(item);
+                    canObtain = true;
+                }
+            }
+        }
+        else {
+            if (inventory.size() != maxInventorySize) {
+                inventory.add(item);
+                canObtain = true;
+            }
+        }
+        return canObtain;
     }
 
     public void draw(Graphics2D g2) {

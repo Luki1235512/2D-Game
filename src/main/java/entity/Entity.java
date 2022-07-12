@@ -103,6 +103,8 @@ public class Entity {
     protected int useCost;
     protected int price;
     protected int knockBackPower = 0;
+    protected boolean stackable = false;
+    protected int amount = 1;
 
     // TYPE
     protected int type;
@@ -724,6 +726,10 @@ public class Entity {
 
     public int getRow() {
         return (worldY + solidArea.y) / gamePanel.getTileSize();
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     public void decreaseMana(int mana) {
