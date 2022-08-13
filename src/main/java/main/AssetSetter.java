@@ -18,19 +18,24 @@ public class AssetSetter {
 
         int mapNum = 0;
         int i = 0;
-        gamePanel.getObj()[mapNum][i] = new OBJ_Potion_Red(gamePanel);
-        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 25);
-        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 23);
+//        gamePanel.getObj()[mapNum][i] = new OBJ_Potion_Red(gamePanel);
+//        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 25);
+//        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 23);
+//
+//        i++;
+//        gamePanel.getObj()[mapNum][i] = new OBJ_Potion_Red(gamePanel);
+//        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 21);
+//        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 19);
+//
+//        i++;
+//        gamePanel.getObj()[mapNum][i] = new OBJ_Potion_Red(gamePanel);
+//        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 18);
+//        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 20);
 
-        i++;
-        gamePanel.getObj()[mapNum][i] = new OBJ_Potion_Red(gamePanel);
+//        i++;
+        gamePanel.getObj()[mapNum][i] = new OBJ_Lantern(gamePanel);
         gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 21);
         gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 19);
-
-        i++;
-        gamePanel.getObj()[mapNum][i] = new OBJ_Potion_Red(gamePanel);
-        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 26);
-        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 21);
 
         i++;
         gamePanel.getObj()[mapNum][i] = new OBJ_Axe(gamePanel);

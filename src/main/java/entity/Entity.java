@@ -91,6 +91,7 @@ public class Entity {
     protected int coin;
     protected Entity currentWeapon;
     protected Entity currentShield;
+    protected Entity currentLight;
     protected Projectile projectile;
 
     // ITEM ATTRIBUTES
@@ -105,6 +106,7 @@ public class Entity {
     protected int knockBackPower = 0;
     protected boolean stackable = false;
     protected int amount = 1;
+    protected int lightRadius;
 
     // TYPE
     protected int type;
@@ -117,6 +119,7 @@ public class Entity {
     protected final int type_consumable = 6;
     protected final int type_pickupOnly = 7;
     protected final int type_obstacle = 8;
+    protected final int type_light = 9;
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
