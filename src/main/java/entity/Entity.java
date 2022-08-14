@@ -735,6 +735,10 @@ public class Entity {
         return amount;
     }
 
+    public Entity getCurrentLight() {
+        return currentLight;
+    }
+
     public void decreaseAmount() {
         amount--;
     }
