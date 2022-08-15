@@ -654,6 +654,14 @@ public class Player extends Entity {
         return screenY;
     }
 
+    public boolean isLightUpdated() {
+        return lightUpdated;
+    }
+
+    public void setLightUpdated(boolean lightUpdated) {
+        this.lightUpdated = lightUpdated;
+    }
+
     public void setAttackCanceled(boolean attackCancel) {
         this.attackCanceled = attackCancel;
     }

@@ -739,6 +739,10 @@ public class Entity {
         return currentLight;
     }
 
+    public int getLightRadius() {
+        return lightRadius;
+    }
+
     public void decreaseAmount() {
         amount--;
     }
