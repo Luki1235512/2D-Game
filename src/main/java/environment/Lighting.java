@@ -81,6 +81,9 @@ public class Lighting {
             gamePanel.getPlayer().setLightUpdated(false);
         }
 
+        // 10 min = 36 000
+        // filterAlpha = 0.0001f
+
         if (dayState == day) {
             dayCounter++;
 
