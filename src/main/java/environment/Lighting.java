@@ -7,8 +7,17 @@ import java.awt.image.BufferedImage;
 
 public class Lighting {
 
-    GamePanel gamePanel;
-    BufferedImage darknessFilter;
+    private GamePanel gamePanel;
+    private BufferedImage darknessFilter;
+    private int dayCounter;
+    private float filterAlpha = 0f;
+
+    // DAY STATE
+    private final int day = 0;
+    private final int dusk = 1;
+    private final int night = 2;
+    private final int dawn = 3;
+    private int dayState = day;
 
     public Lighting(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
