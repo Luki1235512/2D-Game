@@ -76,6 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final int gameOverState = 6;
     private final int transitionState = 7;
     private final int tradeState = 8;
+    private final int sleepState = 9;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -470,6 +471,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public PathFinder getPathFinder() {
         return pathFinder;
+    }
+
+    public int getSleepState() {
+        return sleepState;
+    }
+
+    public EnvironmentManager getEnvironmentManager() {
+        return environmentManager;
     }
 
     public void setPathFinder(PathFinder pathFinder) {

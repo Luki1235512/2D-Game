@@ -21,6 +21,9 @@ public class OBJ_Tent extends Entity {
     }
 
     public boolean use(Entity entity) {
+        gamePanel.setGameState(gamePanel.getSleepState());
+        gamePanel.getPlayer().setLife(gamePanel.getPlayer().getMaxLife());
+        gamePanel.getPlayer().setMana(gamePanel.getPlayer().getMaxMana());
         return true;
     }
 

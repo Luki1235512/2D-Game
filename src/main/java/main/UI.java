@@ -120,6 +120,11 @@ public class UI {
         if (gamePanel.getGameState() == gamePanel.getTradeState()) {
             drawTradeScreen();
         }
+
+        // SLEEP STATE
+        if (gamePanel.getGameState() == gamePanel.getSleepState()) {
+            drawSleepScreen();
+        }
     }
 
     public void drawPlayerLife() {
@@ -956,6 +961,26 @@ public class UI {
             }
         }
 
+    }
+
+    public void drawSleepScreen() {
+        counter++;
+
+        if (counter < 120) {
+            gamePanel.getEnvironmentManager().getLighting().increaseFilterAlpha(0.01f);
+            if (gamePanel.getEnvironmentManager().getLighting().getFilterAlpha() > 1f) {
+                gamePanel.getEnvironmentManager().getLighting().setFilterAlpha(1f);
+            }
+        }
+        if (counter >= 120) {
+            gamePanel.getEnvironmentManager().getLighting().decreaseFilterAlpha(0.01f);
+            if (gamePanel.getEnvironmentManager().getLighting().getFilterAlpha() <= 0f) {
+                gamePanel.getEnvironmentManager().getLighting().setFilterAlpha(0f);
+                counter = 0;
+                gamePanel.getEnvironmentManager().getLighting().setDayState(gamePanel.getEnvironmentManager().getLighting().getDay());
+                gamePanel.setGameState(gamePanel.getPlayState());
+            }
+        }
     }
 
 

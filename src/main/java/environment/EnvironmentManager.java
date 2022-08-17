@@ -25,4 +25,11 @@ public class EnvironmentManager {
         lighting.draw(g2);
     }
 
+    public Lighting getLighting() {
+        return lighting;
+    }
+
+    public void setLighting(Lighting lighting) {
+        this.lighting = lighting;
+    }
 }

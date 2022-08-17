@@ -38,6 +38,11 @@ public class AssetSetter {
         gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 19);
 
         i++;
+        gamePanel.getObj()[mapNum][i] = new OBJ_Tent(gamePanel);
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 19);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 20);
+
+        i++;
         gamePanel.getObj()[mapNum][i] = new OBJ_Axe(gamePanel);
         gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 33);
         gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 21);

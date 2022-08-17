@@ -141,4 +141,44 @@ public class Lighting {
         g2.setFont(g2.getFont().deriveFont(50f));
         g2.drawString(situation, 800, 500);
     }
+
+    public float getFilterAlpha() {
+        return filterAlpha;
+    }
+
+    public void increaseFilterAlpha(float number) {
+        this.filterAlpha += number;
+    }
+
+    public void decreaseFilterAlpha(float number) {
+        this.filterAlpha -= number;
+    }
+
+    public void setFilterAlpha(float filterAlpha) {
+        this.filterAlpha = filterAlpha;
+    }
+
+    public int getDayState() {
+        return dayState;
+    }
+
+    public void setDayState(int dayState) {
+        this.dayState = dayState;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getDusk() {
+        return dusk;
+    }
+
+    public int getNight() {
+        return night;
+    }
+
+    public int getDawn() {
+        return dawn;
+    }
 }
