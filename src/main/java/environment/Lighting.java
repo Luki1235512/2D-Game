@@ -181,4 +181,12 @@ public class Lighting {
     public int getDawn() {
         return dawn;
     }
+
+    public int getDayCounter() {
+        return dayCounter;
+    }
+
+    public void setDayCounter(int dayCounter) {
+        this.dayCounter = dayCounter;
+    }
 }

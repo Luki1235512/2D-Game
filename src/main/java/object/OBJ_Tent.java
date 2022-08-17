@@ -24,6 +24,7 @@ public class OBJ_Tent extends Entity {
         gamePanel.setGameState(gamePanel.getSleepState());
         gamePanel.getPlayer().setLife(gamePanel.getPlayer().getMaxLife());
         gamePanel.getPlayer().setMana(gamePanel.getPlayer().getMaxMana());
+        gamePanel.getPlayer().getSleepingImage(down1);
         return true;
     }
 

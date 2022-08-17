@@ -114,6 +114,22 @@ public class Player extends Entity {
         standDown = setup("/player/player_stand_down", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 
+    public void getSleepingImage(BufferedImage image) {
+        up1 = image;
+        up2 = image;
+        down1 = image;
+        down2 = image;
+        left1 = image;
+        left2 = image;
+        right1 = image;
+        right2 = image;
+
+        standUp = image;
+        standLeft = image;
+        standRight = image;
+        standDown = image;
+    }
+
     public void getPlayerAttackImage() {
 
         if (currentWeapon.type == type_sword) {
