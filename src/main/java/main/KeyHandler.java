@@ -75,6 +75,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ESCAPE) {
             gamePanel.setGameState(gamePanel.getOptionState());
         }
+        if (code == KeyEvent.VK_M) {
+            gamePanel.setGameState(gamePanel.getMapState());
+        }
 
         // DEBUG
         if (code == KeyEvent.VK_T) {
@@ -244,6 +247,12 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    public void mapState(int code) {
+        if (code == KeyEvent.VK_M) {
+            gamePanel.setGameState(gamePanel.getPlayState());
+        }
+    }
+
     public void playerInventory(int code) {
         if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) {
             if (gamePanel.getUi().getPlayerSlotRow() != 0) {
@@ -378,6 +387,11 @@ public class KeyHandler implements KeyListener {
         // TRADE STATE
         else if (gamePanel.getGameState() == gamePanel.getTradeState()) {
             tradeState(code);
+        }
+
+        // MAP STATE
+        else if (gamePanel.getGameState() == gamePanel.getMapState()) {
+            mapState(code);
         }
     }
 

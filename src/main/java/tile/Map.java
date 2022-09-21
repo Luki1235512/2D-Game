@@ -14,6 +14,7 @@ public class Map extends TileManager {
     public Map(GamePanel gamePanel) {
         super(gamePanel);
         this.gamePanel = gamePanel;
+        createWorldMap();
     }
 
     public void createWorldMap() {
@@ -32,16 +33,31 @@ public class Map extends TileManager {
                 int tileNum = getMapTileNum()[i][col][row];
                 int x = gamePanel.getTileSize() * col;
                 int y = gamePanel.getTileSize() * row;
-                g2.drawImage(getTile()[tileNum].image, x, y, null);
+
+                // TODO: Find out why tile num get filled with 0
+                if (tileNum != 0) {
+                    g2.drawImage(getTile()[tileNum].image, x, y, null);
+                }
 
                 col++;
-
                 if (col == gamePanel.getMaxWorldCol()) {
                     col = 0;
                     row++;
                 }
             }
-
         }
+    }
+    public void drawFullMapScreen(Graphics2D g2) {
+
+        // BACKGROUND COLOR
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gamePanel.getScreenWidth(), gamePanel.getScreenHeight());
+
+        // DRAW MAP
+        int width = 500;
+        int height = 500;
+        int x = gamePanel.getScreenWidth() / 2 - width / 2;
+        int y = gamePanel.getScreenHeight() / 2 - height / 2;
+        g2.drawImage(worldMap[gamePanel.getCurrentMap()], x, y, width, height, null);
     }
 }
