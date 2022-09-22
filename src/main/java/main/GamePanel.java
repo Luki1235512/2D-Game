@@ -285,6 +285,9 @@ public class GamePanel extends JPanel implements Runnable {
             // ENVIRONMENT
             environmentManager.draw(g2);
 
+            // MINI MAP
+            map.drawMiniMap(g2);
+
             // UI
             ui.draw(g2);
         }
@@ -491,6 +494,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public int getMapState() {
         return mapState;
+    }
+
+    public Map getMap() {
+        return map;
     }
 
     public void setPathFinder(PathFinder pathFinder) {

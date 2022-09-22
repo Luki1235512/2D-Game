@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 public class Map extends TileManager {
 
     GamePanel gamePanel;
-    BufferedImage worldMap[];
+    BufferedImage[] worldMap;
     private boolean miniMapOn = false;
 
     public Map(GamePanel gamePanel) {
@@ -65,11 +65,42 @@ public class Map extends TileManager {
         int playerX = (int) (x + gamePanel.getPlayer().getWorldX() / scale);
         int playerY = (int) (y + gamePanel.getPlayer().getWorldY() / scale);
         int playerSize = (int) (gamePanel.getTileSize() / scale);
-        g2.drawImage(gamePanel.getPlayer().getDown1(), playerX, playerY, playerSize, playerSize, null);
+        g2.drawImage(gamePanel.getPlayer().getStandDown(), playerX, playerY, playerSize, playerSize, null);
 
         // HINT
         g2.setFont(gamePanel.getUi().getWebfontRegular().deriveFont(32f));
         g2.setColor(Color.WHITE);
         g2.drawString("Press M to close", 750, 550);
+    }
+
+    public void drawMiniMap(Graphics2D g2) {
+        if (miniMapOn) {
+
+            // DRAW MAP
+            int width = 200;
+            int height = 200;
+            int x = gamePanel.getScreenWidth() - width - 50;
+            int y = 50;
+
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f));
+            g2.drawImage(worldMap[gamePanel.getCurrentMap()], x, y, width, height, null);
+
+            // DRAW PLAYER
+            double scale = (double) (gamePanel.getTileSize() * gamePanel.getMaxWorldCol()) / width;
+            int playerX = (int) (x + gamePanel.getPlayer().getWorldX() / scale);
+            int playerY = (int) (y + gamePanel.getPlayer().getWorldY() / scale);
+            int playerSize = (int) (gamePanel.getTileSize() / 3);
+
+            g2.drawImage(gamePanel.getPlayer().getStandDown(), playerX - 6, playerY, playerSize, playerSize, null);
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
+    }
+
+    public boolean isMiniMapOn() {
+        return miniMapOn;
+    }
+
+    public void setMiniMapOn(boolean miniMapOn) {
+        this.miniMapOn = miniMapOn;
     }
 }

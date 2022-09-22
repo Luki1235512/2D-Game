@@ -78,6 +78,10 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_M) {
             gamePanel.setGameState(gamePanel.getMapState());
         }
+        if (code == KeyEvent.VK_X) {
+            gamePanel.getMap().setMiniMapOn(!gamePanel.getMap().isMiniMapOn());
+
+        }
 
         // DEBUG
         if (code == KeyEvent.VK_T) {
