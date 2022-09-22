@@ -1076,6 +1076,10 @@ public class UI {
         return subState;
     }
 
+    public Font getWebfontRegular() {
+        return webfontRegular;
+    }
+
     public void setCurrentDialogue(String currentDialogue) {
         this.currentDialogue = currentDialogue;
     }

@@ -34,7 +34,7 @@ public class Map extends TileManager {
                 int x = gamePanel.getTileSize() * col;
                 int y = gamePanel.getTileSize() * row;
 
-                // TODO: Find out why tile num get filled with 0
+                // TODO: Find out why tileNum get filled with 0
                 if (tileNum != 0) {
                     g2.drawImage(getTile()[tileNum].image, x, y, null);
                 }
@@ -59,5 +59,17 @@ public class Map extends TileManager {
         int x = gamePanel.getScreenWidth() / 2 - width / 2;
         int y = gamePanel.getScreenHeight() / 2 - height / 2;
         g2.drawImage(worldMap[gamePanel.getCurrentMap()], x, y, width, height, null);
+
+        // DRAW PLAYER
+        double scale = (double) (gamePanel.getTileSize() * gamePanel.getMaxWorldCol()) / width;
+        int playerX = (int) (x + gamePanel.getPlayer().getWorldX() / scale);
+        int playerY = (int) (y + gamePanel.getPlayer().getWorldY() / scale);
+        int playerSize = (int) (gamePanel.getTileSize() / scale);
+        g2.drawImage(gamePanel.getPlayer().getDown1(), playerX, playerY, playerSize, playerSize, null);
+
+        // HINT
+        g2.setFont(gamePanel.getUi().getWebfontRegular().deriveFont(32f));
+        g2.setColor(Color.WHITE);
+        g2.drawString("Press M to close", 750, 550);
     }
 }
