@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class Entity {
 
@@ -247,6 +248,26 @@ public class Entity {
         return index;
     }
 
+    public int getXDistance(Entity target) {
+        return Math.abs(worldX - target.getWorldX());
+    }
+
+    public int getYDistance(Entity target) {
+        return Math.abs(worldY - target.getWorldY());
+    }
+
+    public int getTileDistance(Entity target) {
+        return (getXDistance(target) + getYDistance(target)) / gamePanel.getTileSize();
+    }
+
+    public int getGoalCol(Entity target) {
+        return (target.getWorldX() + target.getSolidArea().x) / gamePanel.getTileSize();
+    }
+
+    public int getGoalRow(Entity target) {
+        return (target.getWorldY() + target.getSolidArea().y) / gamePanel.getTileSize();
+    }
+
     public void setAction() {
 
     }
@@ -427,6 +448,65 @@ public class Entity {
             shotAvailableCounter++;
         }
 
+    }
+
+    public void checkShootOrNot(int rate, int shootInterval) {
+        int i = new Random().nextInt(rate);
+        if (i == 0 && !projectile.isAlive() && shotAvailableCounter == shootInterval) {
+            projectile.set(worldX, worldY, direction, true, this);
+//            gamePanel.getProjectileList().add(projectile);
+
+            // CHECK VACANCY
+            for (int j = 0; j < gamePanel.getProjectile()[1].length; j++) {
+                if (gamePanel.getProjectile()[gamePanel.getCurrentMap()][j] == null) {
+                    gamePanel.getProjectile()[gamePanel.getCurrentMap()][j] = projectile;
+                    break;
+                }
+            }
+            shotAvailableCounter = 0;
+        }
+    }
+
+    public void checkStartChasingOrNot(Entity target, int distance, int rate) {
+        if (getTileDistance(target) < distance) {
+            int i = new Random().nextInt(rate);
+            if (i == 0) {
+                onPath = true;
+            }
+        }
+    }
+
+    public void checkStopChasingOrNot(Entity target, int distance, int rate) {
+        if (getTileDistance(target) > distance) {
+            int i = new Random().nextInt(rate);
+            if (i == 0) {
+                onPath = false;
+            }
+        }
+    }
+
+    public void getRandomDirection() {
+        actionLockCounter++;
+
+        if (actionLockCounter == 120) {
+            Random random = new Random();
+            int i = random.nextInt(100) + 1;
+
+            if (i <= 25) {
+                direction = "up";
+            }
+            if (i > 25 && i <= 50) {
+                direction = "down";
+            }
+            if (i > 50 && i <= 75) {
+                direction = "left";
+            }
+            if (i > 75) {
+                direction = "right";
+            }
+
+            actionLockCounter = 0;
+        }
     }
 
     public void damagePlayer(int attack) {

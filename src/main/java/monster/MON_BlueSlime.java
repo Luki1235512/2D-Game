@@ -50,70 +50,23 @@ public class MON_BlueSlime extends Entity {
         right2 = setup("/monster/blueslime_down_2", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 
-    public void update() {
-        super.update();
-
-        int xDistance = Math.abs(worldX - gamePanel.getPlayer().getWorldX());
-        int yDistance = Math.abs(worldY - gamePanel.getPlayer().getWorldY());
-        int tileDistance = (xDistance + yDistance) / gamePanel.getTileSize();
-
-        if (!onPath && tileDistance < 5) {
-            int i = new Random().nextInt(100) + 1;
-            if (i > 50) {
-                onPath = true;
-            }
-        }
-        if (onPath && tileDistance > 20) {
-            onPath = false;
-        }
-    }
-
     public void setAction() {
-
         if (onPath) {
-            int goalCol = (gamePanel.getPlayer().getWorldX() + gamePanel.getPlayer().getSolidArea().x) / gamePanel.getTileSize();
-            int goalRow = (gamePanel.getPlayer().getWorldY() + gamePanel.getPlayer().getSolidArea().y) / gamePanel.getTileSize();
 
-            searchPath(goalCol, goalRow);
+            // CHECK IF IT STOPS CHASING
+            checkStopChasingOrNot(gamePanel.getPlayer(), 15, 100);
 
-            int i = new Random().nextInt(200) + 1;
-            if (i > 195 && !projectile.isAlive() && shotAvailableCounter == 30) {
-                projectile.set(worldX, worldY, direction, true, this);
-//                gamePanel.getProjectileList().add(projectile);
+            // SEARCH THE DIRECTION TO GO
+            searchPath(getGoalCol(gamePanel.getPlayer()), getGoalRow(gamePanel.getPlayer()));
 
-                for (int j = 0; j < gamePanel.getProjectile()[1].length; j++) {
-                    if (gamePanel.getProjectile()[gamePanel.getCurrentMap()][j] == null) {
-                        gamePanel.getProjectile()[gamePanel.getCurrentMap()][j] = projectile;
-                        break;
-                    }
-                }
+            // CHECK IF IT SHOOTS THE PROJECTILE
+            checkShootOrNot(200, 30);
+        } else {
+            // CHECK IF IT STARTS CHASING
+            checkStartChasingOrNot(gamePanel.getPlayer(), 5, 100);
 
-                shotAvailableCounter = 0;
-            }
-
-        }
-        else {
-            actionLockCounter++;
-
-            if (actionLockCounter == 120) {
-                Random random = new Random();
-                int i = random.nextInt(100) + 1;
-
-                if (i <= 25) {
-                    direction = "up";
-                }
-                if (i > 25 && i <= 50) {
-                    direction = "down";
-                }
-                if (i > 50 && i <= 75) {
-                    direction = "left";
-                }
-                if (i > 75) {
-                    direction = "right";
-                }
-
-                actionLockCounter = 0;
-            }
+            // GET A RANDOM DIRECTION
+            getRandomDirection();
         }
     }
 
