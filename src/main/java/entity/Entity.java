@@ -49,6 +49,7 @@ public class Entity {
     protected boolean collisionOn = false;
 
     protected String[] dialogues = new String[20];
+    protected Entity attacker;
 
     // STATE
     protected int worldX;
@@ -64,6 +65,7 @@ public class Entity {
     protected boolean hpBarOn = false;
     protected boolean onPath = false;
     protected boolean knockBack = false;
+    protected String knockBackDirection;
 
     // COUNTER
     protected int spriteCounter = 0;
@@ -381,7 +383,7 @@ public class Entity {
                 speed = defaultSpeed;
             }
             else {
-                switch (gamePanel.getPlayer().direction) {
+                switch (knockBackDirection) {
                     case "up":
                         worldY -= speed;
                         break;
@@ -522,6 +524,14 @@ public class Entity {
             gamePanel.getPlayer().invincible = true;
         }
     }
+
+    public void setKnockBack(Entity target, Entity attacker, int knockBackPower) {
+        this.attacker = attacker;
+        target.knockBackDirection = attacker.direction;
+        target.speed += knockBackPower;
+        target.knockBack = true;
+    }
+
     public void draw(Graphics2D g2) {
 
         BufferedImage image = null;
@@ -821,6 +831,14 @@ public class Entity {
 
     public int getLightRadius() {
         return lightRadius;
+    }
+
+    public String getKnockBackDirection() {
+        return knockBackDirection;
+    }
+
+    public boolean isKnockBack() {
+        return knockBack;
     }
 
     public void decreaseAmount() {

@@ -319,7 +319,7 @@ public class Player extends Entity {
             solidArea.height = attackArea.height;
 
             int monsterIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getMonster());
-            damageMonster(monsterIndex, attack, currentWeapon.knockBackPower);
+            damageMonster(monsterIndex, this, attack, currentWeapon.knockBackPower);
 
             int iTileIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getITile());
             damageInteractiveTile(iTileIndex);
@@ -402,13 +402,13 @@ public class Player extends Entity {
         }
     }
 
-    public void damageMonster(int i, int attack, int knockBackPower) {
+    public void damageMonster(int i, Entity attacker, int attack, int knockBackPower) {
         if (i != Integer.MAX_VALUE) {
             if (!gamePanel.getMonster()[gamePanel.getCurrentMap()][i].invincible) {
                 gamePanel.playSE(5);
 
                 if (knockBackPower > 0) {
-                    knockBack(gamePanel.getMonster()[gamePanel.getCurrentMap()][i], knockBackPower);
+                    setKnockBack(gamePanel.getMonster()[gamePanel.getCurrentMap()][i], attacker, knockBackPower);
                 }
 
                 int damage = attack - gamePanel.getMonster()[gamePanel.getCurrentMap()][i].defense;
@@ -430,12 +430,6 @@ public class Player extends Entity {
                 }
             }
         }
-    }
-
-    public void knockBack(Entity entity, int knockBackPower) {
-        entity.direction = direction;
-        entity.speed += knockBackPower;
-        entity.knockBack = true;
     }
 
     public void damageInteractiveTile(int i) {
