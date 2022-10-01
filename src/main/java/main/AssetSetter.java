@@ -3,6 +3,7 @@ package main;
 import entity.NPC_Merchant;
 import entity.NPC_OldMan;
 import monster.MON_BlueSlime;
+import monster.MON_Orc;
 import object.*;
 import tile_interactive.IT_SickTree;
 
@@ -128,6 +129,10 @@ public class AssetSetter {
         gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 38);
         gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 42);
 
+        i++;
+        gamePanel.getMonster()[mapNum][i] = new MON_Orc(gamePanel);
+        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 12);
+        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 33);
     }
 
     public void setInteractiveTile() {
