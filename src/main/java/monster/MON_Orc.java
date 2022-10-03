@@ -78,6 +78,11 @@ public class MON_Orc extends Entity {
             // GET A RANDOM DIRECTION
             getRandomDirection();
         }
+
+        // CHECK IF IT ATTACKS
+        if (!attacking) {
+            checkAttackOrNot(30, gamePanel.getTileSize() * 4, gamePanel.getTileSize());
+        }
     }
 
     public void damageReaction() {
