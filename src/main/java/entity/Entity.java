@@ -92,6 +92,8 @@ public class Entity {
     protected int exp;
     protected int nextLevelExp;
     protected int coin;
+    protected int motion1_duration;
+    protected int motion2_duration;
     protected Entity currentWeapon;
     protected Entity currentShield;
     protected Entity currentLight;
@@ -559,10 +561,10 @@ public class Entity {
     public void attacking() {
         spriteCounter++;
 
-        if (spriteCounter <= 5) {
+        if (spriteCounter <= motion1_duration) {
             spriteNum = 1;
         }
-        if (spriteCounter > 5 && spriteCounter <= 25) {
+        if (spriteCounter > motion1_duration && spriteCounter <= motion2_duration) {
             spriteNum = 2;
 
             int currentWorldX = worldX;
@@ -609,7 +611,7 @@ public class Entity {
             solidArea.width = solidAreaWidth;
             solidArea.height = solidAreaHeight;
         }
-        if (spriteCounter > 25) {
+        if (spriteCounter > motion2_duration) {
             spriteNum = 1;
             spriteCounter = 0;
             attacking = false;
