@@ -452,6 +452,10 @@ public class Entity {
 
     }
 
+    public void checkAttackOrNot(int rate, int straight, int horizontal) {
+
+    }
+
     public void checkShootOrNot(int rate, int shootInterval) {
         int i = new Random().nextInt(rate);
         if (i == 0 && !projectile.isAlive() && shotAvailableCounter == shootInterval) {
@@ -508,6 +512,66 @@ public class Entity {
             }
 
             actionLockCounter = 0;
+        }
+    }
+
+    public void attacking() {
+        spriteCounter++;
+
+        if (spriteCounter <= 5) {
+            spriteNum = 1;
+        }
+        if (spriteCounter > 5 && spriteCounter <= 25) {
+            spriteNum = 2;
+
+            int currentWorldX = worldX;
+            int currentWorldY = worldY;
+            int solidAreaWidth = solidArea.width;
+            int solidAreaHeight = solidArea.height;
+
+            switch (direction) {
+                case "up":
+                    worldY -= attackArea.height;
+                    break;
+                case "down":
+                    worldY += attackArea.height;
+                    break;
+                case "left":
+                    worldX -= attackArea.width;
+                    break;
+                case "right":
+                    worldX += attackArea.width;
+                    break;
+            }
+
+            solidArea.width = attackArea.width;
+            solidArea.height = attackArea.height;
+
+            if (type == type_monster) {
+                if (gamePanel.getCollisionChecker().checkPlayer(this)) {
+                    damagePlayer(attack);
+                }
+            } else { // PLAYER
+                int monsterIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getMonster());
+                gamePanel.getPlayer().damageMonster(monsterIndex, this, attack, currentWeapon.knockBackPower);
+
+                int iTileIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getITile());
+                gamePanel.getPlayer().damageInteractiveTile(iTileIndex);
+
+                int projectileIndex = gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getProjectile());
+                gamePanel.getPlayer().damageProjectile(projectileIndex);
+            }
+
+
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height = solidAreaHeight;
+        }
+        if (spriteCounter > 25) {
+            spriteNum = 1;
+            spriteCounter = 0;
+            attacking = false;
         }
     }
 
