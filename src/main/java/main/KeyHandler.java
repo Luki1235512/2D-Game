@@ -13,6 +13,7 @@ public class KeyHandler implements KeyListener {
     private boolean rightPressed;
     private boolean enterPressed;
     private boolean shotKeyPressed;
+    private boolean spacePressed;
 
     // DEBUG
     private boolean showDebugText = false;
@@ -80,7 +81,9 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_X) {
             gamePanel.getMap().setMiniMapOn(!gamePanel.getMap().isMiniMapOn());
-
+        }
+        if (code == KeyEvent.VK_SPACE) {
+            spacePressed = true;
         }
 
         // DEBUG
@@ -339,6 +342,10 @@ public class KeyHandler implements KeyListener {
         return shotKeyPressed;
     }
 
+    public boolean isSpacePressed() {
+        return spacePressed;
+    }
+
     public void setEnterPressed(boolean enterPressed) {
         this.enterPressed = enterPressed;
     }
@@ -418,6 +425,12 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_F) {
             shotKeyPressed = false;
+        }
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = false;
+        }
+        if (code == KeyEvent.VK_SPACE) {
+            spacePressed = false;
         }
     }
 }

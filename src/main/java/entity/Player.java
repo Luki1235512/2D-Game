@@ -33,8 +33,9 @@ public class Player extends Entity {
         solidAreaDefaultY = solidArea.y;
 
         setDefaultValues();
-        getPlayerImage();
-        getPlayerAttackImage();
+        getImage();
+        getAttackImage();
+        getGuardImage();
         setItems();
     }
 
@@ -99,7 +100,7 @@ public class Player extends Entity {
         return defense = toughness * currentShield.defenseValue;
     }
 
-    public void getPlayerImage() {
+    public void getImage() {
 
         up1 = setup("/player/player_up_1", gamePanel.getTileSize(), gamePanel.getTileSize());
         up2 = setup("/player/player_up_2", gamePanel.getTileSize(), gamePanel.getTileSize());
@@ -132,7 +133,7 @@ public class Player extends Entity {
         standDown = image;
     }
 
-    public void getPlayerAttackImage() {
+    public void getAttackImage() {
 
         if (currentWeapon.type == type_sword) {
             attackUp1 = setup("/player/player_attack_up_1", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
@@ -157,10 +158,22 @@ public class Player extends Entity {
 
     }
 
+    public void getGuardImage() {
+//        TODO: Add guard sprites
+        guardUp = setup("/player/player_up_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        guardDown = setup("/player/player_down_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        guardLeft = setup("/player/player_left_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        guardRight = setup("/player/player_right_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+    }
+
     public void update() {
 
         if (attacking) {
             attacking();
+        }
+
+        else if (keyHandler.isSpacePressed()) {
+            guarding = true;
         }
 
         else if (keyHandler.isUpPressed() || keyHandler.isDownPressed() ||
@@ -222,6 +235,7 @@ public class Player extends Entity {
 
             attackCanceled = false;
             gamePanel.getKeyHandler().setEnterPressed(false);
+            guarding = false;
 
             spriteCounter++;
             if (spriteCounter > 11) {
@@ -241,6 +255,7 @@ public class Player extends Entity {
                 spriteNum = 0;
                 standCounter = 0;
             }
+            guarding = false;
         }
 
         if (gamePanel.getKeyHandler().isShotKeyPressed() && !projectile.alive && shotAvailableCounter == 30 && projectile.haveResource(this)) {
@@ -432,7 +447,7 @@ public class Player extends Entity {
             if (selectedItem.type == type_sword || selectedItem.type == type_axe) {
                 currentWeapon = selectedItem;
                 attack = getAttack();
-                getPlayerAttackImage();
+                getAttackImage();
             }
             if (selectedItem.type == type_shield) {
                 currentShield = selectedItem;
@@ -528,6 +543,9 @@ public class Player extends Entity {
                         image = attackUp2;
                     }
                 }
+                if (guarding) {
+                    image = guardUp;
+                }
                 break;
             case "down":
                 if (!attacking) {
@@ -548,6 +566,9 @@ public class Player extends Entity {
                     if (spriteNum == 2) {
                         image = attackDown2;
                     }
+                }
+                if (guarding) {
+                    image = guardDown;
                 }
                 break;
             case "left":
@@ -571,6 +592,9 @@ public class Player extends Entity {
                         image = attackLeft2;
                     }
                 }
+                if (guarding) {
+                    image = guardLeft;
+                }
                 break;
             case "right":
                 if (!attacking) {
@@ -591,6 +615,9 @@ public class Player extends Entity {
                     if (spriteNum == 2) {
                         image = attackRight2;
                     }
+                }
+                if (guarding) {
+                    image = guardRight;
                 }
                 break;
         }

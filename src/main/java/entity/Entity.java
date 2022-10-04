@@ -38,6 +38,11 @@ public class Entity {
     protected BufferedImage standRight;
     protected BufferedImage standDown;
 
+    protected BufferedImage guardUp;
+    protected BufferedImage guardDown;
+    protected BufferedImage guardLeft;
+    protected BufferedImage guardRight;
+
     protected BufferedImage image;
     protected BufferedImage image2;
     protected BufferedImage image3;
@@ -66,6 +71,7 @@ public class Entity {
     protected boolean onPath = false;
     protected boolean knockBack = false;
     protected String knockBackDirection;
+    protected boolean guarding = false;
 
     // COUNTER
     protected int spriteCounter = 0;

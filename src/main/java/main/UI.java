@@ -980,7 +980,7 @@ public class UI {
                 gamePanel.getEnvironmentManager().getLighting().setDayState(gamePanel.getEnvironmentManager().getLighting().getDay());
                 gamePanel.getEnvironmentManager().getLighting().setDayCounter(0);
                 gamePanel.setGameState(gamePanel.getPlayState());
-                gamePanel.getPlayer().getPlayerImage();
+                gamePanel.getPlayer().getImage();
             }
         }
     }
