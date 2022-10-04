@@ -72,6 +72,7 @@ public class Entity {
     protected boolean knockBack = false;
     protected String knockBackDirection;
     protected boolean guarding = false;
+    protected boolean transparent = false;
 
     // COUNTER
     protected int spriteCounter = 0;
@@ -642,6 +643,10 @@ public class Entity {
                 if (damage < 0) {
                     damage = 0;
                 }
+            }
+
+            if (damage != 0) {
+                gamePanel.getPlayer().transparent = true;
             }
 
             gamePanel.getPlayer().life -= damage;

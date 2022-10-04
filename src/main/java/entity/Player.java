@@ -278,6 +278,7 @@ public class Player extends Entity {
             invincibleCounter++;
             if (invincibleCounter > 60) {
                 invincible = false;
+                transparent = false;
                 invincibleCounter = 0;
             }
         }
@@ -361,6 +362,7 @@ public class Player extends Entity {
 
                 life -= damage;
                 invincible = true;
+                transparent = true;
             }
 
         }
@@ -622,7 +624,7 @@ public class Player extends Entity {
                 break;
         }
 
-        if (invincible) {
+        if (transparent) {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
         }
 
