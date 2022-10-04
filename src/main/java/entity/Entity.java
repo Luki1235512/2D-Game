@@ -626,16 +626,46 @@ public class Entity {
 
     public void damagePlayer(int attack) {
         if (!gamePanel.getPlayer().invincible) {
-            gamePanel.playSE(6);
 
             int damage = attack - gamePanel.getPlayer().defense;
-            if (damage < 0) {
-                damage = 0;
+
+            // GET AN OPPOSITE DIRECTION OF THIS ATTACKER
+            String canGuardDirection = getOppositeDirection(direction);
+
+            if (gamePanel.getPlayer().guarding && gamePanel.getPlayer().direction.equals(canGuardDirection)) {
+                damage /= 3;
+//                TODO: Add block sound
+//                gamePanel.playSE();
+            } else {
+                // NOT GUARDING
+                gamePanel.playSE(6);
+                if (damage < 0) {
+                    damage = 0;
+                }
             }
 
             gamePanel.getPlayer().life -= damage;
             gamePanel.getPlayer().invincible = true;
         }
+    }
+
+    public String getOppositeDirection(String direction) {
+        String oppositeDirection = "";
+        switch (direction) {
+            case "up":
+                oppositeDirection = "down";
+                break;
+            case "down":
+                oppositeDirection = "up";
+                break;
+            case "left":
+                oppositeDirection = "right";
+                break;
+            case "right":
+                oppositeDirection = "left";
+                break;
+        }
+        return oppositeDirection;
     }
 
     public void setKnockBack(Entity target, Entity attacker, int knockBackPower) {

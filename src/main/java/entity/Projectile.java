@@ -34,6 +34,7 @@ public class Projectile extends Entity {
             if (!gamePanel.getPlayer().invincible && contactPlayer) {
                 damagePlayer(attack);
                 generateParticle(user.projectile, gamePanel.getPlayer());
+//                generateParticle(user.projectile, user.projectile);
                 alive = false;
             }
         }
