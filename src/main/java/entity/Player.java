@@ -168,7 +168,45 @@ public class Player extends Entity {
 
     public void update() {
 
-        if (attacking) {
+        if (knockBack) {
+
+            collisionOn = false;
+            gamePanel.getCollisionChecker().checkTile(this);
+            gamePanel.getCollisionChecker().checkObject(this, true);
+            gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getNpc());
+            gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getMonster());
+            gamePanel.getCollisionChecker().checkEntity(this, gamePanel.getITile());
+
+            if (collisionOn) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else {
+                switch (knockBackDirection) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
+            knockBackCounter++;
+            if (knockBackCounter == 10) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+        }
+
+        else if (attacking) {
             attacking();
         }
 

@@ -647,6 +647,7 @@ public class Entity {
 
             if (damage != 0) {
                 gamePanel.getPlayer().transparent = true;
+                setKnockBack(gamePanel.getPlayer(), this, knockBackPower);
             }
 
             gamePanel.getPlayer().life -= damage;
