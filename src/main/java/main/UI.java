@@ -697,6 +697,7 @@ public class UI {
                 if (gamePanel.getKeyHandler().isEnterPressed()) {
                     subState = 0;
                     gamePanel.setGameState(gamePanel.getTitleState());
+                    gamePanel.resetGame(true);
                 }
             }
 

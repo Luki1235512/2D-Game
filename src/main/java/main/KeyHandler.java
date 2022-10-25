@@ -209,12 +209,12 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER) {
             if (gamePanel.getUi().getCommandNum() == 0) {
                 gamePanel.setGameState(gamePanel.getPlayState());
-                gamePanel.retry();
+                gamePanel.resetGame(false);
                 gamePanel.playMusic(0);
             }
             else if (gamePanel.getUi().getCommandNum() == 1) {
                 gamePanel.setGameState(gamePanel.getTitleState());
-                gamePanel.restart();
+                gamePanel.resetGame(true);
             }
         }
     }

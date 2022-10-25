@@ -108,22 +108,18 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    public void retry() {
-
+    public void resetGame(boolean restart) {
         player.setDefaultPositions();
-        player.restoreLifeAndMana();
+        player.restoreStatus();
         assetSetter.setNPC();
         assetSetter.setMonster();
-    }
 
-    public void restart() {
-
-        player.setDefaultValues();
-        player.setItems();
-        assetSetter.setObject();
-        assetSetter.setNPC();
-        assetSetter.setMonster();
-        assetSetter.setInteractiveTile();
+        if (restart) {
+            player.setDefaultValues();
+            assetSetter.setObject();
+            assetSetter.setInteractiveTile();
+            environmentManager.getLighting().resetDay();
+        }
     }
 
     public void setFullScreen() {

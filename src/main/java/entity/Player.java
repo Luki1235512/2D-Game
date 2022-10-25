@@ -33,10 +33,6 @@ public class Player extends Entity {
         solidAreaDefaultY = solidArea.y;
 
         setDefaultValues();
-        getImage();
-        getAttackImage();
-        getGuardImage();
-        setItems();
     }
 
     public void setDefaultValues() {
@@ -61,11 +57,16 @@ public class Player extends Entity {
         nextLevelExp = 5;
         coin = 500;
         currentWeapon = new OBJ_Sword_Normal(gamePanel);
-//        currentWeapon = new OBJ_Axe(gamePanel);
         currentShield = new OBJ_Shield_Wood(gamePanel);
+        currentLight = null;
         projectile = new OBJ_Fireball(gamePanel);
         attack = getAttack();
         defense = getDefense();
+
+        getImage();
+        getAttackImage();
+        getGuardImage();
+        setItems();
     }
 
     public void setDefaultPositions() {
@@ -74,11 +75,15 @@ public class Player extends Entity {
         direction = "down";
     }
 
-    public void restoreLifeAndMana() {
+    public void restoreStatus() {
         life = maxLife;
         mana = maxMana;
         invincible = false;
         transparent = false;
+        attacking = false;
+        guarding = false;
+        knockBack = false;
+        lightUpdated = true;
     }
 
     public void setItems() {
