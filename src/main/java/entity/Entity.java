@@ -74,6 +74,8 @@ public class Entity {
     protected boolean guarding = false;
     protected boolean transparent = false;
     protected boolean offBalance = false;
+    protected Entity loot;
+    protected boolean opened = false;
 
     // COUNTER
     protected int spriteCounter = 0;
@@ -280,6 +282,10 @@ public class Entity {
 
     public int getGoalRow(Entity target) {
         return (target.getWorldY() + target.getSolidArea().y) / gamePanel.getTileSize();
+    }
+
+    public void setLoot(Entity loot) {
+
     }
 
     public void setAction() {
@@ -1137,5 +1143,9 @@ public class Entity {
 
     public void setCoin(int coin) {
         this.coin = coin;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }
