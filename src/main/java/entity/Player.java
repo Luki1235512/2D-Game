@@ -106,6 +106,26 @@ public class Player extends Entity {
         return defense = toughness * currentShield.defenseValue;
     }
 
+    public int getCurrentWeaponSlot() {
+        int currentWeaponSlot = 0;
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i) == currentWeapon) {
+                currentWeaponSlot = i;
+            }
+        }
+        return currentWeaponSlot;
+    }
+
+    public int getCurrentShieldSlot() {
+        int currentShieldSlot = 0;
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i) == currentShield) {
+                currentShieldSlot = i;
+            }
+        }
+        return currentShieldSlot;
+    }
+
     public void getImage() {
 
         up1 = setup("/player/player_up_1", gamePanel.getTileSize(), gamePanel.getTileSize());
@@ -703,4 +723,6 @@ public class Player extends Entity {
     public void setAttackCanceled(boolean attackCancel) {
         this.attackCanceled = attackCancel;
     }
+
+
 }

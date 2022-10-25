@@ -1148,4 +1148,12 @@ public class Entity {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public void setCurrentWeapon(Entity currentWeapon) {
+        this.currentWeapon = currentWeapon;
+    }
+
+    public void setCurrentShield(Entity currentShield) {
+        this.currentShield = currentShield;
+    }
 }
