@@ -45,25 +45,25 @@ public class MON_Orc extends Entity {
 //    TODO: Create Orc images
     public void getImage() {
 
-        up1 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize());
-        up2 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize());
-        down1 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize());
-        down2 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize());
-        left1 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize());
-        left2 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize());
-        right1 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize());
-        right2 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize());
+        up1 = setup("/monster/orc_up_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        up2 = setup("/monster/orc_up_2", gamePanel.getTileSize(), gamePanel.getTileSize());
+        down1 = setup("/monster/orc_down_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        down2 = setup("/monster/orc_down_2", gamePanel.getTileSize(), gamePanel.getTileSize());
+        left1 = setup("/monster/orc_left_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        left2 = setup("/monster/orc_left_2", gamePanel.getTileSize(), gamePanel.getTileSize());
+        right1 = setup("/monster/orc_right_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        right2 = setup("/monster/orc_right_2", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 
     public void getAttackImage() {
-        attackUp1 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
-        attackUp2 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
-        attackDown1 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
-        attackDown2 = setup("/placeholders/placeholder", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
-        attackLeft1 = setup("/placeholders/placeholder", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
-        attackLeft2 = setup("/placeholders/placeholder", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
-        attackRight1 = setup("/placeholders/placeholder", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
-        attackRight2 = setup("/placeholders/placeholder", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
+        attackUp1 = setup("/monster/orc_attack_up_1", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
+        attackUp2 = setup("/monster/orc_attack_up_2", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
+        attackDown1 = setup("/monster/orc_attack_down_1", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
+        attackDown2 = setup("/monster/orc_attack_down_2", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
+        attackLeft1 = setup("/monster/orc_attack_left_1", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
+        attackLeft2 = setup("/monster/orc_attack_left_2", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
+        attackRight1 = setup("/monster/orc_attack_right_1", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
+        attackRight2 = setup("/monster/orc_attack_right_2", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
     }
 
     public void setAction() {
