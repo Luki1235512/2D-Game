@@ -232,16 +232,16 @@ public class Entity {
 
         switch (user.direction) {
             case "up":
-                nextWorldY = user.getTopY() - 1;
+                nextWorldY = user.getTopY() - gamePanel.getPlayer().speed;
                 break;
             case "down":
-                nextWorldY = user.getBottomY() + 1;
+                nextWorldY = user.getBottomY() + gamePanel.getPlayer().speed;
                 break;
             case "left":
-                nextWorldX = user.getLeftX() - 1;
+                nextWorldX = user.getLeftX() - gamePanel.getPlayer().speed;
                 break;
             case "right":
-                nextWorldX = user.getRightX() + 1;
+                nextWorldX = user.getRightX() + gamePanel.getPlayer().speed;
                 break;
         }
 
@@ -652,10 +652,11 @@ public class Entity {
                     setKnockBack(this, gamePanel.getPlayer(), knockBackPower);
                     offBalance = true;
                     spriteCounter =- 60;
-                }
-                // NORMAL GUARD
-                damage /= 3;
+                } else {
+                    // NORMAL GUARD
+                    damage /= 3;
 //                gamePanel.playSE();
+                }
             } else {
                 // NOT GUARDING
                 gamePanel.playSE(6);
