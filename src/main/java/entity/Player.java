@@ -159,11 +159,10 @@ public class Player extends Entity {
     }
 
     public void getGuardImage() {
-//        TODO: Add guard sprites
-        guardUp = setup("/player/player_up_1", gamePanel.getTileSize(), gamePanel.getTileSize());
-        guardDown = setup("/player/player_down_1", gamePanel.getTileSize(), gamePanel.getTileSize());
-        guardLeft = setup("/player/player_left_1", gamePanel.getTileSize(), gamePanel.getTileSize());
-        guardRight = setup("/player/player_right_1", gamePanel.getTileSize(), gamePanel.getTileSize());
+        guardUp = setup("/player/player_block_up", gamePanel.getTileSize(), gamePanel.getTileSize());
+        guardDown = setup("/player/player_block_down", gamePanel.getTileSize(), gamePanel.getTileSize());
+        guardLeft = setup("/player/player_block_left", gamePanel.getTileSize(), gamePanel.getTileSize());
+        guardRight = setup("/player/player_block_right", gamePanel.getTileSize(), gamePanel.getTileSize());
     }
 
     public void update() {
