@@ -1106,4 +1106,36 @@ public class Entity {
     public void setCollisionOn(boolean collisionOn) {
         this.collisionOn = collisionOn;
     }
+
+    public void setMaxLife(int maxLife) {
+        this.maxLife = maxLife;
+    }
+
+    public void setMaxMana(int maxMana) {
+        this.maxMana = maxMana;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setToughness(int toughness) {
+        this.toughness = toughness;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public void setNextLevelExp(int nextLevelExp) {
+        this.nextLevelExp = nextLevelExp;
+    }
+
+    public void setCoin(int coin) {
+        this.coin = coin;
+    }
 }

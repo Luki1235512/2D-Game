@@ -122,13 +122,16 @@ public class EventHandler {
 
     public void healingPool(int gameState) {
         if (gamePanel.getKeyHandler().isEnterPressed()) {
+
+            gamePanel.setGameState(gameState);
             gamePanel.getPlayer().setAttackCanceled(true);
             gamePanel.playSE(2);
-            gamePanel.setGameState(gameState);
-            gamePanel.getUi().setCurrentDialogue("You drink the water.\nYour life and mana have been recovered");
+            gamePanel.getUi().setCurrentDialogue("You drink the water.\nYour life and mana have been recovered.\n" +
+                    "(The progress has been saved)");
             gamePanel.getPlayer().setLife(gamePanel.getPlayer().getMaxLife());
             gamePanel.getPlayer().setMana(gamePanel.getPlayer().getMaxMana());
             gamePanel.getAssetSetter().setMonster();
+            gamePanel.getSaveLoad().save();
         }
     }
 

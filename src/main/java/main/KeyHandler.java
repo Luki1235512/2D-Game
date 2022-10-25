@@ -38,9 +38,12 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER) {
             if (gamePanel.getUi().getCommandNum() == 0) {
                 gamePanel.setGameState(gamePanel.getPlayState());
+                gamePanel.playMusic(0);
             }
             if (gamePanel.getUi().getCommandNum() == 1) {
-                // TODO: add loading
+                gamePanel.getSaveLoad().load();
+                gamePanel.setGameState(gamePanel.getPlayState());
+                gamePanel.playMusic(0);
             }
             if (gamePanel.getUi().getCommandNum() == 2) {
                 System.exit(0);

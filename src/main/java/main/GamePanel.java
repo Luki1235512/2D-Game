@@ -1,6 +1,7 @@
 package main;
 
 import ai.PathFinder;
+import data.SaveLoad;
 import entity.Entity;
 import entity.Player;
 import environment.EnvironmentManager;
@@ -54,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
     private PathFinder pathFinder = new PathFinder(this);
     private EnvironmentManager environmentManager = new EnvironmentManager(this);
     private Map map = new Map(this);
+    private SaveLoad saveLoad = new SaveLoad(this);
     private Thread gameThread;
 
     // ENTITY AND OBJECT
@@ -498,6 +500,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setPathFinder(PathFinder pathFinder) {
         this.pathFinder = pathFinder;
+    }
+
+    public SaveLoad getSaveLoad() {
+        return saveLoad;
     }
 
     @Override
