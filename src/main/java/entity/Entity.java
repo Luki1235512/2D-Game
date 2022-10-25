@@ -73,6 +73,7 @@ public class Entity {
     protected String knockBackDirection;
     protected boolean guarding = false;
     protected boolean transparent = false;
+    protected boolean offBalance = false;
 
     // COUNTER
     protected int spriteCounter = 0;
@@ -82,6 +83,8 @@ public class Entity {
     protected int dyingCounter = 0;
     protected int hpBarCounter = 0;
     protected int knockBackCounter = 0;
+    protected int guardCounter = 0;
+    protected int offBalanceCounter = 0;
 
     // CHARACTER ATTRIBUTES
     protected String name;
@@ -463,6 +466,13 @@ public class Entity {
         if (shotAvailableCounter < 30) {
             shotAvailableCounter++;
         }
+        if (offBalance) {
+            offBalanceCounter++;
+            if (offBalanceCounter > 60) {
+                offBalance = false;
+                offBalanceCounter = 0;
+            }
+        }
 
     }
 
@@ -633,9 +643,18 @@ public class Entity {
             // GET AN OPPOSITE DIRECTION OF THIS ATTACKER
             String canGuardDirection = getOppositeDirection(direction);
 
+//            TODO: Add sound effects
             if (gamePanel.getPlayer().guarding && gamePanel.getPlayer().direction.equals(canGuardDirection)) {
+                // PARRY
+                if (gamePanel.getPlayer().guardCounter < 10) {
+                    damage = 0;
+//                    gamePanel.playSE();
+                    setKnockBack(this, gamePanel.getPlayer(), knockBackPower);
+                    offBalance = true;
+                    spriteCounter =- 60;
+                }
+                // NORMAL GUARD
                 damage /= 3;
-//                TODO: Add block sound
 //                gamePanel.playSE();
             } else {
                 // NOT GUARDING

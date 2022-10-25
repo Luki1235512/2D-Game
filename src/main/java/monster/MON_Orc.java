@@ -42,7 +42,6 @@ public class MON_Orc extends Entity {
         getAttackImage();
     }
 
-//    TODO: Create Orc images
     public void getImage() {
 
         up1 = setup("/monster/orc_up_1", gamePanel.getTileSize(), gamePanel.getTileSize());

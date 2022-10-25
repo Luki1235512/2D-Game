@@ -78,6 +78,7 @@ public class Player extends Entity {
         life = maxLife;
         mana = maxMana;
         invincible = false;
+        transparent = false;
     }
 
     public void setItems() {
@@ -211,6 +212,7 @@ public class Player extends Entity {
 
         else if (keyHandler.isSpacePressed()) {
             guarding = true;
+            guardCounter++;
         }
 
         else if (keyHandler.isUpPressed() || keyHandler.isDownPressed() ||
@@ -273,6 +275,7 @@ public class Player extends Entity {
             attackCanceled = false;
             gamePanel.getKeyHandler().setEnterPressed(false);
             guarding = false;
+            guardCounter = 0;
 
             spriteCounter++;
             if (spriteCounter > 11) {
@@ -293,6 +296,7 @@ public class Player extends Entity {
                 standCounter = 0;
             }
             guarding = false;
+            guardCounter = 0;
         }
 
         if (gamePanel.getKeyHandler().isShotKeyPressed() && !projectile.alive && shotAvailableCounter == 30 && projectile.haveResource(this)) {
@@ -412,6 +416,10 @@ public class Player extends Entity {
 
                 if (knockBackPower > 0) {
                     setKnockBack(gamePanel.getMonster()[gamePanel.getCurrentMap()][i], attacker, knockBackPower);
+                }
+
+                if (gamePanel.getMonster()[gamePanel.getCurrentMap()][i].offBalance) {
+                    attack *= 5;
                 }
 
                 int damage = attack - gamePanel.getMonster()[gamePanel.getCurrentMap()][i].defense;
