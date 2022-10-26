@@ -50,6 +50,12 @@ public class SaveLoad {
             case "Chest":
                 obj = new OBJ_Chest(gamePanel);
                 break;
+            case "Heart":
+                obj = new OBJ_Heart(gamePanel);
+                break;
+            case "Mana Crystals":
+                obj = new OBJ_ManaCrystal(gamePanel);
+                break;
         }
         return obj;
     }
@@ -80,6 +86,29 @@ public class SaveLoad {
             // PLAYER EQUIPMENT
             ds.currentWeaponSlot = gamePanel.getPlayer().getCurrentWeaponSlot();
             ds.currentShieldSlot = gamePanel.getPlayer().getCurrentShieldSlot();
+
+            // OBJECTS ON MAP
+            ds.mapObjectNames = new String[gamePanel.getMaxMap()][gamePanel.getObj()[1].length];
+            ds.mapObjectWorldX = new int[gamePanel.getMaxMap()][gamePanel.getObj()[1].length];
+            ds.mapObjectWorldY = new int[gamePanel.getMaxMap()][gamePanel.getObj()[1].length];
+            ds.mapObjectLootNames = new String[gamePanel.getMaxMap()][gamePanel.getObj()[1].length];
+            ds.mapObjectOpened = new boolean[gamePanel.getMaxMap()][gamePanel.getObj()[1].length];
+
+            for (int mapNum = 0; mapNum < gamePanel.getMaxMap(); mapNum++) {
+                for (int i = 0; i < gamePanel.getObj()[1].length; i++) {
+                    if  (gamePanel.getObj()[mapNum][i] == null) {
+                        ds.mapObjectNames[mapNum][i] = "NA";
+                    } else {
+                        ds.mapObjectNames[mapNum][i] = gamePanel.getObj()[mapNum][i].getName();
+                        ds.mapObjectWorldX[mapNum][i] = gamePanel.getObj()[mapNum][i].getWorldX();
+                        ds.mapObjectWorldY[mapNum][i] = gamePanel.getObj()[mapNum][i].getWorldY();
+                        if (gamePanel.getObj()[mapNum][i].getLoot() != null) {
+                            ds.mapObjectLootNames[mapNum][i] = gamePanel.getObj()[mapNum][i].getLoot().getName();
+                        }
+                        ds.mapObjectOpened[mapNum][i] = gamePanel.getObj()[mapNum][i].isOpened();
+                    }
+                }
+            }
 
             // WRITE THE DATA STORAGE OBJECT
             oos.writeObject(ds);
@@ -122,6 +151,26 @@ public class SaveLoad {
             gamePanel.getPlayer().getDefense();
             gamePanel.getPlayer().getAttackImage();
 
+            // OBJECTS ON MAP
+            for (int mapNum = 0; mapNum < gamePanel.getMaxMap(); mapNum++) {
+                for (int i = 0; i < gamePanel.getObj()[1].length; i++) {
+                    if (ds.mapObjectNames[mapNum][i].equals("NA")) {
+                        gamePanel.getObj()[mapNum][i] = null;
+                    } else {
+
+                     gamePanel.getObj()[mapNum][i] = getObject(ds.mapObjectNames[mapNum][i]);
+                     gamePanel.getObj()[mapNum][i].setWorldX(ds.mapObjectWorldX[mapNum][i]);
+                     gamePanel.getObj()[mapNum][i].setWorldY(ds.mapObjectWorldY[mapNum][i]);
+                     if (ds.mapObjectLootNames[mapNum][i] != null) {
+                         gamePanel.getObj()[mapNum][i].setLoot(getObject(ds.mapObjectLootNames[mapNum][i]));
+                     }
+                     gamePanel.getObj()[mapNum][i].setOpened(ds.mapObjectOpened[mapNum][i]);
+                     if (gamePanel.getObj()[mapNum][i].isOpened()) {
+                         gamePanel.getObj()[mapNum][i].setDown1(gamePanel.getObj()[mapNum][i].getImage2());
+                     }
+                    }
+                }
+            }
         } catch (Exception e) {
             System.out.println("Load Exception");
         }

@@ -1057,6 +1057,18 @@ public class Entity {
         return knockBackDirection;
     }
 
+    public Entity getLoot() {
+        return loot;
+    }
+
+    public BufferedImage getImage2() {
+        return image2;
+    }
+
+    public boolean isOpened() {
+        return opened;
+    }
+
     public boolean isKnockBack() {
         return knockBack;
     }
@@ -1155,5 +1167,13 @@ public class Entity {
 
     public void setCurrentShield(Entity currentShield) {
         this.currentShield = currentShield;
+    }
+
+    public void setOpened(boolean opened) {
+        this.opened = opened;
+    }
+
+    public void setDown1(BufferedImage down1) {
+        this.down1 = down1;
     }
 }
