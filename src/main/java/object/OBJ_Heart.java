@@ -5,6 +5,7 @@ import main.GamePanel;
 
 public class OBJ_Heart extends Entity {
 
+    public static final String objName = "Heart";
     GamePanel gamePanel;
 
     public OBJ_Heart(GamePanel gamePanel) {
@@ -13,7 +14,7 @@ public class OBJ_Heart extends Entity {
         this.gamePanel = gamePanel;
 
         type = type_pickupOnly;
-        name = "Heart";
+        name = objName;
         value = 2;
         down1 = setup("/objects/heart_full", gamePanel.getTileSize(), gamePanel.getTileSize());
         image = setup("/objects/heart_full", gamePanel.getTileSize(), gamePanel.getTileSize());

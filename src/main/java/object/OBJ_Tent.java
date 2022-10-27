@@ -5,6 +5,7 @@ import main.GamePanel;
 
 public class OBJ_Tent extends Entity {
 
+    public static final String objName = "Tent";
     private GamePanel gamePanel;
 
     public OBJ_Tent(GamePanel gamePanel) {
@@ -13,7 +14,7 @@ public class OBJ_Tent extends Entity {
         this.gamePanel = gamePanel;
 
         type = type_consumable;
-        name = "Tent";
+        name = objName;
         down1 = setup("/objects/tent", gamePanel.getTileSize(), gamePanel.getTileSize());
         description = "[Tent]\nYou can sleep through the night";
         price = 300;

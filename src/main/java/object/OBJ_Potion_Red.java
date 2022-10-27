@@ -5,6 +5,7 @@ import main.GamePanel;
 
 public class OBJ_Potion_Red extends Entity {
 
+    public static final String objName = "Red Potion";
     GamePanel gamePanel;
 
     public OBJ_Potion_Red(GamePanel gamePanel) {
@@ -13,7 +14,7 @@ public class OBJ_Potion_Red extends Entity {
         this.gamePanel = gamePanel;
 
         type = type_consumable;
-        name = "Red Potion";
+        name = objName;
         value = 5;
         down1 = setup("/objects/potion_red", gamePanel.getTileSize(), gamePanel.getTileSize());
         description = "[" + name + "]\nMay cause cancer if\nconsumed in excess";

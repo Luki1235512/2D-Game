@@ -8,6 +8,7 @@ import java.awt.*;
 
 public class OBJ_Fireball extends Projectile {
 
+    public static final String objName = "Fireball";
     GamePanel gamePanel;
 
     public OBJ_Fireball(GamePanel gamePanel) {
@@ -15,7 +16,7 @@ public class OBJ_Fireball extends Projectile {
 
         this.gamePanel = gamePanel;
 
-        name = "Fireball";
+        name = objName;
         speed = 5;
         maxLife = 80;
         life = maxLife;

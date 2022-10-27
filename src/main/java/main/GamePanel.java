@@ -56,6 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
     private EnvironmentManager environmentManager = new EnvironmentManager(this);
     private Map map = new Map(this);
     private SaveLoad saveLoad = new SaveLoad(this);
+    private EntityGenerator entityGenerator = new EntityGenerator(this);
     private Thread gameThread;
 
     // ENTITY AND OBJECT
@@ -499,12 +500,12 @@ public class GamePanel extends JPanel implements Runnable {
         return map;
     }
 
-    public void setPathFinder(PathFinder pathFinder) {
-        this.pathFinder = pathFinder;
-    }
-
     public SaveLoad getSaveLoad() {
         return saveLoad;
+    }
+
+    public EntityGenerator getEntityGenerator() {
+        return entityGenerator;
     }
 
     @Override

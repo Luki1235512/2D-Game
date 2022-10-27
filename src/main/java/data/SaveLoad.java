@@ -1,8 +1,6 @@
 package data;
 
-import entity.Entity;
 import main.GamePanel;
-import object.*;
 
 import java.io.*;
 
@@ -12,52 +10,6 @@ public class SaveLoad {
 
     public SaveLoad(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-    }
-
-    public Entity getObject(String itemName) {
-        Entity obj = null;
-        switch (itemName) {
-            case "Woodcutter's Axe":
-                obj = new OBJ_Axe(gamePanel);
-                break;
-            case "Boots":
-                obj = new OBJ_Boots(gamePanel);
-                break;
-            case "Key":
-                obj = new OBJ_Key(gamePanel);
-                break;
-            case "Lantern":
-                obj = new OBJ_Lantern(gamePanel);
-                break;
-            case "Red Potion":
-                obj = new OBJ_Potion_Red(gamePanel);
-                break;
-            case "Magic Shield":
-                obj = new OBJ_Shield2(gamePanel);
-                break;
-            case "Wood Shield":
-                obj = new OBJ_Shield_Wood(gamePanel);
-                break;
-            case "Normal Sword":
-                obj = new OBJ_Sword_Normal(gamePanel);
-                break;
-            case "Tent":
-                obj = new OBJ_Tent(gamePanel);
-                break;
-            case "Door":
-                obj = new OBJ_Door(gamePanel);
-                break;
-            case "Chest":
-                obj = new OBJ_Chest(gamePanel);
-                break;
-            case "Heart":
-                obj = new OBJ_Heart(gamePanel);
-                break;
-            case "Mana Crystals":
-                obj = new OBJ_ManaCrystal(gamePanel);
-                break;
-        }
-        return obj;
     }
 
     public void save() {
@@ -140,7 +92,7 @@ public class SaveLoad {
             // PLAYER INVENTORY
             gamePanel.getPlayer().getInventory().clear();
             for (int i = 0; i < ds.itemNames.size(); i++) {
-                gamePanel.getPlayer().getInventory().add(getObject(ds.itemNames.get(i)));
+                gamePanel.getPlayer().getInventory().add(gamePanel.getEntityGenerator().getObject(ds.itemNames.get(i)));
                 gamePanel.getPlayer().getInventory().get(i).setAmount(ds.itemAmounts.get(i));
             }
 
@@ -158,11 +110,11 @@ public class SaveLoad {
                         gamePanel.getObj()[mapNum][i] = null;
                     } else {
 
-                     gamePanel.getObj()[mapNum][i] = getObject(ds.mapObjectNames[mapNum][i]);
+                     gamePanel.getObj()[mapNum][i] = gamePanel.getEntityGenerator().getObject(ds.mapObjectNames[mapNum][i]);
                      gamePanel.getObj()[mapNum][i].setWorldX(ds.mapObjectWorldX[mapNum][i]);
                      gamePanel.getObj()[mapNum][i].setWorldY(ds.mapObjectWorldY[mapNum][i]);
                      if (ds.mapObjectLootNames[mapNum][i] != null) {
-                         gamePanel.getObj()[mapNum][i].setLoot(getObject(ds.mapObjectLootNames[mapNum][i]));
+                         gamePanel.getObj()[mapNum][i].setLoot(gamePanel.getEntityGenerator().getObject(ds.mapObjectLootNames[mapNum][i]));
                      }
                      gamePanel.getObj()[mapNum][i].setOpened(ds.mapObjectOpened[mapNum][i]);
                      if (gamePanel.getObj()[mapNum][i].isOpened()) {

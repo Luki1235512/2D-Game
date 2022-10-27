@@ -5,6 +5,7 @@ import main.GamePanel;
 
 public class OBJ_Key extends Entity {
 
+    public static final String objName = "Key";
     GamePanel gamePanel;
 
     public OBJ_Key(GamePanel gamePanel) {
@@ -13,7 +14,7 @@ public class OBJ_Key extends Entity {
         this.gamePanel = gamePanel;
 
         type = type_consumable;
-        name = "Key";
+        name = objName;
         down1 = setup("/objects/key", gamePanel.getTileSize(), gamePanel.getTileSize());
         description = "[" + name + "]\nWhat does this open?";
 

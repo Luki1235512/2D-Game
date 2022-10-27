@@ -5,11 +5,13 @@ import main.GamePanel;
 
 public class OBJ_Sword_Normal extends Entity {
 
+    public static final String objName = "Normal Sword";
+
     public OBJ_Sword_Normal(GamePanel gamePanel) {
         super(gamePanel);
 
         type = type_sword;
-        name = "Normal Sword";
+        name = objName;
         down1 = setup("/objects/sword_normal", gamePanel.getTileSize(), gamePanel.getTileSize());
 
         attackValue = 1;

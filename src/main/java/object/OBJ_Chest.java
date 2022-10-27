@@ -5,6 +5,7 @@ import main.GamePanel;
 
 public class OBJ_Chest extends Entity {
 
+    public static final String objName = "Chest";
     GamePanel gamePanel;
 
     public OBJ_Chest(GamePanel gamePanel) {
@@ -13,7 +14,7 @@ public class OBJ_Chest extends Entity {
         this.gamePanel = gamePanel;
 
         type = type_obstacle;
-        name = "Chest";
+        name = objName;
 
         image  = setup("/objects/chest", gamePanel.getTileSize(), gamePanel.getTileSize());
         image2 = setup("/objects/chest_opened", gamePanel.getTileSize(), gamePanel.getTileSize());
