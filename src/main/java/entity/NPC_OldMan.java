@@ -12,9 +12,11 @@ public class NPC_OldMan extends Entity {
 
         direction = "down";
         speed = 1;
-        solidArea = new Rectangle(8, 16, 32, 32);
+        solidArea = new Rectangle(8, 16, 30, 30);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+
+        dialogueSet = -1;
 
         getImage();
         setDialogue();
@@ -91,6 +93,11 @@ public class NPC_OldMan extends Entity {
         // DO THIS CHARACTER SPECIFIC STUFF
         facePlayer();
         startDialogue(this, dialogueSet);
+        dialogueSet++;
+
+        if (dialogues[dialogueSet][0] == null) {
+            dialogueSet--;
+        }
     }
 
 }
