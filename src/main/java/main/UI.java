@@ -34,6 +34,8 @@ public class UI {
     private int subState = 0;
     private int counter = 0;
     private Entity npc;
+    private int charIndex = 0;
+    private String combinedText = "";
 
 
     public UI(GamePanel gamePanel) {
@@ -284,8 +286,17 @@ public class UI {
         y += gamePanel.getTileSize();
 
         if (npc.getDialogues()[npc.getDialogueSet()][npc.getDialogueIndex()] != null) {
-            currentDialogue = npc.getDialogues()[npc.getDialogueSet()][npc.getDialogueIndex()];
+            char[] characters = npc.getDialogues()[npc.getDialogueSet()][npc.getDialogueIndex()].toCharArray();
+            if (charIndex < characters.length) {
+//                TODO: add sound
+                String s = String.valueOf(characters[charIndex]);
+                combinedText = combinedText + s;
+                currentDialogue = combinedText;
+                charIndex++;
+            }
             if (gamePanel.getKeyHandler().isEnterPressed()) {
+                charIndex = 0;
+                combinedText = "";
                 if (gamePanel.getGameState() == gamePanel.getDialogueState()) {
                     npc.increaseDialogueIndex();
                     gamePanel.getKeyHandler().setEnterPressed(false);
