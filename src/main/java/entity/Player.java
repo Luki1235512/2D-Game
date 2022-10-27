@@ -512,6 +512,7 @@ public class Player extends Entity {
 
             gamePanel.playSE(4);
             gamePanel.setGameState(gamePanel.getDialogueState());
+            setDialogue();
             startDialogue(this, 0);
         }
     }
