@@ -6,6 +6,7 @@ public class EventHandler {
 
     private final GamePanel gamePanel;
     private final EventRect[][][] eventRect;
+    Entity eventMaster;
 
     private int previousEventX;
     private int previousEventY;
@@ -16,6 +17,8 @@ public class EventHandler {
 
     public EventHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+
+        eventMaster = new Entity(gamePanel);
 
         eventRect = new EventRect[gamePanel.getMaxMap()][gamePanel.getMaxWorldCol()][gamePanel.getMaxWorldRow()];
         int map = 0;
@@ -40,8 +43,13 @@ public class EventHandler {
                 }
             }
         }
+        setDialogue();
+    }
 
-
+    public void setDialogue() {
+        eventMaster.getDialogues()[0][0] = "You fall int a pit!";
+        eventMaster.getDialogues()[1][0] = "You drink the water.\nYour life and mana have been recovered.\n" +
+                "(The progress has been saved)";
     }
 
     public void checkEvent() {
@@ -115,7 +123,7 @@ public class EventHandler {
     public void damagePit(int gameState) {
         gamePanel.setGameState(gameState);
         gamePanel.playSE(6);
-        gamePanel.getUi().setCurrentDialogue("You fall int a pit!");
+        eventMaster.startDialogue(eventMaster, 0);
         gamePanel.getPlayer().decreaseLife(1);
         canTouchEvent = false;
     }
@@ -126,8 +134,7 @@ public class EventHandler {
             gamePanel.setGameState(gameState);
             gamePanel.getPlayer().setAttackCanceled(true);
             gamePanel.playSE(2);
-            gamePanel.getUi().setCurrentDialogue("You drink the water.\nYour life and mana have been recovered.\n" +
-                    "(The progress has been saved)");
+            eventMaster.startDialogue(eventMaster, 1);
             gamePanel.getPlayer().setLife(gamePanel.getPlayer().getMaxLife());
             gamePanel.getPlayer().setMana(gamePanel.getPlayer().getMaxMana());
             gamePanel.getAssetSetter().setMonster();

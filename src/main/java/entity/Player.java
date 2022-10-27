@@ -67,12 +67,17 @@ public class Player extends Entity {
         getAttackImage();
         getGuardImage();
         setItems();
+        setDialogue();
     }
 
     public void setDefaultPositions() {
         worldX = gamePanel.getTileSize() * 23;
         worldY = gamePanel.getTileSize() * 21;
         direction = "down";
+    }
+
+    public void setDialogue() {
+        dialogues[0][0] = "You are level " + level + " now!\n";
     }
 
     public void restoreStatus() {
@@ -507,7 +512,7 @@ public class Player extends Entity {
 
             gamePanel.playSE(4);
             gamePanel.setGameState(gamePanel.getDialogueState());
-            gamePanel.getUi().setCurrentDialogue("You are level " + level + " now!\n");
+            startDialogue(this, 0);
         }
     }
 

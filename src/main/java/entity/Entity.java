@@ -314,7 +314,7 @@ public class Entity {
     }
 
     public void facePlayer() {
-
+        // TODO
     }
 
     public void interact() {
@@ -1213,5 +1213,9 @@ public class Entity {
 
     public void setDialogueIndex(int dialogueIndex) {
         this.dialogueIndex = dialogueIndex;
+    }
+
+    public void setDialogueSet(int dialogueSet) {
+        this.dialogueSet = dialogueSet;
     }
 }

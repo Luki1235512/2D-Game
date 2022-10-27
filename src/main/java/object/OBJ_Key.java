@@ -19,20 +19,28 @@ public class OBJ_Key extends Entity {
 
         price = 100;
         stackable = true;
+
+        setDialogue();
+    }
+
+    public void setDialogue() {
+        dialogues[0][0] = "You use the " + name + " and open the door";
+        dialogues[1][0] = "There is no door here";
     }
 
     public boolean use(Entity entity) {
-        gamePanel.setGameState(gamePanel.getDialogueState());
+
         int objIndex = getDetected(entity, gamePanel.getObj(), "Door");
 
         if (objIndex != Integer.MAX_VALUE) {
-            gamePanel.getUi().setCurrentDialogue("You use the " + name + " and open the door");
+            startDialogue(this, 0);
+            // TODO: Add sound
 //            gamePanel.playSE();
             gamePanel.getObj()[gamePanel.getCurrentMap()][objIndex] = null;
             return true;
         }
         else {
-            gamePanel.getUi().setCurrentDialogue("huh, there is no door here");
+            startDialogue(this, 1);
             return false;
         }
     }

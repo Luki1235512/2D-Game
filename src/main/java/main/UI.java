@@ -814,6 +814,8 @@ public class UI {
     }
 
     public void trade_select() {
+
+        npc.setDialogueSet(0);
         drawDialogueScreen();
 
         // DRAW WINDOW
@@ -849,8 +851,7 @@ public class UI {
             g2.drawString(">", x - 24, y);
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 commandNum = 0;
-                gamePanel.setGameState(gamePanel.getDialogueState());
-                currentDialogue = "See you soon!";
+                npc.startDialogue(npc, 1);
             }
         }
         y += gamePanel.getTileSize();
@@ -899,9 +900,7 @@ public class UI {
             if (gamePanel.getKeyHandler().isEnterPressed()) {
                 if (npc.getInventory().get(itemIndex).getPrice() > gamePanel.getPlayer().getCoin()) {
                     subState = 0;
-                    gamePanel.setGameState(gamePanel.getDialogueState());
-                    currentDialogue = "You don't have enough money for that!";
-                    drawDialogueScreen();
+                    npc.startDialogue(npc, 2);
                 }
                 else {
                     if (gamePanel.getPlayer().canObtainItem(npc.getInventory().get(itemIndex))) {
@@ -909,8 +908,7 @@ public class UI {
                     }
                     else {
                         subState = 0;
-                        gamePanel.setGameState(gamePanel.getDialogueState());
-                        currentDialogue = "Your inventory is full";
+                        npc.startDialogue(npc, 3);
                     }
                 }
             }
@@ -964,8 +962,7 @@ public class UI {
                     gamePanel.getPlayer().getInventory().get(itemIndex) == gamePanel.getPlayer().getCurrentShield()) {
                     commandNum = 0;
                     subState = 0;
-                    gamePanel.setGameState(gamePanel.getDialogueState());
-                    currentDialogue = "You cannot sell an equipped item!";
+                    npc.startDialogue(npc, 4);
                 }
                 else {
                     if (gamePanel.getPlayer().getInventory().get(itemIndex).getAmount() > 1) {

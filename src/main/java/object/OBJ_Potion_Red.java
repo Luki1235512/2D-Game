@@ -21,10 +21,13 @@ public class OBJ_Potion_Red extends Entity {
         stackable = true;
     }
 
+    public void setDialogue() {
+        dialogues[0][0] = "You drink the " + name + "!\n" +
+                "Your life has been recovered by " + value + ".";
+    }
+
     public boolean use(Entity entity) {
-        gamePanel.setGameState(gamePanel.getDialogueState());
-        gamePanel.getUi().setCurrentDialogue("You drink the " + name + "!\n" +
-                "Your life has been recovered by " + value + ".");
+        startDialogue(this, 0);
         entity.increaseLife(value);
         gamePanel.playSE(2);
 
