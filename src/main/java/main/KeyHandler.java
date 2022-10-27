@@ -115,7 +115,7 @@ public class KeyHandler implements KeyListener {
 
     public void dialogueState(int code) {
         if (code == KeyEvent.VK_ENTER) {
-            gamePanel.setGameState(gamePanel.getPlayState());
+            enterPressed = true;
         }
     }
 

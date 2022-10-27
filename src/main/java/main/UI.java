@@ -283,6 +283,23 @@ public class UI {
         x += gamePanel.getTileSize();
         y += gamePanel.getTileSize();
 
+        if (npc.getDialogues()[npc.getDialogueSet()][npc.getDialogueIndex()] != null) {
+            currentDialogue = npc.getDialogues()[npc.getDialogueSet()][npc.getDialogueIndex()];
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
+                if (gamePanel.getGameState() == gamePanel.getDialogueState()) {
+                    npc.increaseDialogueIndex();
+                    gamePanel.getKeyHandler().setEnterPressed(false);
+                }
+            }
+        } else {
+            // IF NO TEXT IN THE ARRAY
+            npc.setDialogueIndex(0);
+
+            if (gamePanel.getGameState() == gamePanel.getDialogueState()) {
+                gamePanel.setGameState(gamePanel.getPlayState());
+            }
+        }
+
         for (String line : currentDialogue.split("\n")) {
             g2.drawString(line, x, y);
             y += 40;

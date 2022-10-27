@@ -53,7 +53,7 @@ public class Entity {
     protected int solidAreaDefaultY;
     protected boolean collisionOn = false;
 
-    protected String[] dialogues = new String[20];
+    protected String[][] dialogues = new String[20][20];
     protected Entity attacker;
 
     // STATE
@@ -61,6 +61,7 @@ public class Entity {
     protected int worldY;
     protected String direction = "down";
     protected int spriteNum = 1;
+    protected int dialogueSet = 0;
     protected int dialogueIndex = 0;
     protected boolean collision = false;
     protected boolean invincible = false;
@@ -309,11 +310,14 @@ public class Entity {
     }
 
     public void speak() {
-        if (dialogues[dialogueIndex] == null) {
-            dialogueIndex = 0;
-        }
-        gamePanel.getUi().setCurrentDialogue(dialogues[dialogueIndex]);
-        dialogueIndex++;
+
+    }
+
+    public void facePlayer() {
+
+    }
+
+    public void interact() {
 
         switch (gamePanel.getPlayer().direction) {
             case "up":
@@ -331,8 +335,10 @@ public class Entity {
         }
     }
 
-    public void interact() {
-
+    public void startDialogue(Entity entity, int setNum) {
+        gamePanel.setGameState(gamePanel.getDialogueState());
+        gamePanel.getUi().setNpc(entity);
+        dialogueSet = setNum;
     }
 
     public boolean use(Entity entity) {
@@ -1077,6 +1083,18 @@ public class Entity {
         return image2;
     }
 
+    public int getDialogueSet() {
+        return dialogueSet;
+    }
+
+    public int getDialogueIndex() {
+        return dialogueIndex;
+    }
+
+    public String[][] getDialogues() {
+        return dialogues;
+    }
+
     public boolean isOpened() {
         return opened;
     }
@@ -1133,6 +1151,10 @@ public class Entity {
         this.mana += mana;
     }
 
+    public void increaseDialogueIndex() {
+        this.dialogueIndex ++;
+    }
+
     public void setCollisionOn(boolean collisionOn) {
         this.collisionOn = collisionOn;
     }
@@ -1187,5 +1209,9 @@ public class Entity {
 
     public void setDown1(BufferedImage down1) {
         this.down1 = down1;
+    }
+
+    public void setDialogueIndex(int dialogueIndex) {
+        this.dialogueIndex = dialogueIndex;
     }
 }

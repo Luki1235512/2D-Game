@@ -38,17 +38,21 @@ public class NPC_OldMan extends Entity {
     }
 
     public void setDialogue() {
-        dialogues[0] = "Hello!";
-        dialogues[1] = "Where am I now?";
-        dialogues[2] = "Sometimes I remember.";
-        dialogues[3] = "What do you need?";
+        dialogues[0][0] = "Hello!";
+        dialogues[0][1] = "Where am I now?";
+        dialogues[0][2] = "Sometimes I remember.";
+        dialogues[0][3] = "What do you need?";
+
+        dialogues[1][0] = "You can rest by the water.";
+        dialogues[1][1] = "But watch out for monsters!";
+        dialogues[1][2] = "Good luck!";
+
+        dialogues[2][0] = "Hm?";
     }
 
     public void setAction() {
 
         if (onPath) {
-//            int goalCol = 11;
-//            int goalRow = 9;
             int goalCol = (gamePanel.getPlayer().worldX + gamePanel.getPlayer().solidArea.x) / gamePanel.getTileSize();
             int goalRow = (gamePanel.getPlayer().worldY + gamePanel.getPlayer().solidArea.y) / gamePanel.getTileSize();
 
@@ -83,9 +87,10 @@ public class NPC_OldMan extends Entity {
     }
 
     public void speak() {
-        super.speak();
 
-        onPath = true;
+        // DO THIS CHARACTER SPECIFIC STUFF
+        facePlayer();
+        startDialogue(this, dialogueSet);
     }
 
 }

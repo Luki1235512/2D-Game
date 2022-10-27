@@ -408,10 +408,9 @@ public class Player extends Entity {
 
     public void interactNPC(int i) {
 
-        if (gamePanel.getKeyHandler().isEnterPressed()) {
-            if (i != Integer.MAX_VALUE) {
+        if (i != Integer.MAX_VALUE) {
+            if (gamePanel.getKeyHandler().isEnterPressed()) {
                 attackCanceled = true;
-                gamePanel.setGameState(gamePanel.getDialogueState());
                 gamePanel.getNpc()[gamePanel.getCurrentMap()][i].speak();
             }
         }
