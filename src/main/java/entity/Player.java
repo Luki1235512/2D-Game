@@ -37,10 +37,16 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
 
-        worldX = gamePanel.getTileSize() * 23;
-        worldY = gamePanel.getTileSize() * 21;
+        // BASIC
+//        worldX = gamePanel.getTileSize() * 23;
+//        worldY = gamePanel.getTileSize() * 21;
+        // MERCHANT
 //        worldX = gamePanel.getTileSize() * 9;
 //        worldY = gamePanel.getTileSize() * 40;
+        // DUNGEON
+        worldX = gamePanel.getTileSize() * 9;
+        worldY = gamePanel.getTileSize() * 11;
+
         defaultSpeed = 4;
         speed = defaultSpeed;
         direction = "down";

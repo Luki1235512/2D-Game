@@ -77,6 +77,19 @@ public class EventHandler {
             else if (hit(1, 12, 9, "up")) {
                 speak(gamePanel.getNpc()[1][0]);
             }
+            // DUNGEON
+            else if (hit(0, 10, 9, "any")) {
+                teleport(2, 9, 41);
+            }
+            else if (hit(2, 9, 41, "any")) {
+                teleport(0, 12, 9);
+            }
+            else if (hit(2, 8, 7, "any")) {
+                teleport(3, 26, 41);
+            }
+            else if (hit(3, 26, 41, "any")) {
+                teleport(2, 8, 7);
+            }
         }
 
 
