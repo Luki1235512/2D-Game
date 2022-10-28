@@ -84,6 +84,13 @@ public class GamePanel extends JPanel implements Runnable {
     private final int sleepState = 9;
     private final int mapState = 10;
 
+    // AREA
+    private int currentArea;
+    private int nextArea;
+    private final int outside = 50;
+    private final int indoor = 51;
+    private final int dungeon = 52;
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -99,8 +106,8 @@ public class GamePanel extends JPanel implements Runnable {
         assetSetter.setInteractiveTile();
         environmentManager.setup();
 
-        playMusic(0);
         gameState = titleState;
+        currentArea = outside;
 
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D) tempScreen.getGraphics();
@@ -332,6 +339,25 @@ public class GamePanel extends JPanel implements Runnable {
         se.play();
     }
 
+    public void changeArea() {
+        // TODO: Add more songs
+        if (nextArea != currentArea) {
+            stopMusic();
+            if (nextArea == outside) {
+                playMusic(0);
+            }
+            if (nextArea == indoor) {
+                playMusic(0);
+            }
+            if (nextArea == dungeon) {
+                playMusic(0);
+            }
+        }
+
+        currentArea = nextArea;
+        assetSetter.setMonster();
+    }
+
     public int getTileSize() {
         return tileSize;
     }
@@ -506,6 +532,30 @@ public class GamePanel extends JPanel implements Runnable {
 
     public EntityGenerator getEntityGenerator() {
         return entityGenerator;
+    }
+
+    public int getCurrentArea() {
+        return currentArea;
+    }
+
+    public int getOutside() {
+        return outside;
+    }
+
+    public int getDungeon() {
+        return dungeon;
+    }
+
+    public int getIndoor() {
+        return indoor;
+    }
+
+    public void setCurrentArea(int currentArea) {
+        this.currentArea = currentArea;
+    }
+
+    public void setNextArea(int nextArea) {
+        this.nextArea = nextArea;
     }
 
     @Override

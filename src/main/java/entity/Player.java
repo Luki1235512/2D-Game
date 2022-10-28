@@ -44,8 +44,8 @@ public class Player extends Entity {
 //        worldX = gamePanel.getTileSize() * 9;
 //        worldY = gamePanel.getTileSize() * 40;
         // DUNGEON
-        worldX = gamePanel.getTileSize() * 9;
-        worldY = gamePanel.getTileSize() * 11;
+        worldX = gamePanel.getTileSize() * 10;
+        worldY = gamePanel.getTileSize() * 10;
 
         defaultSpeed = 4;
         speed = defaultSpeed;

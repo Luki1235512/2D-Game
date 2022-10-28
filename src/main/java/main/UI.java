@@ -804,6 +804,7 @@ public class UI {
             gamePanel.getPlayer().setWorldY(gamePanel.getTileSize() * gamePanel.getEventHandler().getTempRow());
             gamePanel.getEventHandler().setPreviousEventX(gamePanel.getPlayer().getWorldX());
             gamePanel.getEventHandler().setPreviousEventY(gamePanel.getPlayer().getWorldY());
+            gamePanel.changeArea();
         }
     }
 

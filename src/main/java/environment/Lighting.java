@@ -121,8 +121,13 @@ public class Lighting {
     }
 
     public void draw(Graphics2D g2) {
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
-        g2.drawImage(darknessFilter, 0, 0, null);
+
+        if (gamePanel.getCurrentArea() == gamePanel.getOutside()) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
+        }
+        if (gamePanel.getCurrentArea() == gamePanel.getOutside() || gamePanel.getCurrentArea() == gamePanel.getDungeon()) {
+            g2.drawImage(darknessFilter, 0, 0, null);
+        }
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 
         // DEBUG
@@ -163,32 +168,12 @@ public class Lighting {
         this.filterAlpha = filterAlpha;
     }
 
-    public int getDayState() {
-        return dayState;
-    }
-
     public void setDayState(int dayState) {
         this.dayState = dayState;
     }
 
     public int getDay() {
         return day;
-    }
-
-    public int getDusk() {
-        return dusk;
-    }
-
-    public int getNight() {
-        return night;
-    }
-
-    public int getDawn() {
-        return dawn;
-    }
-
-    public int getDayCounter() {
-        return dayCounter;
     }
 
     public void setDayCounter(int dayCounter) {

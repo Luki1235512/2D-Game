@@ -69,26 +69,26 @@ public class EventHandler {
                 healingPool(gamePanel.getDialogueState());
             }
             else if (hit(0, 10, 39, "any")) {
-                teleport(1, 12, 13);
+                teleport(1, 12, 13, gamePanel.getIndoor());
             }
             else if (hit(1, 12, 13, "any")) {
-                teleport(0, 10, 39);
+                teleport(0, 10, 39, gamePanel.getOutside());
             }
             else if (hit(1, 12, 9, "up")) {
                 speak(gamePanel.getNpc()[1][0]);
             }
             // DUNGEON
             else if (hit(0, 10, 9, "any")) {
-                teleport(2, 9, 41);
+                teleport(2, 9, 41, gamePanel.getDungeon());
             }
             else if (hit(2, 9, 41, "any")) {
-                teleport(0, 12, 9);
+                teleport(0, 10, 9, gamePanel.getOutside());
             }
             else if (hit(2, 8, 7, "any")) {
-                teleport(3, 26, 41);
+                teleport(3, 26, 41, gamePanel.getDungeon());
             }
             else if (hit(3, 26, 41, "any")) {
-                teleport(2, 8, 7);
+                teleport(2, 8, 7, gamePanel.getDungeon());
             }
         }
 
@@ -122,9 +122,10 @@ public class EventHandler {
         return hit;
     }
 
-    public void teleport(int map, int col, int row) {
+    public void teleport(int map, int col, int row, int area) {
 
         gamePanel.setGameState(gamePanel.getTransitionState());
+        gamePanel.setNextArea(area);
         tempMap = map;
         tempCol = col;
         tempRow = row;
