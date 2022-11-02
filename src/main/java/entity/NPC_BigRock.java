@@ -42,6 +42,11 @@ public class NPC_BigRock extends Entity {
     }
 
     public void setAction() {
+
+    }
+
+    public void update() {
+
     }
 
     public void speak() {

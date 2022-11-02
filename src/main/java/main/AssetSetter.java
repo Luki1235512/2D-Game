@@ -1,11 +1,13 @@
 package main;
 
+import entity.NPC_BigRock;
 import entity.NPC_Merchant;
 import entity.NPC_OldMan;
 import monster.MON_BlueSlime;
 import monster.MON_Orc;
 import object.*;
 import tile_interactive.IT_DestructibleWall;
+import tile_interactive.IT_MetalPlate;
 import tile_interactive.IT_SickTree;
 
 public class AssetSetter {
@@ -113,6 +115,11 @@ public class AssetSetter {
         gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 27);
         gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 15);
         i++;
+
+        gamePanel.getObj()[mapNum][i] = new OBJ_Iron_Door(gamePanel);
+        gamePanel.getObj()[mapNum][i].setLoot(new OBJ_Potion_Red(gamePanel));
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 18);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 23);
     }
 
     public void setNPC() {
@@ -130,6 +137,24 @@ public class AssetSetter {
         gamePanel.getNpc()[mapNum][i] = new NPC_Merchant(gamePanel);
         gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 12);
         gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 7);
+
+        // MAP 2
+        mapNum = 2;
+        i = 0;
+        gamePanel.getNpc()[mapNum][i] = new NPC_BigRock(gamePanel);
+        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 20);
+        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 25);
+        i++;
+
+        gamePanel.getNpc()[mapNum][i] = new NPC_BigRock(gamePanel);
+        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 11);
+        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 10);
+        i++;
+
+        gamePanel.getNpc()[mapNum][i] = new NPC_BigRock(gamePanel);
+        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 23);
+        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 14);
+
     }
 
     public void setMonster() {
@@ -276,6 +301,15 @@ public class AssetSetter {
         gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,30, 28);
         i++;
         gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,32, 28);
+        i++;
+
+        // METAL PLATE
+
+        gamePanel.getITile()[mapNum][i] = new IT_MetalPlate(gamePanel,20, 22);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_MetalPlate(gamePanel,8, 17);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_MetalPlate(gamePanel,39, 31);
         i++;
 
 
