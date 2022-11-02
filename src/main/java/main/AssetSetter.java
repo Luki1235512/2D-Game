@@ -5,6 +5,7 @@ import entity.NPC_OldMan;
 import monster.MON_BlueSlime;
 import monster.MON_Orc;
 import object.*;
+import tile_interactive.IT_DestructibleWall;
 import tile_interactive.IT_SickTree;
 
 public class AssetSetter {
@@ -93,6 +94,24 @@ public class AssetSetter {
         gamePanel.getObj()[mapNum][i].setLoot(new OBJ_Pickaxe(gamePanel));
         gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 40);
         gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 41);
+        i++;
+
+        gamePanel.getObj()[mapNum][i] = new OBJ_Chest(gamePanel);
+        gamePanel.getObj()[mapNum][i].setLoot(new OBJ_Potion_Red(gamePanel));
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 13);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 16);
+        i++;
+
+        gamePanel.getObj()[mapNum][i] = new OBJ_Chest(gamePanel);
+        gamePanel.getObj()[mapNum][i].setLoot(new OBJ_Potion_Red(gamePanel));
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 26);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 34);
+        i++;
+
+        gamePanel.getObj()[mapNum][i] = new OBJ_Chest(gamePanel);
+        gamePanel.getObj()[mapNum][i].setLoot(new OBJ_Potion_Red(gamePanel));
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 27);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 15);
         i++;
     }
 
@@ -218,6 +237,46 @@ public class AssetSetter {
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 28, 29);
         i++;
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 30, 29);
+
+        // DUNGEON
+
+        mapNum = 2;
+        i = 0;
+
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,18, 30);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,17, 31);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,17, 32);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,17, 34);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,18, 34);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,18, 33);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,10, 22);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,10, 24);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,38, 18);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,38, 19);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,38, 20);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,38, 21);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,18, 13);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,18, 14);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,22, 28);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,30, 28);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_DestructibleWall(gamePanel,32, 28);
+        i++;
 
 
     }
