@@ -83,6 +83,17 @@ public class AssetSetter {
         gamePanel.getObj()[mapNum][i].setLoot(new OBJ_Key(gamePanel));
         gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 30);
         gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 28);
+
+        // DUNGEON
+
+        mapNum = 2;
+        i = 0;
+
+        gamePanel.getObj()[mapNum][i] = new OBJ_Chest(gamePanel);
+        gamePanel.getObj()[mapNum][i].setLoot(new OBJ_Pickaxe(gamePanel));
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 40);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 41);
+        i++;
     }
 
     public void setNPC() {

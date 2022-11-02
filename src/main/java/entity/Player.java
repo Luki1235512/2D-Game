@@ -105,6 +105,9 @@ public class Player extends Entity {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gamePanel));
+
+        // TODO: tmp
+        inventory.add(new OBJ_Lantern(gamePanel));
     }
 
     public int getAttack() {
@@ -192,6 +195,16 @@ public class Player extends Entity {
             attackLeft2 = setup("/player/player_axe_left_2", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
             attackRight1 = setup("/player/player_axe_right_1", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
             attackRight2 = setup("/player/player_axe_right_2", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
+        }
+        if (currentWeapon.type == type_pickaxe) {
+            attackUp1 = setup("/player/player_pick_up_1", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
+            attackUp2 = setup("/player/player_pick_up_2", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
+            attackDown1 = setup("/player/player_pick_down_1", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
+            attackDown2 = setup("/player/player_pick_down_2", gamePanel.getTileSize(), gamePanel.getTileSize() * 2);
+            attackLeft1 = setup("/player/player_pick_left_1", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
+            attackLeft2 = setup("/player/player_pick_left_2", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
+            attackRight1 = setup("/player/player_pick_right_1", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
+            attackRight2 = setup("/player/player_pick_right_2", gamePanel.getTileSize() * 2, gamePanel.getTileSize());
         }
 
     }
@@ -528,7 +541,7 @@ public class Player extends Entity {
         int itemIndex = gamePanel.getUi().getItemIndexOnSlot(gamePanel.getUi().getPlayerSlotCol(), gamePanel.getUi().getPlayerSlotRow());
         if (itemIndex < inventory.size()) {
             Entity selectedItem = inventory.get(itemIndex);
-            if (selectedItem.type == type_sword || selectedItem.type == type_axe) {
+            if (selectedItem.type == type_sword || selectedItem.type == type_axe || selectedItem.type == type_pickaxe) {
                 currentWeapon = selectedItem;
                 attack = getAttack();
                 getAttackImage();

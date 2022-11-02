@@ -138,6 +138,7 @@ public class Entity {
     protected final int type_pickupOnly = 7;
     protected final int type_obstacle = 8;
     protected final int type_light = 9;
+    protected final int type_pickaxe = 10;
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;

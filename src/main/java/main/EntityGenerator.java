@@ -62,6 +62,9 @@ public class EntityGenerator {
             case OBJ_SlimeBall.objName:
                 obj = new OBJ_SlimeBall(gamePanel);
                 break;
+            case OBJ_Pickaxe.objName:
+                obj = new OBJ_Pickaxe(gamePanel);
+                break;
         }
         return obj;
     }
