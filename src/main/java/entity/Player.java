@@ -437,6 +437,7 @@ public class Player extends Entity {
                 attackCanceled = true;
                 gamePanel.getNpc()[gamePanel.getCurrentMap()][i].speak();
             }
+            gamePanel.getNpc()[gamePanel.getCurrentMap()][i].move(direction);
         }
     }
 

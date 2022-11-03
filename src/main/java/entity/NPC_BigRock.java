@@ -61,5 +61,26 @@ public class NPC_BigRock extends Entity {
         }
     }
 
+    public void move(String direction) {
+        this.direction = direction;
+        checkCollision();
+        if (!collisionOn) {
+            switch (direction) {
+                case "up":
+                    worldY -= speed;
+                    break;
+                case "down":
+                    worldY += speed;
+                    break;
+                case "left":
+                    worldX -= speed;
+                    break;
+                case "right":
+                    worldX += speed;
+                    break;
+            }
+        }
+    }
+
 }
 

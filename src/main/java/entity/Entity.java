@@ -306,6 +306,10 @@ public class Entity {
 
     }
 
+    public void move(String direction) {
+
+    }
+
     public void damageReaction() {
 
     }
