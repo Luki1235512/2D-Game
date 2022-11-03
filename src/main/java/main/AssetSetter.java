@@ -117,9 +117,8 @@ public class AssetSetter {
         i++;
 
         gamePanel.getObj()[mapNum][i] = new OBJ_Iron_Door(gamePanel);
-        gamePanel.getObj()[mapNum][i].setLoot(new OBJ_Potion_Red(gamePanel));
-        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 18);
-        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 23);
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 9);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 33);
     }
 
     public void setNPC() {
