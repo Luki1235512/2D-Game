@@ -142,18 +142,18 @@ public class AssetSetter {
         mapNum = 2;
         i = 0;
         gamePanel.getNpc()[mapNum][i] = new NPC_BigRock(gamePanel);
-        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 20);
-        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 25);
+        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 8);
+        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 38);
         i++;
 
         gamePanel.getNpc()[mapNum][i] = new NPC_BigRock(gamePanel);
-        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 11);
-        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 10);
+        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 9);
+        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 38);
         i++;
 
         gamePanel.getNpc()[mapNum][i] = new NPC_BigRock(gamePanel);
-        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 23);
-        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 14);
+        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 10);
+        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 38);
 
     }
 
@@ -305,11 +305,11 @@ public class AssetSetter {
 
         // METAL PLATE
 
-        gamePanel.getITile()[mapNum][i] = new IT_MetalPlate(gamePanel,20, 22);
+        gamePanel.getITile()[mapNum][i] = new IT_MetalPlate(gamePanel,8, 36);
         i++;
-        gamePanel.getITile()[mapNum][i] = new IT_MetalPlate(gamePanel,8, 17);
+        gamePanel.getITile()[mapNum][i] = new IT_MetalPlate(gamePanel,9, 36);
         i++;
-        gamePanel.getITile()[mapNum][i] = new IT_MetalPlate(gamePanel,39, 31);
+        gamePanel.getITile()[mapNum][i] = new IT_MetalPlate(gamePanel,10, 36);
         i++;
 
 

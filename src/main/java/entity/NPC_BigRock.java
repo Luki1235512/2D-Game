@@ -1,8 +1,12 @@
 package entity;
 
 import main.GamePanel;
+import object.OBJ_Iron_Door;
+import tile_interactive.IT_MetalPlate;
+import tile_interactive.InteractiveTile;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class NPC_BigRock extends Entity {
@@ -78,6 +82,69 @@ public class NPC_BigRock extends Entity {
                 case "right":
                     worldX += speed;
                     break;
+            }
+        }
+        detectPlate();
+    }
+
+    public void detectPlate() {
+        ArrayList<InteractiveTile> plateList = new ArrayList<>();
+        ArrayList<Entity> rockList = new ArrayList<>();
+
+        // CREATE A PLATE LIST
+        for (int i = 0; i < gamePanel.getITile()[1].length; i++) {
+            if (gamePanel.getITile()[gamePanel.getCurrentMap()][i] != null &&
+                    gamePanel.getITile()[gamePanel.getCurrentMap()][i].name != null &&
+                    gamePanel.getITile()[gamePanel.getCurrentMap()][i].name.equals(IT_MetalPlate.itName)) {
+                plateList.add(gamePanel.getITile()[gamePanel.getCurrentMap()][i]);
+            }
+        }
+
+        // CREATE A ROCK LIST
+        for (int i = 0; i < gamePanel.getNpc()[1].length; i++) {
+            if (gamePanel.getNpc()[gamePanel.getCurrentMap()][i] != null &&
+                    gamePanel.getNpc()[gamePanel.getCurrentMap()][i].name.equals(NPC_BigRock.npcName)) {
+                rockList.add(gamePanel.getNpc()[gamePanel.getCurrentMap()][i]);
+            }
+        }
+
+        int count = 0;
+
+        // SCAN THE PLATE LIST
+        for (int i = 0; i < plateList.size(); i++) {
+            int xDistance = Math.abs(worldX - plateList.get(i).worldX);
+            int yDistance = Math.abs(worldY - plateList.get(i).worldY);
+            int distance = Math.max(xDistance, yDistance);
+            if (distance < 8) {
+                if (linkedEntity == null) {
+                    linkedEntity = plateList.get(i);
+//                    TODO: Add SE
+//                gamePanel.playSE();
+                }
+            } else {
+                if (linkedEntity == plateList.get(i)) {
+                    linkedEntity = null;
+                }
+            }
+        }
+
+        // SCAN THE ROCK LIST
+        for (int i = 0; i < rockList.size(); i++) {
+            // COUNT THE ROCK ON THE PLATE
+            if (rockList.get(i).linkedEntity != null) {
+                count++;
+            }
+        }
+
+        // IF ALL THE ROCKS ARE ON THE PLATES, THE IRON DOOR OPENS
+        if (count == rockList.size()) {
+            for (int i = 0; i < gamePanel.getObj()[1].length; i++) {
+                if (gamePanel.getObj()[gamePanel.getCurrentMap()][i] != null &&
+                        gamePanel.getObj()[gamePanel.getCurrentMap()][i].name.equals(OBJ_Iron_Door.objName)) {
+                    gamePanel.getObj()[gamePanel.getCurrentMap()][i] = null;
+//                    TODO: Add SE
+//                    gamePanel.playSE();
+                }
             }
         }
     }

@@ -55,6 +55,7 @@ public class Entity {
 
     protected String[][] dialogues = new String[20][20];
     protected Entity attacker;
+    protected Entity linkedEntity;
 
     // STATE
     protected int worldX;
