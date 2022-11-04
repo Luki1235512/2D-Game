@@ -77,6 +77,7 @@ public class Player extends Entity {
     }
 
     public void setDefaultPositions() {
+        gamePanel.setCurrentMap(0);
         worldX = gamePanel.getTileSize() * 23;
         worldY = gamePanel.getTileSize() * 21;
         direction = "down";
