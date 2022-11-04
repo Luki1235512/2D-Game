@@ -71,6 +71,12 @@ public class CollisionChecker {
 
         int index = Integer.MAX_VALUE;
 
+        // USE A TEMPORAL DIRECTION WHET IT'S BEING KNOCKED
+        String direction = entity.getDirection();
+        if (entity.isKnockBack()) {
+            direction = entity.getKnockBackDirection();
+        }
+
         for (int i = 0; i < gamePanel.getObj()[1].length; i++) {
             if (gamePanel.getObj()[gamePanel.getCurrentMap()][i] != null) {
                 entity.getSolidArea().x = entity.getWorldX() + entity.getSolidArea().x;
@@ -84,7 +90,7 @@ public class CollisionChecker {
                         gamePanel.getObj()[gamePanel.getCurrentMap()][i].getWorldY() +
                                 gamePanel.getObj()[gamePanel.getCurrentMap()][i].getSolidArea().y;
 
-                switch (entity.getDirection()) {
+                switch (direction) {
                     case "up":
                         entity.getSolidArea().y -= entity.getSpeed();
                         break;
