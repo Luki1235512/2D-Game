@@ -66,7 +66,7 @@ public class MON_BlueSlime extends Entity {
             checkStartChasingOrNot(gamePanel.getPlayer(), 5, 100);
 
             // GET A RANDOM DIRECTION
-            getRandomDirection();
+            getRandomDirection(120);
         }
     }
 
