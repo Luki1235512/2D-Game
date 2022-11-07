@@ -78,6 +78,7 @@ public class Entity {
     protected boolean offBalance = false;
     protected Entity loot;
     protected boolean opened = false;
+    protected boolean inRage = false;
 
     // COUNTER
     protected int spriteCounter = 0;

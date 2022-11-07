@@ -49,31 +49,67 @@ public class MON_SkeletonLord extends Entity {
 
         int i = 5;
 
-        up1 = setup("/monster/skeletonlord/skeletonlord_up_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
-        up2 = setup("/monster/skeletonlord/skeletonlord_up_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
-        down1 = setup("/monster/skeletonlord/skeletonlord_down_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
-        down2 = setup("/monster/skeletonlord/skeletonlord_down_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
-        left1 = setup("/monster/skeletonlord/skeletonlord_left_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
-        left2 = setup("/monster/skeletonlord/skeletonlord_left_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
-        right1 = setup("/monster/skeletonlord/skeletonlord_right_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
-        right2 = setup("/monster/skeletonlord/skeletonlord_right_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+        if (!inRage) {
+            up1 = setup("/monster/skeletonlord/skeletonlord_up_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            up2 = setup("/monster/skeletonlord/skeletonlord_up_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            down1 = setup("/monster/skeletonlord/skeletonlord_down_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            down2 = setup("/monster/skeletonlord/skeletonlord_down_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            left1 = setup("/monster/skeletonlord/skeletonlord_left_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            left2 = setup("/monster/skeletonlord/skeletonlord_left_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            right1 = setup("/monster/skeletonlord/skeletonlord_right_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            right2 = setup("/monster/skeletonlord/skeletonlord_right_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+        }
+        if (inRage) {
+            up1 = setup("/monster/skeletonlord/skeletonlord_phase2_up_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            up2 = setup("/monster/skeletonlord/skeletonlord_phase2_up_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            down1 = setup("/monster/skeletonlord/skeletonlord_phase2_down_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            down2 = setup("/monster/skeletonlord/skeletonlord_phase2_down_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            left1 = setup("/monster/skeletonlord/skeletonlord_phase2_left_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            left2 = setup("/monster/skeletonlord/skeletonlord_phase2_left_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            right1 = setup("/monster/skeletonlord/skeletonlord_phase2_right_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+            right2 = setup("/monster/skeletonlord/skeletonlord_phase2_right_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i);
+        }
     }
 
     public void getAttackImage() {
 
         int i = 5;
 
-        attackUp1 = setup("/monster/skeletonlord/skeletonlord_attack_up_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
-        attackUp2 = setup("/monster/skeletonlord/skeletonlord_attack_up_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
-        attackDown1 = setup("/monster/skeletonlord/skeletonlord_attack_down_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
-        attackDown2 = setup("/monster/skeletonlord/skeletonlord_attack_down_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
-        attackLeft1 = setup("/monster/skeletonlord/skeletonlord_attack_left_1", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
-        attackLeft2 = setup("/monster/skeletonlord/skeletonlord_attack_left_2", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
-        attackRight1 = setup("/monster/skeletonlord/skeletonlord_attack_right_1", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
-        attackRight2 = setup("/monster/skeletonlord/skeletonlord_attack_right_2", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
+        if (!inRage) {
+            attackUp1 = setup("/monster/skeletonlord/skeletonlord_attack_up_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
+            attackUp2 = setup("/monster/skeletonlord/skeletonlord_attack_up_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
+            attackDown1 = setup("/monster/skeletonlord/skeletonlord_attack_down_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
+            attackDown2 = setup("/monster/skeletonlord/skeletonlord_attack_down_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
+            attackLeft1 = setup("/monster/skeletonlord/skeletonlord_attack_left_1", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
+            attackLeft2 = setup("/monster/skeletonlord/skeletonlord_attack_left_2", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
+            attackRight1 = setup("/monster/skeletonlord/skeletonlord_attack_right_1", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
+            attackRight2 = setup("/monster/skeletonlord/skeletonlord_attack_right_2", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
+        }
+        if (inRage) {
+            attackUp1 = setup("/monster/skeletonlord/skeletonlord_phase2_attack_up_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
+            attackUp2 = setup("/monster/skeletonlord/skeletonlord_phase2_attack_up_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
+            attackDown1 = setup("/monster/skeletonlord/skeletonlord_phase2_attack_down_1", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
+            attackDown2 = setup("/monster/skeletonlord/skeletonlord_phase2_attack_down_2", gamePanel.getTileSize() * i, gamePanel.getTileSize() * i * 2);
+            attackLeft1 = setup("/monster/skeletonlord/skeletonlord_phase2_attack_left_1", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
+            attackLeft2 = setup("/monster/skeletonlord/skeletonlord_phase2_attack_left_2", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
+            attackRight1 = setup("/monster/skeletonlord/skeletonlord_phase2_attack_right_1", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
+            attackRight2 = setup("/monster/skeletonlord/skeletonlord_phase2_attack_right_2", gamePanel.getTileSize() * i * 2, gamePanel.getTileSize() * i);
+        }
+
     }
 
     public void setAction() {
+
+        if (!inRage && life < maxLife / 2) {
+            inRage = true;
+            getImage();
+            getAttackImage();
+            defaultSpeed++;
+            speed = defaultSpeed;
+            attack *= 2;
+
+        }
+
         if (getTileDistance(gamePanel.getPlayer()) < 10) {
             moveTowardPlayer(60);
         } else {
