@@ -584,7 +584,7 @@ public class Entity {
     public void getRandomDirection(int interval) {
         actionLockCounter++;
 
-        if (actionLockCounter == interval) {
+        if (actionLockCounter > interval) {
             Random random = new Random();
             int i = random.nextInt(100) + 1;
 
@@ -601,6 +601,27 @@ public class Entity {
                 direction = "right";
             }
 
+            actionLockCounter = 0;
+        }
+    }
+
+    public void moveTowardPlayer(int interval) {
+        actionLockCounter++;
+
+        if (actionLockCounter > interval) {
+            if (getXDistance(gamePanel.getPlayer()) > getYDistance(gamePanel.getPlayer())) {
+                if (gamePanel.getPlayer().getCenterX() < getCenterX()) {
+                    direction = "left";
+                } else {
+                    direction = "right";
+                }
+            } else if (getXDistance(gamePanel.getPlayer()) < getYDistance(gamePanel.getPlayer())) {
+                if (gamePanel.getPlayer().getCenterY() < getCenterY()) {
+                    direction = "up";
+                } else {
+                    direction = "down";
+                }
+            }
             actionLockCounter = 0;
         }
     }

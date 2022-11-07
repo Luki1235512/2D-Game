@@ -74,15 +74,15 @@ public class MON_SkeletonLord extends Entity {
     }
 
     public void setAction() {
-        if (onPath) {
-
+        if (getTileDistance(gamePanel.getPlayer()) < 10) {
+            moveTowardPlayer(60);
         } else {
-
+            getRandomDirection(120);
         }
 
         // CHECK IF IT ATTACKS
         if (!attacking) {
-            checkAttackOrNot(60, gamePanel.getTileSize() * 10, gamePanel.getTileSize() * 5);
+            checkAttackOrNot(60, gamePanel.getTileSize() * 7, gamePanel.getTileSize() * 5);
         }
     }
 
