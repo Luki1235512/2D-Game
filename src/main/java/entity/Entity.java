@@ -737,9 +737,9 @@ public class Entity {
         int screenX = worldX - gamePanel.getPlayer().worldX + gamePanel.getPlayer().getScreenX();
         int screenY = worldY - gamePanel.getPlayer().worldY + gamePanel.getPlayer().getScreenY();
 
-        if (worldX + gamePanel.getTileSize() > gamePanel.getPlayer().worldX - gamePanel.getPlayer().getScreenX() &&
+        if (worldX + gamePanel.getTileSize() * 5 > gamePanel.getPlayer().worldX - gamePanel.getPlayer().getScreenX() &&
                 worldX - gamePanel.getTileSize() < gamePanel.getPlayer().worldX + gamePanel.getPlayer().getScreenX() &&
-                worldY + gamePanel.getTileSize() > gamePanel.getPlayer().worldY - gamePanel.getPlayer().getScreenY() &&
+                worldY + gamePanel.getTileSize() * 5 > gamePanel.getPlayer().worldY - gamePanel.getPlayer().getScreenY() &&
                 worldY - gamePanel.getTileSize() < gamePanel.getPlayer().worldY + gamePanel.getPlayer().getScreenY()) {
 
             int tempScreenX = screenX;
