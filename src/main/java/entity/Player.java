@@ -386,14 +386,15 @@ public class Player extends Entity {
             mana = maxMana;
         }
 
-        if (life <= 0) {
-            gamePanel.setGameState(gamePanel.getGameOverState());
-            gamePanel.getUi().setCommandNum(-1);
-            gamePanel.stopMusic();
-            // TODO: add game ove sound effect
+        if (!keyHandler.isGodModeOn()) {
+            if (life <= 0) {
+                gamePanel.setGameState(gamePanel.getGameOverState());
+                gamePanel.getUi().setCommandNum(-1);
+                gamePanel.stopMusic();
+                // TODO: add game ove sound effect
 //            gamePanel.playSE();
+            }
         }
-
     }
 
     public void pickUpObject(int i) {

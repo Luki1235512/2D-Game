@@ -17,6 +17,7 @@ public class KeyHandler implements KeyListener {
 
     // DEBUG
     private boolean showDebugText = false;
+    private boolean godModeOn = false;
 
     public KeyHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -97,13 +98,15 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_R) {
             switch (gamePanel.getCurrentMap()) {
                 case 0:
-                    gamePanel.getTileManager().loadMap("/maps/worldV2.txt", 0);
+                    gamePanel.getTileManager().loadMap("/maps/worldV3.txt", 0);
                     break;
                 case 1:
                     gamePanel.getTileManager().loadMap("/maps/interior01.txt", 1);
                     break;
             }
-
+        }
+        if (code == KeyEvent.VK_G) {
+            godModeOn = !godModeOn;
         }
     }
 
@@ -351,6 +354,10 @@ public class KeyHandler implements KeyListener {
 
     public void setEnterPressed(boolean enterPressed) {
         this.enterPressed = enterPressed;
+    }
+
+    public boolean isGodModeOn() {
+        return godModeOn;
     }
 
     @Override
