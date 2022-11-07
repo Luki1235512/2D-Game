@@ -76,29 +76,18 @@ public class MON_SkeletonLord extends Entity {
     public void setAction() {
         if (onPath) {
 
-            // CHECK IF IT STOPS CHASING
-            checkStopChasingOrNot(gamePanel.getPlayer(), 15, 100);
-
-            // SEARCH THE DIRECTION TO GO
-            searchPath(getGoalCol(gamePanel.getPlayer()), getGoalRow(gamePanel.getPlayer()));
         } else {
-            // CHECK IF IT STARTS CHASING
-            checkStartChasingOrNot(gamePanel.getPlayer(), 5, 100);
 
-            // GET A RANDOM DIRECTION
-            getRandomDirection(120);
         }
 
         // CHECK IF IT ATTACKS
         if (!attacking) {
-            checkAttackOrNot(30, gamePanel.getTileSize() * 4, gamePanel.getTileSize());
+            checkAttackOrNot(60, gamePanel.getTileSize() * 10, gamePanel.getTileSize() * 5);
         }
     }
 
     public void damageReaction() {
         actionLockCounter = 0;
-//        direction = gamePanel.getPlayer().getDirection();
-        onPath = true;
     }
 
     public void checkDrop() {

@@ -268,11 +268,11 @@ public class Entity {
     }
 
     public int getXDistance(Entity target) {
-        return Math.abs(worldX - target.getWorldX());
+        return Math.abs(getCenterX() - target.getCenterX());
     }
 
     public int getYDistance(Entity target) {
-        return Math.abs(worldY - target.getWorldY());
+        return Math.abs(getCenterY() - target.getCenterY());
     }
 
     public int getTileDistance(Entity target) {
@@ -513,22 +513,22 @@ public class Entity {
 
         switch (direction) {
             case "up":
-                if (gamePanel.getPlayer().worldY < worldY && yDis < straight && xDis < horizontal) {
+                if (gamePanel.getPlayer().getCenterY() < getCenterY() && yDis < straight && xDis < horizontal) {
                     targetInRange = true;
                 }
                 break;
             case "down":
-                if (gamePanel.getPlayer().worldY > worldY && yDis < straight && xDis < horizontal) {
+                if (gamePanel.getPlayer().getCenterY() > getCenterY() && yDis < straight && xDis < horizontal) {
                     targetInRange = true;
                 }
                 break;
             case "left":
-                if (gamePanel.getPlayer().worldX < worldX && xDis < straight && yDis < horizontal) {
+                if (gamePanel.getPlayer().getCenterX() < getCenterX() && xDis < straight && yDis < horizontal) {
                     targetInRange = true;
                 }
                 break;
             case "right":
-                if (gamePanel.getPlayer().worldX > worldX && xDis < straight && yDis < horizontal) {
+                if (gamePanel.getPlayer().getCenterX() > getCenterX() && xDis < straight && yDis < horizontal) {
                     targetInRange = true;
                 }
                 break;
@@ -759,7 +759,7 @@ public class Entity {
                         }
                     }
                     if (attacking) {
-                        tempScreenY = screenY - gamePanel.getTileSize();
+                        tempScreenY = screenY - up1.getHeight();
                         if (spriteNum == 1) {
                             image = attackUp1;
                         }
@@ -802,7 +802,7 @@ public class Entity {
                         }
                     }
                     if (attacking) {
-                        tempScreenX = screenX - gamePanel.getTileSize();
+                        tempScreenX = screenX - left1.getWidth();
                         if (spriteNum == 1) {
                             image = attackLeft1;
                         }
@@ -1063,6 +1063,14 @@ public class Entity {
 
     public int getRow() {
         return (worldY + solidArea.y) / gamePanel.getTileSize();
+    }
+
+    public int getCenterX() {
+        return worldX + left1.getWidth() / 2;
+    }
+
+    public int getCenterY() {
+        return worldY + up1.getHeight() / 2;
     }
 
     public int getAmount() {

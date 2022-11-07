@@ -6,6 +6,7 @@ import entity.NPC_OldMan;
 import monster.MON_Bat;
 import monster.MON_BlueSlime;
 import monster.MON_Orc;
+import monster.MON_SkeletonLord;
 import object.*;
 import tile_interactive.IT_DestructibleWall;
 import tile_interactive.IT_MetalPlate;
@@ -209,6 +210,11 @@ public class AssetSetter {
         gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 10);
         gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 19);
         i++;
+
+        mapNum = 3;
+        gamePanel.getMonster()[mapNum][i] = new MON_SkeletonLord(gamePanel);
+        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 23);
+        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 16);
     }
 
     public void setInteractiveTile() {
