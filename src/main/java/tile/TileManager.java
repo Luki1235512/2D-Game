@@ -24,7 +24,7 @@ public class TileManager {
         tile = new Tile[50];
         mapTileNum = new int[gamePanel.getMaxMap()][gamePanel.getMaxWorldCol()][gamePanel.getMaxWorldRow()];
         getTileImage();
-        loadMap("/maps/worldV2.txt", 0);
+        loadMap("/maps/worldV3.txt", 0);
         loadMap("/maps/interior01.txt", 1);
         loadMap("/maps/dungeon01_tmp.txt", 2);
         loadMap("/maps/dungeon02_tmp.txt", 3);

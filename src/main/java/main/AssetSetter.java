@@ -23,34 +23,20 @@ public class AssetSetter {
 
         int mapNum = 0;
         int i = 0;
-//        gamePanel.getObj()[mapNum][i] = new OBJ_Potion_Red(gamePanel);
-//        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 25);
-//        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 23);
-//
-//        i++;
-//        gamePanel.getObj()[mapNum][i] = new OBJ_Potion_Red(gamePanel);
-//        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 21);
-//        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 19);
-//
-//        i++;
-//        gamePanel.getObj()[mapNum][i] = new OBJ_Potion_Red(gamePanel);
-//        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 18);
-//        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 20);
 
-//        i++;
         gamePanel.getObj()[mapNum][i] = new OBJ_Lantern(gamePanel);
-        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 21);
-        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 19);
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 23);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 36);
 
         i++;
         gamePanel.getObj()[mapNum][i] = new OBJ_Tent(gamePanel);
-        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 19);
-        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 20);
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 24);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 36);
 
         i++;
         gamePanel.getObj()[mapNum][i] = new OBJ_Axe(gamePanel);
-        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 33);
-        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 21);
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 25);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 36);
 
 //        i++;
 //        gamePanel.getObj()[mapNum][i] = new OBJ_Shield2(gamePanel);
@@ -74,19 +60,19 @@ public class AssetSetter {
 
         i++;
         gamePanel.getObj()[mapNum][i] = new OBJ_Door(gamePanel);
-        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 14);
-        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 28);
+        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 12);
+        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 10);
 
-        i++;
-        gamePanel.getObj()[mapNum][i] = new OBJ_Door(gamePanel);
-        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 10);
-        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 12);
+//        i++;
+//        gamePanel.getObj()[mapNum][i] = new OBJ_Door(gamePanel);
+//        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 10);
+//        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 12);
 
-        i++;
-        gamePanel.getObj()[mapNum][i] = new OBJ_Chest(gamePanel);
-        gamePanel.getObj()[mapNum][i].setLoot(new OBJ_Key(gamePanel));
-        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 30);
-        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 28);
+//        i++;
+//        gamePanel.getObj()[mapNum][i] = new OBJ_Chest(gamePanel);
+//        gamePanel.getObj()[mapNum][i].setLoot(new OBJ_Key(gamePanel));
+//        gamePanel.getObj()[mapNum][i].setWorldX(gamePanel.getTileSize() * 30);
+//        gamePanel.getObj()[mapNum][i].setWorldY(gamePanel.getTileSize() * 28);
 
         // DUNGEON
 
@@ -128,8 +114,8 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
         gamePanel.getNpc()[mapNum][i] = new NPC_OldMan(gamePanel);
-        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 21);
-        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 21);
+        gamePanel.getNpc()[mapNum][i].setWorldX(gamePanel.getTileSize() * 32);
+        gamePanel.getNpc()[mapNum][i].setWorldY(gamePanel.getTileSize() * 32);
 
         // MAP 1
         mapNum = 1;
@@ -162,33 +148,38 @@ public class AssetSetter {
         int mapNum = 0;
         int i = 0;
         gamePanel.getMonster()[mapNum][i] = new MON_BlueSlime(gamePanel);
-        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 23);
-        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 36);
+        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 8);
+        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 25);
 
         i++;
         gamePanel.getMonster()[mapNum][i] = new MON_BlueSlime(gamePanel);
-        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 23);
-        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 37);
+        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 8);
+        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 20);
 
         i++;
         gamePanel.getMonster()[mapNum][i] = new MON_BlueSlime(gamePanel);
-        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 24);
-        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 37);
+        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 32);
+        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 20);
 
         i++;
         gamePanel.getMonster()[mapNum][i] = new MON_BlueSlime(gamePanel);
-        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 34);
-        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 42);
+        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 32);
+        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 28);
 
         i++;
         gamePanel.getMonster()[mapNum][i] = new MON_BlueSlime(gamePanel);
-        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 38);
-        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 42);
+        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 41);
+        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 20);
+
+        i++;
+        gamePanel.getMonster()[mapNum][i] = new MON_BlueSlime(gamePanel);
+        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 41);
+        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 28);
 
         i++;
         gamePanel.getMonster()[mapNum][i] = new MON_Orc(gamePanel);
-        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 12);
-        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 33);
+        gamePanel.getMonster()[mapNum][i].setWorldX(gamePanel.getTileSize() * 36);
+        gamePanel.getMonster()[mapNum][i].setWorldY(gamePanel.getTileSize() * 12);
 
         // DUNGEON
 
@@ -226,71 +217,22 @@ public class AssetSetter {
         int i = 0;
 
         // SPAWN BLOCKING TREES
-
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 27, 12);
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 18, 36);
         i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 28, 12);
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 30, 36);
         i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 29, 12);
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 18, 24);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 30, 24);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 18, 12);
+        i++;
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 18, 13);
         i++;
         gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 30, 12);
         i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 31, 12);
+        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 30, 13);
         i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 32, 12);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 33, 12);
-
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 20, 20);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 20, 21);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 20, 22);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 22, 24);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 23, 24);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 24, 24);
-
-        // SHOP BLOCKING TREES
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 18, 40);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 17, 40);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 16, 40);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 15, 40);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 14, 40);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 13, 40);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 13, 41);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 12, 41);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 11, 41);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 10, 41);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 10, 40);
-
-        // CHEST BLOCKING TREES
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 25, 27);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 26, 27);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 27, 27);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 28, 28);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 28, 29);
-        i++;
-        gamePanel.getITile()[mapNum][i] = new IT_SickTree(gamePanel, 30, 29);
 
         // DUNGEON
 

@@ -62,27 +62,27 @@ public class EventHandler {
         }
 
         if (canTouchEvent) {
-            if (hit(0, 27, 16, "right")) {
+            if (hit(0, 40, 36, "left")) {
                 damagePit(gamePanel.getDialogueState());
             }
-            else if (hit(0, 23, 12, "up")) {
+            else if (hit(0, 33, 36, "right")) {
                 healingPool(gamePanel.getDialogueState());
             }
-            else if (hit(0, 10, 39, "any")) {
+            else if (hit(0, 12, 36, "any")) {
                 teleport(1, 12, 13, gamePanel.getIndoor());
             }
             else if (hit(1, 12, 13, "any")) {
-                teleport(0, 10, 39, gamePanel.getOutside());
+                teleport(0, 12, 36, gamePanel.getOutside());
             }
             else if (hit(1, 12, 9, "up")) {
                 speak(gamePanel.getNpc()[1][0]);
             }
             // DUNGEON
-            else if (hit(0, 10, 9, "any")) {
+            else if (hit(0, 12, 13, "any")) {
                 teleport(2, 9, 41, gamePanel.getDungeon());
             }
             else if (hit(2, 9, 41, "any")) {
-                teleport(0, 10, 9, gamePanel.getOutside());
+                teleport(0, 12, 13, gamePanel.getOutside());
             }
             else if (hit(2, 8, 7, "any")) {
                 teleport(3, 26, 41, gamePanel.getDungeon());

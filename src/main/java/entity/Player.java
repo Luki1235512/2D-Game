@@ -38,14 +38,14 @@ public class Player extends Entity {
     public void setDefaultValues() {
 
         // BASIC
-//        worldX = gamePanel.getTileSize() * 23;
-//        worldY = gamePanel.getTileSize() * 21;
+//        worldX = gamePanel.getTileSize() * 24;
+//        worldY = gamePanel.getTileSize() * 40;
         // MERCHANT
 //        worldX = gamePanel.getTileSize() * 9;
 //        worldY = gamePanel.getTileSize() * 40;
         // DUNGEON
-        worldX = gamePanel.getTileSize() * 10;
-        worldY = gamePanel.getTileSize() * 10;
+        worldX = gamePanel.getTileSize() * 12;
+        worldY = gamePanel.getTileSize() * 11;
 
         defaultSpeed = 4;
         speed = defaultSpeed;
@@ -78,8 +78,8 @@ public class Player extends Entity {
 
     public void setDefaultPositions() {
         gamePanel.setCurrentMap(0);
-        worldX = gamePanel.getTileSize() * 23;
-        worldY = gamePanel.getTileSize() * 21;
+        worldX = gamePanel.getTileSize() * 24;
+        worldY = gamePanel.getTileSize() * 40;
         direction = "down";
     }
 
